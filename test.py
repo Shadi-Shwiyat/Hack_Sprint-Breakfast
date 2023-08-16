@@ -18,13 +18,45 @@ white = (255, 255, 255)
 font = pygame.font.Font(None, 36)
 
 # Define the message
-message = "Select the correct ingredients!"
+message = "Wes Says select the correct ingredients!"
 
 # Render the message
 text = font.render(message, True, black)
 
-# Ingredients list
-ingredients = ["Egg", "Bacon", "Toast", "Cereal", "Milk", "Orange Juice", "Coffee", "Jam", "Butter", "Sausage", "Pancake", "Maple Syrup", "Fruit", "Yogurt", "Honey"]
+#Meals with their ingredients would go here
+# Like Chicekn and Waffles = Chicken, Waffles, Syrup, Butter, blah blah blah
+
+# Ingredients list not right, just copy and pasted some stuff from the internet
+ingredients = ["Egg",
+    "Bacon",
+    "Sausage",
+    "Ham",
+    "Hash Browns",
+    "Pancake",
+    "Waffle",
+    "French Toast",
+    "Omelette",
+    "Scrambled Eggs",
+    "Bagel",
+    "Cream Cheese",
+    "Croissant",
+    "Cereal",
+    "Milk",
+    "Yogurt",
+    "Fresh Fruit (e.g., berries, banana)",
+    "Maple Syrup",
+    "Honey",
+    "Jam",
+    "Peanut Butter",
+    "Oatmeal",
+    "Granola",
+    "Greek Yogurt",
+    "Cottage Cheese",
+    "Avocado",
+    "Tomato",
+    "Spinach",
+    "Coffee",
+    "Orange Juice"]
 
 # Select a random meal and its correct ingredients
 meal = random.choice(ingredients)
