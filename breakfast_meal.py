@@ -20,16 +20,7 @@ breakfasts = [
 ]
 
 levels = [
-    [0], # Level 1
-    [1], # Level 2
-    [2], # Level 3
-    [3], # Level 4
-    [4], # Level 5
-    [5], # Level 6
-    [6], # Level 7
-    [7], # Level 8
-    [8], # Level 9
-    [9] # Level 10
+    [0], [1], [2], [3], [4], [5], [6], [7], [8], [9]  # Levels 1 to 10
 ]
 
 ingredients_per_level = {
@@ -49,7 +40,10 @@ ingredients_per_level = {
 
 # Combine all data into a dictionary
 game_data = {
-    "breakfasts":# List of BreakfastMeal objects need to figure out how to make this a list of strings
+    "breakfasts": [
+        {"name": meal.name, "ingredients": meal.ingredients, "meal_picture": meal.meal_picture}
+        for meal in breakfasts
+    ],
     "levels": levels,
     "ingredients_per_level": ingredients_per_level
 }
@@ -58,4 +52,65 @@ game_data = {
 with open("game_data.json", "w") as json_file:
     json.dump(game_data, json_file, indent=4)
 
-print("Game data saved as game_data.json")
+
+###########################################################################################
+# This is what it would look like in the main pygame file :)
+###########################################################################################
+import pygame
+import json
+
+# Initialize Pygame and screen
+
+# Load game data from JSON
+with open("game_data.json", "r") as json_file:
+    game_data = json.load(json_file)
+
+# Initialize game elements using the loaded data
+breakfasts = [BreakfastMeal(**data) for data in game_data["breakfasts"]]
+levels = game_data["levels"]
+ingredients_per_level = game_data["ingredients_per_level"]
+
+# Set up Level 1
+level_index = 0  # Index of Level 1 in the 'levels' list
+current_level = levels[level_index]
+correct_ingredients = ingredients_per_level[level_index]
+
+# Display the meal picture (you can replace this with your image loading logic)
+meal_picture = pygame.image.load(breakfasts[current_level[0]].meal_picture)
+
+# Display the ingredients
+y_offset = 100
+for ingredient in correct_ingredients:
+    text = FONT.render(ingredient, True, (0, 0, 0))
+    text_rect = text.get_rect(center=(SCREEN_WIDTH // 2, y_offset))
+    screen.blit(text, text_rect)
+    y_offset += 40
+
+# Game loop
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Handle user input (e.g., select ingredients)
+
+    # Check correctness and update score and level
+    if set(player.selected_ingredients) == set(correct_ingredients):
+        player.score += 1
+        player.current_level += 1
+        player.selected_ingredients = []
+        
+        # Transition to the next level if available
+        if player.current_level < len(levels):
+            level_index = player.current_level
+            current_level = levels[level_index]
+            correct_ingredients = ingredients_per_level[level_index]
+            
+            # Update the meal picture and ingredients display (similar to the above code)
+
+    # Update the display
+    pygame.display.flip()
+
+# Clean up and quit
+pygame.quit()
