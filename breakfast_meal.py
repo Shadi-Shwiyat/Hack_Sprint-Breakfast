@@ -9,21 +9,21 @@ class BreakfastMeal:
         
 # Breakfast Meals to be used per level
 breakfasts = [
-    BreakfastMeal("Eggs_and_Sausage", ["Eggs", "Sausage"], "Eggs_and_Sausage.jpg"),
-    BreakfastMeal("Bagel_and_Cream_Cheese",["Bagel", "Cream Cheese"], "Bagel_and_Cream_Cheese.jpg"),
+    eggs_sausage = BreakfastMeal("Eggs and Sausage", ["Eggs", "Sausage"], "Eggs_and_Sausage.jpg"),
+    BreakfastMeal("Bagel and Cream Cheese",["Bagel", "Cream Cheese"], "Bagel_and_Cream_Cheese.jpg"),
     BreakfastMeal("Quiche",["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust"], "Quiche.jpg"),
     # Breakfast Meals to be used per level (More Difficult)
     BreakfastMeal("Quiche",["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter" ], "Quiche.jpg"),
-    BreakfastMeal("Bacon_Pancakes",["Pancake Batter", "Bacon", "Maple Syrup", "Butter"], "Bacon_Pancakes.jpg"),
-    BreakfastMeal("Breakfast_Burrito",["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa"], "Breakfast_Burrito.jpg"),
-    BreakfastMeal("Chocolate_Chip_Waffles", ["Milk", "Eggs", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup"], "Chocolate_Chip_Waffles.jpg"),
-    BreakfastMeal("Full_English_Breakfast",["Eggs", "Bacon", "Toast", "Jam" "Hash Browns", "Sausage", "Baked Beans", "Tomato", "Mushrooms"], "Full_English_Breakfast.jpg"),
-    BreakfastMeal("Chinese_Congee", ["Rice", "Water", "Fried Egg", "Ginger", "Green Onion", "Soy Sauce"], "Chinese_Congee.jpg"),
-    BreakfastMeal("Japanese_Breakfast", ["Rice", "Miso Soup", "Grilled Fish", "Pickled Vegetables", "Fermented Soybean", "Rolled Omelette", "Seaweed"], "Japanese_Breakfast.jpg")
+    BreakfastMeal("Bacon Pancakes",["Pancake Batter", "Bacon", "Maple Syrup", "Butter"], "Bacon_Pancakes.jpg"),
+    BreakfastMeal("Breakfast Burrito",["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa"], "Breakfast_Burrito.jpg"),
+    BreakfastMeal("Chocolate Chip Waffles", ["Milk", "Eggs", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup"], "Chocolate_Chip_Waffles.jpg"),
+    BreakfastMeal("Full English Breakfast",["Eggs", "Bacon", "Toast", "Jam" "Hash Browns", "Sausage", "Baked Beans", "Tomato", "Mushrooms"], "Full_English_Breakfast.jpg"),
+    BreakfastMeal("Chinese Congee", ["Rice", "Water", "Fried Egg", "Ginger", "Green Onion", "Soy Sauce"], "Chinese_Congee.jpg"),
+    BreakfastMeal("Japanese Breakfast", ["Rice", "Miso Soup", "Grilled Fish", "Pickled Vegetables", "Fermented Soybean", "Rolled Omelette", "Seaweed"], "Japanese_Breakfast.jpg")
 ]
-
+# Levels 1 to 10
 levels = [
-    [0], [1], [2], [3], [4], [5], [6], [7], [8], [9]  # Levels 1 to 10
+    [0], [1], [2], [3], [4], [5], [6], [7], [8], [9]
 ]
 
 # List of right and wrong ingredients to be used per level
