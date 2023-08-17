@@ -14,14 +14,13 @@ breakfasts = [
     BreakfastMeal("Bagel and Cream Cheese",["Bagel", "Cream Cheese"], meal_picture, meal_sound)
     BreakfastMeal("Quiche",["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust"], meal_picture, meal_sound)
 #Breakfast Meals to be used per level (More Difficult)
-    BreakfastMeal("Quiche",["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter" ], meal_picture, meal_sound)")
-    BreakfastMeal("Bacon Pancakes",["Pancake Batter", "Bacon", "Maple Syrup", "Butter"], meal_picture, meal_sound)")
-    BreakfastMeal("Breakfast Burrito",["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa"], meal_picture, meal_sound)")
-    BreakfastMeal("Chocolate Chip Waffles", ["Milk", "Eggs", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup"], meal_picture, meal_sound)")
-    BreakfastMeal("Full English Breakfast",["Eggs", "Bacon", "Toast", "Jam" "Hash Browns", "Sausage", "Baked Beans", "Tomato", "Mushrooms"], meal_picture, meal_sound)")
-    BreakfastMeal("Chinese Congee", ["Rice", "Water", "Fried Egg", "Ginger", "Green Onion", "Soy Sauce"], meal_picture, meal_sound)")
-    BreakfastMeal("Japanese Breakfast", ["Rice", "Miso Soup", "Grilled Fish", "Pickled Vegetables", "Fermented Soybean", "Rolled Omelette", "Seaweed"], meal_picture, meal_sound)")
-]
+    BreakfastMeal("Quiche",["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter" ], meal_picture, meal_sound)
+    BreakfastMeal("Bacon_Pancakes",["Pancake Batter", "Bacon", "Maple Syrup", "Butter"], meal_picture, meal_sound)
+    BreakfastMeal("Breakfast_Burrito",["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa"], meal_picture, meal_sound)
+    BreakfastMeal("Chocolate_Chip_Waffles", ["Milk", "Eggs", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup"], meal_picture, meal_sound)
+    BreakfastMeal("Full_English_Breakfast",["Eggs", "Bacon", "Toast", "Jam" "Hash Browns", "Sausage", "Baked Beans", "Tomato", "Mushrooms"], meal_picture, meal_sound)
+    BreakfastMeal("Chinese_Congee", ["Rice", "Water", "Fried Egg", "Ginger", "Green Onion", "Soy Sauce"], meal_picture, meal_sound)
+    BreakfastMeal("Japanese_Breakfast", ["Rice", "Miso Soup", "Grilled Fish", "Pickled Vegetables", "Fermented Soybean", "Rolled Omelette", "Seaweed"], meal_picture, meal_sound)]
 
 # List of right and wrong ingredients to be used per level
 Level1Ingredients = ["Eggs", "Sasuage", "Toast", "Bacon"]
