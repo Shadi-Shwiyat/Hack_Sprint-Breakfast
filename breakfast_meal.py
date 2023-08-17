@@ -1,15 +1,18 @@
 import json
 
+# Breakfast Meal class
 class BreakfastMeal:
     def __init__(self, name, ingredients, meal_picture):
         self.name = name
         self.ingredients = ingredients
         self.meal_picture = meal_picture
-
+        
+# Breakfast Meals to be used per level
 breakfasts = [
     BreakfastMeal("Eggs_and_Sausage", ["Eggs", "Sausage"], "Eggs_and_Sausage.jpg"),
     BreakfastMeal("Bagel_and_Cream_Cheese",["Bagel", "Cream Cheese"], "Bagel_and_Cream_Cheese.jpg"),
     BreakfastMeal("Quiche",["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust"], "Quiche.jpg"),
+    # Breakfast Meals to be used per level (More Difficult)
     BreakfastMeal("Quiche",["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter" ], "Quiche.jpg"),
     BreakfastMeal("Bacon_Pancakes",["Pancake Batter", "Bacon", "Maple Syrup", "Butter"], "Bacon_Pancakes.jpg"),
     BreakfastMeal("Breakfast_Burrito",["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa"], "Breakfast_Burrito.jpg"),
@@ -23,11 +26,12 @@ levels = [
     [0], [1], [2], [3], [4], [5], [6], [7], [8], [9]  # Levels 1 to 10
 ]
 
+# List of right and wrong ingredients to be used per level
 ingredients_per_level = {
     0: ["Eggs", "Sasuage", "Toast", "Bacon"],
     1: ["Bagel", "Cream Cheese", "Tortilla", "Hash Browns"],
     2: ["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust" "Tortilla", "Syrup", "Hash Browns", "Bacon", "Sasuage"],
-# List of right and wrong ingredients to be used per level (More Difficult)
+    # List of right and wrong ingredients to be used per level (More Difficult)
     3: ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter", "Torilla", "Syrup", "Hash Browns", "Bacon", "Sasuage", "Bagel", "Cream Cheese", "Seaweed", "Baked Beans"],
     4: ["Pancake Batter", "Bacon", "Maple Syrup", "Butter", "Eggs", "Cheese", "Toast", "Sausage"],
     5: ["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa", "Toast", "Pie Crust", "Bagel", "Panckae Batter", "Chocolate Chips"],
