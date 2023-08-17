@@ -9,7 +9,7 @@ class BreakfastMeal:
         
 # Breakfast Meals to be used per level
 breakfasts = [
-    eggs_sausage = BreakfastMeal("Eggs and Sausage", ["Eggs", "Sausage"], "Eggs_and_Sausage.jpg"),
+    BreakfastMeal("Eggs and Sausage", ["Eggs", "Sausage"], "Eggs_and_Sausage.jpg"),
     BreakfastMeal("Bagel and Cream Cheese",["Bagel", "Cream Cheese"], "Bagel_and_Cream_Cheese.jpg"),
     BreakfastMeal("Quiche",["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust"], "Quiche.jpg"),
     # Breakfast Meals to be used per level (More Difficult)
