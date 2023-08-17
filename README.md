@@ -18,7 +18,7 @@ and chill gameplay with a focus on the player's choice of ingredients and how th
 > 1. Create a new folder
 > 2. Open a command line and use `cd` to move to the created folder
 > 3. Type `git init` and hit enter
-> 4. Type `git clone https://github.com/bungee-boy/Retro-Rampage.git` and hit enter
+> 4. Type `git clone add repo here` and hit enter
 
 As python is commonly already installed on most systems by default, it should run without manual installation of  
 python. Furthermore, if the game is launched and fails to `import pygame` then a prompt will show and ask the  
