@@ -13,93 +13,70 @@ with open("breakfast_meal.json", "r") as json_file:
 screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Breakfast Matching Game")
 
-# Load images
-images = {}
-image_folder = os.path.join("/root/Hack_Sprint-Breakfast", "images")
-for breakfast in game_data["breakfasts"]:
-    image_path = os.path.join(image_folder, breakfast["meal_picture"])
-    image = pygame.image.load(image_path).convert_alpha()
-    images[breakfast["name"]] = image
-
-# Define colors
+# Define colors and fonts
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GRAY = (200, 200, 200)
 FONT = pygame.font.Font(None, 36)
 
-current_level = 0  # Starting level
+# Initialize variables
+current_level = 0
 selected_ingredients = set()
+correct_ingredients = set(game_data["breakfasts"][current_level]["right_ingredients"])
 
-clock = pygame.time.Clock()
 running = True
 while running:
     screen.fill(WHITE)
     
-    # Display current level
-    level_text = FONT.render(f"Level {current_level + 1}", True, BLACK)
-    screen.blit(level_text, (10, 10))
+    # Display breakfast name
+    breakfast_name = game_data["breakfasts"][current_level]["name"]
+    breakfast_name_text = FONT.render(breakfast_name, True, BLACK)
+    screen.blit(breakfast_name_text, (10, 10))
     
-    # Display ingredients for the current level
-    ingredients_for_level = game_data["ingredients_per_level"][str(current_level)]
-    ingredients_text = FONT.render("Ingredients: " + ", ".join(ingredients_for_level), True, BLACK)
-    screen.blit(ingredients_text, (10, 50))
-    
-    # Display breakfast meals for the current level
-    breakfasts_for_level = game_data["levels"][current_level]
-    y_position = 100
-    for breakfast_index in breakfasts_for_level:
-        breakfast = game_data["breakfasts"][breakfast_index]
-        breakfast_name = breakfast["name"]
-        breakfast_ingredients = breakfast["ingredients"]
+    # Display wrong ingredients selection
+    wrong_ingredients = game_data["breakfasts"][current_level]["wrong_ingredients"]
+    y_position = 60
+    for ingredient in wrong_ingredients:
+        pygame.draw.rect(screen, GRAY, (10, y_position, 200, 30))
+        ingredient_text = FONT.render(ingredient, True, BLACK)
+        screen.blit(ingredient_text, (20, y_position))
         
-        # Display breakfast meal name and ingredients
-        breakfast_text = FONT.render(f"{breakfast_name}: {', '.join(breakfast_ingredients)}", True, BLACK)
-        screen.blit(breakfast_text, (10, y_position))
-        
-        # Display breakfast meal image
-        if breakfast_name in images:
-            image = images[breakfast_name]
-            screen.blit(image, (600, y_position))
-        
-        # Check if player clicks on ingredients
+        # Check if player selects an ingredient
         mouse_x, mouse_y = pygame.mouse.get_pos()
-        if 10 <= mouse_x <= 300 and y_position <= mouse_y <= y_position + 36:
-            pygame.draw.rect(screen, GRAY, (10, y_position, 290, 36), 2)
+        if 10 <= mouse_x <= 210 and y_position <= mouse_y <= y_position + 30:
+            pygame.draw.rect(screen, BLACK, (10, y_position, 200, 30), 2)
             if pygame.mouse.get_pressed()[0]:
-                selected_ingredients = set(breakfast_ingredients)
+                selected_ingredients.add(ingredient)
         
-        y_position += 50
+        y_position += 40
     
-    # Draw "Cook It" button
-    cook_button_rect = pygame.Rect(1150, 650, 100, 40)
+    # Display cook button
+    cook_button_rect = pygame.Rect(10, 500, 100, 40)
     pygame.draw.rect(screen, BLACK, cook_button_rect, 2)
     cook_button_text = FONT.render("Cook It", True, BLACK)
-    screen.blit(cook_button_text, (1160, 660))
+    screen.blit(cook_button_text, (20, 510))
     
-    # Draw "Quit" button
-    quit_button_rect = pygame.Rect(1050, 650, 80, 40)
-    pygame.draw.rect(screen, BLACK, quit_button_rect, 2)
-    quit_button_text = FONT.render("Quit", True, BLACK)
-    screen.blit(quit_button_text, (1060, 660))
-    
-    # Check for button clicks
+    # Check for cook button click
     mouse_x, mouse_y = pygame.mouse.get_pos()
     if cook_button_rect.collidepoint(mouse_x, mouse_y):
         pygame.draw.rect(screen, GRAY, cook_button_rect, 2)
         if pygame.mouse.get_pressed()[0]:
-            if selected_ingredients == set(game_data["ingredients_per_level"][str(current_level)]):
+            if selected_ingredients == correct_ingredients:
                 print("Correct Ingredients! Cooking...")
                 current_level += 1
-                selected_ingredients = set()
-                if current_level >= len(game_data["levels"]):
+                selected_ingredients.clear()
+                correct_ingredients = set(game_data["breakfasts"][current_level]["right_ingredients"])
+                if current_level >= len(game_data["breakfasts"]):
                     print("Congratulations! You've completed all levels.")
                     running = False
-    elif quit_button_rect.collidepoint(mouse_x, mouse_y):
-        pygame.draw.rect(screen, GRAY, quit_button_rect, 2)
-        if pygame.mouse.get_pressed()[0]:
-            running = False
     
     pygame.display.flip()
-    clock.tick(60)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Limit to 60 FPS
+    pygame.time.Clock().tick(60)
 
 pygame.quit()
