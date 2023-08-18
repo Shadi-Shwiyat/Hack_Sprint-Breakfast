@@ -12,28 +12,23 @@ pygame.display.set_caption("Text Animation")
 # Define colors and fonts
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-FONT = pygame.font.Font(None, 36)
+FONT = pygame.font.Font('freesansbold.ttf', 20)
 
-# Define table dimensions
-table_x = 100
-table_y = screen_height - 150
-table_width = screen_width - 2 * table_x
-table_height = 100
+# Define text box dimensions
+text_box_x = 50
+text_box_y = 50
+text_box_width = 300
+text_box_height = 150
 
 # Initialize variables
-text_to_display = "Hello! I am Chef Wes and I am going to teach you how to make a delicious breakfast!"
+texts = [
+    "Hello! I am Chef Wes! Today we are going to learn to cook a few things!",
+    "Today we will be cooking Eggs and Sausage! Let's select the right ingredients to get started!"
+]
+current_text_index = 0
 text_index = 0
-text_display_duration = 5 * 1000  # 5 seconds in milliseconds
+text_display_duration = 4 * 1000  # 4 seconds in milliseconds
 text_display_start_time = pygame.time.get_ticks()
-
-second_text = "Today we are going to pick the right ingredients for Eggs and Sausage."
-second_text_index = 0
-second_text_display_duration = 5 * 1000  # 5 seconds in milliseconds
-text_display_start_time = pygame.time.get_ticks()
-second_text_display_start_time = text_display_start_time + text_display_duration
-
-erasing_time = 3 * 1000  # 3 seconds in milliseconds
-erasing_start_time = second_text_display_start_time + second_text_display_duration
 
 running = True
 while running:
@@ -42,54 +37,48 @@ while running:
     current_time = pygame.time.get_ticks()
     
     if current_time < text_display_start_time + text_display_duration:
-        displayed_text = text_to_display[:text_index]
-        text_index = (current_time * len(text_to_display)) // text_display_duration
-    elif text_display_start_time + text_display_duration <= current_time < second_text_display_start_time + second_text_display_duration:
-        displayed_text = second_text[:second_text_index]
-        second_text_index = (current_time * len(second_text)) // second_text_display_duration
-    elif second_text_display_start_time + second_text_display_duration <= current_time < erasing_start_time + erasing_time:
-        displayed_text = second_text
+        displayed_text = texts[current_text_index][:text_index]
+        text_index = (current_time * len(texts[current_text_index])) // text_display_duration
+    elif current_text_index < len(texts) - 1:
+        current_text_index += 1
+        text_display_start_time = current_time
+        text_index = 0
     else:
         displayed_text = ""
-        text_index = 0
-        text_display_start_time = current_time
-        second_text_index = 0
-        second_text_display_start_time = text_display_start_time + text_display_duration
-        erasing_start_time = second_text_display_start_time + second_text_display_duration + erasing_time
     
-    # Draw table
-    pygame.draw.rect(screen, BLACK, (table_x, table_y, table_width, table_height), 2)
+    # Draw text box
+    pygame.draw.rect(screen, BLACK, (text_box_x, text_box_y, text_box_width, text_box_height), 2)
     
-    lines = []
-    current_line = ""
-    words = displayed_text.split()
-    for word in words:
-        test_line = current_line + " " + word if current_line else word
-        test_text = FONT.render(test_line, True, BLACK)
-        if test_text.get_width() <= table_width - 20:
-            current_line = test_line
-        else:
-            lines.append(current_line)
-            current_line = word
-    if current_line:
-        lines.append(current_line)
-    
-    y_position = table_y + 10
+    lines = displayed_text.split('\n')
+    y_position = text_box_y + 10
     for line in lines:
-        text_surface = FONT.render(line, True, BLACK)
-        text_rect = text_surface.get_rect(midleft=(table_x + 10, y_position))
-        screen.blit(text_surface, text_rect)
-        y_position += text_surface.get_height() + 5
-    
-    # Erase table and text after erasing_time
-    if current_time >= erasing_start_time:
-        screen.fill(WHITE, (table_x + 2, table_y + 2, table_width - 4, table_height - 4))
+        words = line.split()
+        current_line = ""
+        for word in words:
+            test_line = current_line + " " + word if current_line else word
+            test_text = FONT.render(test_line, True, BLACK)
+            if test_text.get_width() <= text_box_width - 20:
+                current_line = test_line
+            else:
+                text_surface = FONT.render(current_line, True, BLACK)
+                text_rect = text_surface.get_rect(midtop=(screen_width // 2, y_position))
+                screen.blit(text_surface, text_rect)
+                y_position += text_surface.get_height() + 5
+                current_line = word
+        if current_line:
+            text_surface = FONT.render(current_line, True, BLACK)
+            text_rect = text_surface.get_rect(midtop=(screen_width // 2, y_position))
+            screen.blit(text_surface, text_rect)
+            y_position += text_surface.get_height() + 5
     
     pygame.display.flip()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+    if current_text_index >= len(texts) and current_time >= text_display_start_time + text_display_duration:
+        running = False
 
     pygame.time.Clock().tick(60)
 
