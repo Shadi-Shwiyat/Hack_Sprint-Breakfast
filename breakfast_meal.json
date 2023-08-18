@@ -1,73 +1,73 @@
-
+{
     "breakfasts": [
         {
             "name": "Eggs and Sausage",
             "level": "1",
             "right_ingredients": ["Eggs", "Sausage"],
-            "wrong_ingredients": ["Eggs", "Sausage", "Toast", "Bacon"],
+            "wrong_ingredients": ["Toast", "Bacon"],
             "meal_picture": "eggs_sausage.png"
         },
         {
             "name": "Bagel and Cream Cheese",
             "level": "2",
             "right_ingredients": ["Bagel", "Cream Cheese"],
-            "wrong_ingredients": ["Bagel", "Cream Cheese", "Tortilla", "Hash Browns"],
+            "wrong_ingredients": ["Tortilla", "Hash Browns"],
             "meal_picture": "bagel.png"
         },
         {
             "name": "Quiche",
             "level": "3",
             "right_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust"],
-            "wrong_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter"],
+            "wrong_ingredients": ["Water", "Flour", "Salt", "Butter"],
             "meal_picture": "quiche.png"
         },
         {
             "name": "Quiche",
             "level": "4",
             "right_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter"],
-            "wrong_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter", "Tortilla", "Syrup", "Hash Browns", "Bacon", "Sausage", "Bagel", "Cream Cheese", "Seaweed", "Baked Beans"],
+            "wrong_ingredients": ["Tortilla", "Syrup", "Hash Browns", "Bacon", "Sausage", "Bagel", "Cream Cheese", "Seaweed", "Baked Beans"],
             "meal_picture": "quiche.png"
         },
         {
             "name": "Bacon Pancakes",
             "level": "5",
             "right_ingredients": ["Pancake Batter", "Bacon", "Maple Syrup", "Butter"],
-            "wrong_ingredients": ["Pancake Batter", "Bacon", "Maple Syrup", "Butter", "Eggs", "Cheese", "Toast", "Sausage"],
+            "wrong_ingredients": ["Eggs", "Cheese", "Toast", "Sausage"],
             "meal_picture": "pancake.png"
         },
         {
             "name": "Breakfast Burrito",
             "level": "6",
             "right_ingredients": ["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa"],
-            "wrong_ingredients": ["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa", "Toast", "Pie Crust", "Bagel", "Pancake Batter", "Chocolate Chips"],
+            "wrong_ingredients": ["Toast", "Pie Crust", "Bagel", "Pancake Batter", "Chocolate Chips"],
             "meal_picture": "burrito.png"
         },
         {
             "name": "Chocolate Chip Waffles",
             "level": "7",
             "right_ingredients": ["Milk", "Eggs", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup"],
-            "wrong_ingredients": ["Milk", "Eggs", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup", "Bacon", "Green Onion", "Cheese", "Pie Crust", "Ginger", "Soy Sauce", "Vegetables", "Mushrooms"],
+            "wrong_ingredients": ["Bacon", "Green Onion", "Cheese", "Pie Crust", "Ginger", "Soy Sauce", "Vegetables", "Mushrooms"],
             "meal_picture": "waffle.png"
         },
         {
             "name": "Full English Breakfast",
             "level": "8",
             "right_ingredients": ["Eggs", "Bacon", "Toast", "Jam", "Hash Browns", "Sausage", "Baked Beans", "Tomato", "Mushrooms"],
-            "wrong_ingredients": ["Eggs", "Bacon", "Toast", "Jam", "Hash Browns", "Sausage", "Baked Beans", "Tomato", "Mushrooms", "Rice", "Pancake Batter", "Vegetables", "Milk", "Flour", "Soy Sauce", "Fermented Soybean", "Green Onion", "Pickled Vegetables"],
+            "wrong_ingredients": ["Rice", "Pancake Batter", "Vegetables", "Milk", "Flour", "Soy Sauce", "Fermented Soybean", "Green Onion", "Pickled Vegetables"],
             "meal_picture": "english.png"
         },
         {
             "name": "Chinese Congee",
             "level": "9",
             "right_ingredients": ["Rice", "Water", "Fried Egg", "Ginger", "Green Onion", "Soy Sauce"],
-            "wrong_ingredients":["Rice", "Water", "Fried Egg", "Ginger", "Green Onion", "Soy Sauce", "Miso Soup", "Pickled Vegetables", "Rolled Omelette", "Milk", "Flour", "Syrup"],
+            "wrong_ingredients": ["Miso Soup", "Pickled Vegetables", "Rolled Omelette", "Milk", "Flour", "Syrup"],
             "meal_picture": "congee.png"
         },
         {
             "name": "Japanese Breakfast",
             "level": "10",
             "right_ingredients": ["Rice", "Miso Soup", "Grilled Fish", "Pickled Vegetables", "Fermented Soybean", "Rolled Omelette", "Seaweed"],
-            "wrong_ingredients": ["Rice", "Miso Soup", "Grilled Fish", "Pickled Vegetables", "Fermented Soybean", "Rolled Omelette", "Seaweed", "Eggs", "Baking Powder", "Jam", "Cheese", "Mushrooms", "Butter", "Milk"],
+            "wrong_ingredients": ["Eggs", "Baking Powder", "Jam", "Cheese", "Mushrooms", "Butter", "Milk"],
             "meal_picture": "japanese.png"
         }
     ]
