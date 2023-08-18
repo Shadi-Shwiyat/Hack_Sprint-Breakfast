@@ -26,13 +26,14 @@ text_index = 0
 text_display_duration = 5 * 1000  # 5 seconds in milliseconds
 text_display_start_time = pygame.time.get_ticks()
 
-
-
 second_text = "Today we are going to pick the right ingredients for Eggs and Sausage."
 second_text_index = 0
 second_text_display_duration = 5 * 1000  # 5 seconds in milliseconds
 text_display_start_time = pygame.time.get_ticks()
 second_text_display_start_time = text_display_start_time + text_display_duration
+
+erasing_time = 3 * 1000  # 3 seconds in milliseconds
+erasing_start_time = second_text_display_start_time + second_text_display_duration
 
 running = True
 while running:
@@ -46,12 +47,15 @@ while running:
     elif text_display_start_time + text_display_duration <= current_time < second_text_display_start_time + second_text_display_duration:
         displayed_text = second_text[:second_text_index]
         second_text_index = (current_time * len(second_text)) // second_text_display_duration
+    elif second_text_display_start_time + second_text_display_duration <= current_time < erasing_start_time + erasing_time:
+        displayed_text = second_text
     else:
         displayed_text = ""
         text_index = 0
         text_display_start_time = current_time
         second_text_index = 0
         second_text_display_start_time = text_display_start_time + text_display_duration
+        erasing_start_time = second_text_display_start_time + second_text_display_duration + erasing_time
     
     # Draw table
     pygame.draw.rect(screen, BLACK, (table_x, table_y, table_width, table_height), 2)
@@ -76,6 +80,10 @@ while running:
         text_rect = text_surface.get_rect(midleft=(table_x + 10, y_position))
         screen.blit(text_surface, text_rect)
         y_position += text_surface.get_height() + 5
+    
+    # Erase table and text after erasing_time
+    if current_time >= erasing_start_time:
+        screen.fill(WHITE, (table_x + 2, table_y + 2, table_width - 4, table_height - 4))
     
     pygame.display.flip()
 
