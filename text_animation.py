@@ -53,14 +53,25 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 FONT = pygame.font.Font('freesansbold.ttf', 20)
 
-# Define sentences
-sentences = [
-    "Hello! I am Chef Wes! Today we are going to learn to cook a few things!",
-    "Today we will be cooking Eggs and Sausage! Let's select the right ingredients to get started!"
+# Define sentences for each level
+level1_sentences = [
+    "Hello! I am Chef Wes!",
+    "This is my kitchen where I'd like to cook some breakfast with you.",
+    "Lets get the ingredients ready.",
+    "We will be making Eggs and Sasuage.",
 ]
 
-# Create a TextAnimation instance
-animation = TextAnimation(sentences, 100, 100, FONT, BLACK, 0.1, 3)
+level2_sentences = [
+    "Congratulations! You've completed Level 1.",
+    "Now let's dive into more advanced recipes in Level 2."
+]
+
+# Create TextAnimation instances for each level
+level1_animation = TextAnimation(level1_sentences, 100, 100, FONT, BLACK, 0.1, 3)
+level2_animation = TextAnimation(level2_sentences, 100, 100, FONT, BLACK, 0.1, 3)
+
+# Set the active animation (change this based on the level)
+active_animation = level1_animation
 
 # Main loop
 running = True
@@ -71,9 +82,9 @@ while running:
 
     screen.fill(WHITE)
 
-    # Update and draw the text animation
-    animation.update()
-    animation.draw(screen)
+    # Update and draw the active text animation
+    active_animation.update()
+    active_animation.draw(screen)
 
     pygame.display.flip()
     pygame.time.delay(10)
