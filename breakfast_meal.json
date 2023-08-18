@@ -25,7 +25,7 @@
             "name": "Quiche",
             "level": "4",
             "right_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter"],
-            "wrong_ingredients":  ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter", "Tortilla", "Syrup", "Hash Browns", "Bacon", "Sausage", "Bagel", "Cream Cheese", "Seaweed", "Baked Beans"],
+            "wrong_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter", "Tortilla", "Syrup", "Hash Browns", "Bacon", "Sausage", "Bagel", "Cream Cheese", "Seaweed", "Baked Beans"],
             "meal_picture": "quiche.png"
         },
         {
