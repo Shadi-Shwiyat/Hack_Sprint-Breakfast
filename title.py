@@ -58,8 +58,8 @@ while run:
     #screen.blit(nope, (560, 15))
     #screen.blit(puke, (560, 20))
     screen.blit(table, (40, 300))
-    screen.blit(texbox, (40, 460))
-    screen.blit(cook_it, (1000, 536))
+    #screen.blit(texbox, (40, 460))
+    #screen.blit(cook_it, (1000, 536))
 
     # Update the display
     pygame.display.flip()
