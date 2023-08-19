@@ -1,10 +1,14 @@
-from button import Button
 import os
 import pygame
+import json
 from sys import exit
 
 # Fixing audio issue
 os.environ['SDL_AUDIODRIVER'] = 'dsp'
+
+# Importing Json dictionary of meals and ingredients
+with open('breakfast_meal.json') as json_file:
+    data = json.load(json_file)
 
 # Initializing pygame and window size
 pygame.init()
@@ -14,7 +18,19 @@ screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
 
 # Instantiating Ingredient Buttons
-ingredient1 = Button("Baking Powder", (130, 530), (100, 20), 16)
+from button import Button
+level_ingredients = {}
+
+for breakfast in data["breakfasts"]:
+    level = int(breakfast["level"])
+    ingredients = breakfast["all_ingredients"]
+
+    if level not in level_ingredients:
+        level_ingredients[level] = []
+
+    level_ingredients[level].extend(ingredients)
+
+print(level_ingredients)
 
 # Background Image
 background = pygame.image.load("images/kitchen_background.jpeg")
@@ -24,7 +40,7 @@ background = pygame.transform.scale(background, (1480, 900))
 table = pygame.image.load("images/table.png")
 table = pygame.transform.scale(table, (1200, 530))
 textbox = pygame.image.load("images/textbox.png")
-textbox = pygame.transform.scale(textbox, (1200, 260))
+textbox = pygame.transform.scale(textbox, (1200, 276))
 plate = pygame.image.load("images/plate.png")
 plate = pygame.transform.scale(plate, (50, 50))
 # Chef Wes Poses
@@ -45,7 +61,9 @@ cook_it = pygame.transform.scale(cook_it, (100, 100))
 
 # Game loop
 clock = pygame.time.Clock() # Creating a clock object
+current_level = 1 # Set the inital level
 run = True
+
 while run:
     # Event to quit loop when user hits X
     for event in pygame.event.get():
@@ -62,11 +80,43 @@ while run:
     #screen.blit(nope, (560, 15))
     screen.blit(puke, (560, 20))
     screen.blit(table, (40, 300))
-    screen.blit(textbox, (40, 460))
+    screen.blit(textbox, (40, 450))
     screen.blit(cook_it, (1000, 536))
 
+    # Select ingredient list for current level
+    current_ingredients = level_ingredients.get(current_level, [])
+
+    # Calculate available width and height for placing the buttons
+    available_width = 960
+    available_height = 690
+    max_buttons_per_row = 4  # Maximum buttons that can fit in a row
+
+    # Calculate the required number of rows
+    num_rows = (len(current_ingredients) + max_buttons_per_row - 1) // max_buttons_per_row
+
+    # Calculate the spacing between rows and buttons
+    row_spacing = (available_height - 430) / (num_rows + 1)
+    button_spacing = (available_width - (max_buttons_per_row * 100)) / (max_buttons_per_row + 1)
+
+    # Specify the starting position for the buttons
+    start_x = 46 + button_spacing  # Adjust as needed
+    start_y = 440 + row_spacing  # Adjust as needed
+
+    # Create buttons for ingredients of the current level
+    x, y = start_x, start_y  # Starting coordinates
+    buttons = []  # Clear the buttons list for each iteration
+
+    for ingredient in current_ingredients:
+        buttons.append(Button(ingredient, (x, y), font_size=26))
+        x += 100 + button_spacing
+
+        if len(buttons) % max_buttons_per_row == 0:
+            x = start_x
+            y += row_spacing
+
     # Draw the buttons
-    #ingredient1.draw()
+    for button in buttons:
+        button.draw()
 
     # Update the display
     pygame.display.flip()
