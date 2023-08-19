@@ -3,6 +3,18 @@
         {
             "name": "Eggs and Sausage",
             "level": "1",
+            "wes_says": [
+                "Hello! I am Chef Wes!",
+                "This is my kitchen where I'd like to cook some breakfast with you.",
+                "I will let you pick some ingredients for our breakfast meals.",
+                "You will need to pick the right ingredients for the breakfast.",
+                "If you pick the wrong ingredients, you will have to start over.",
+                "If you pick the right ingredients, you will get to move on to the next level.",
+                "Let's get started!",
+                "First, we will need to get the ingredients ready.",
+                "We will be making Eggs and Sausage.",
+                "Pick the right ingredients below for Eggs and Sausage."
+            ],
             "right_ingredients": ["Eggs", "Sausage"],
             "all_ingredients": ["Eggs", "Sausage", "Toast", "Bacon"],
             "meal_picture": "eggs_sausage.png"
@@ -10,6 +22,12 @@
         {
             "name": "Bagel and Cream Cheese",
             "level": "2",
+            "wes_says": [
+                "Great job! On the first level!",
+                "Let's move on to the next level.",
+                "We will be making Bagel and Cream Cheese.",
+                "Pick the right ingredients below for Bagel and Cream Cheese."
+            ],
             "right_ingredients": ["Bagel", "Cream Cheese"],
             "all_ingredients": ["Bagel", "Cream Cheese", "Tortilla", "Hash Browns"],
             "meal_picture": "bagel.png"
@@ -17,6 +35,13 @@
         {
             "name": "Quiche",
             "level": "3",
+            "wes_says": [
+                "Right on!",
+                "Let's move on to the next level.",
+                "This time, we will be making something a little more difficult.",
+                "We will be making Quiche.",
+                "Pick the right ingredients below for Quiche."
+            ],
             "right_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust"],
             "all_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust", "Tortilla", "Syrup", "Hash Browns", "Bacon", "Sausage"],
             "meal_picture": "quiche.png"
@@ -24,6 +49,14 @@
         {
             "name": "Quiche",
             "level": "4",
+            "wes_says": [
+                "Way to go, on the third level!",
+                "Let's move on to the next level.",
+                "Seems like you are getting the hang of this!",
+                "We will be making Quiche again but...",
+                "Also pick the right ingredients below for the pie crust.",
+                "Pick the right ingredients below for Quiche."
+            ],
             "right_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter"],
             "all_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter", "Tortilla", "Syrup", "Hash Browns", "Bacon", "Sausage", "Bagel", "Cream Cheese", "Seaweed", "Baked Beans"],
             "meal_picture": "quiche.png"
@@ -31,6 +64,12 @@
         {
             "name": "Bacon Pancakes",
             "level": "5",
+            "wes_says": [
+                "Wohoo! On the fourth level!",
+                "Let's move on to the next level.",
+                "We will be making Bacon Pancakes.",
+                "Pick the right ingredients below for Bacon Pancakes."
+            ],
             "right_ingredients": ["Pancake Batter", "Bacon", "Maple Syrup", "Butter"],
             "all_ingredients": ["Pancake Batter", "Bacon", "Maple Syrup", "Butter", "Eggs", "Cheese", "Toast", "Sausage"],
             "meal_picture": "pancake.png"
@@ -38,6 +77,12 @@
         {
             "name": "Breakfast Burrito",
             "level": "6",
+            "wes_says": [
+                "Awesome! On the fifth level!",
+                "Let's move on to the next level.",
+                "We will be making Breakfast Burrito.",
+                "Pick the right ingredients below for Breakfast Burrito."
+            ],
             "right_ingredients": ["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa"],
             "all_ingredients": ["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa", "Toast", "Pie Crust", "Bagel", "Pancake Batter", "Chocolate Chips"],
             "meal_picture": "burrito.png"
@@ -45,6 +90,12 @@
         {
             "name": "Chocolate Chip Waffles",
             "level": "7",
+            "wes_says": [
+                "You are doing great!",
+                "Let's move on to the next level.",
+                "We will be making Chocolate Chip Waffles.",
+                "Pick the right ingredients below for Chocolate Chip Waffles."
+            ],
             "right_ingredients": ["Milk", "Eggs", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup"],
             "all_ingredients": ["Milk", "Eggs", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup", "Bacon", "Green Onion", "Cheese", "Pie Crust", "Ginger", "Soy Sauce", "Vegetables", "Mushrooms"],
             "meal_picture": "waffle.png"
@@ -52,6 +103,13 @@
         {
             "name": "Full English Breakfast",
             "level": "8",
+            "wes_says": [
+                "Keep it up!",
+                "Let's move on to the next level.",
+                "We will be picking more ingredients for some foreign breakfast.",
+                "We will be making Full English Breakfast.",
+                "Pick the right ingredients below for Full English Breakfast."
+            ],
             "right_ingredients": ["Eggs", "Bacon", "Toast", "Jam", "Hash Browns", "Sausage", "Baked Beans", "Tomato", "Mushrooms"],
             "all_ingredients": ["Eggs", "Bacon", "Toast", "Jam", "Hash Browns", "Sausage", "Baked Beans", "Tomato", "Mushrooms", "Rice", "Pancake Batter", "Vegetables", "Milk", "Flour", "Soy Sauce", "Fermented Soybean", "Green Onion", "Pickled Vegetables"],
             "meal_picture": "english.png"
@@ -59,6 +117,12 @@
         {
             "name": "Chinese Congee",
             "level": "9",
+            "wes_says": [
+                "You are almost there!",
+                "Let's move on to the next level.",
+                "We will be making Chinese Congee.",
+                "Pick the right ingredients below for Chinese Congee."
+            ],
             "right_ingredients": ["Rice", "Water", "Fried Egg", "Ginger", "Green Onion", "Soy Sauce"],
             "all_ingredients": ["Rice", "Water", "Fried Egg", "Ginger", "Green Onion", "Soy Sauce", "Miso Soup", "Pickled Vegetables", "Rolled Omelette", "Milk", "Flour", "Syrup"],
             "meal_picture": "congee.png"
@@ -66,9 +130,16 @@
         {
             "name": "Japanese Breakfast",
             "level": "10",
+            "wes_says": [
+                "You did it!",
+                "Let's move on to the last level.",
+                "We will be making Japanese Breakfast.",
+                "Pick the right ingredients below for Japanese Breakfast."
+            ],
             "right_ingredients": ["Rice", "Miso Soup", "Grilled Fish", "Pickled Vegetables", "Fermented Soybean", "Rolled Omelette", "Seaweed"],
             "all_ingredients": ["Rice", "Miso Soup", "Grilled Fish", "Pickled Vegetables", "Fermented Soybean", "Rolled Omelette", "Seaweed", "Eggs", "Baking Powder", "Jam", "Cheese", "Mushrooms", "Butter", "Milk"],
             "meal_picture": "japanese.png"
         }
     ]
 }
+
