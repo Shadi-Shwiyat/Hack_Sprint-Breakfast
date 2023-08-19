@@ -1,6 +1,7 @@
+from button import Button
 import os
-from sys import exit
 import pygame
+from sys import exit
 
 # Fixing audio issue
 os.environ['SDL_AUDIODRIVER'] = 'dsp'
@@ -10,7 +11,10 @@ pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 
 # Setting title of window
-pygame.display.set_caption("Title")
+pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
+
+# Instantiating Ingredient Buttons
+ingredient1 = Button("Baking Powder", (130, 530), (100, 20), 16)
 
 # Background Image
 background = pygame.image.load("images/kitchen_background.jpeg")
@@ -19,8 +23,8 @@ background = pygame.transform.scale(background, (1480, 900))
 # Images to display over background
 table = pygame.image.load("images/table.png")
 table = pygame.transform.scale(table, (1200, 530))
-texbox = pygame.image.load("images/textbox.png")
-texbox = pygame.transform.scale(texbox, (1200, 260))
+textbox = pygame.image.load("images/textbox.png")
+textbox = pygame.transform.scale(textbox, (1200, 260))
 plate = pygame.image.load("images/plate.png")
 plate = pygame.transform.scale(plate, (50, 50))
 # Chef Wes Poses
@@ -56,10 +60,13 @@ while run:
     #screen.blit(almost, (530, 15))
     #screen.blit(delicioso, (560, 15))
     #screen.blit(nope, (560, 15))
-    #screen.blit(puke, (560, 20))
+    screen.blit(puke, (560, 20))
     screen.blit(table, (40, 300))
-    #screen.blit(texbox, (40, 460))
-    #screen.blit(cook_it, (1000, 536))
+    screen.blit(textbox, (40, 460))
+    screen.blit(cook_it, (1000, 536))
+
+    # Draw the buttons
+    #ingredient1.draw()
 
     # Update the display
     pygame.display.flip()
