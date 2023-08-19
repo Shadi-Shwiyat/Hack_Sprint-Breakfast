@@ -100,6 +100,7 @@ run = True
 while run:
     # Things to clear each loop iteration
     current_frame_selected = []
+    #screen.fill((0, 0, 0))
 
     # Event to quit loop when user hits X
     for event in pygame.event.get():
@@ -139,6 +140,7 @@ while run:
 
     # Limit frame rate to 60 FPS
     clock.tick(60)
+    #print(clock)
 
 pygame.quit()
 exit()

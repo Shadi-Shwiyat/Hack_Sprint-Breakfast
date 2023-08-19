@@ -22,13 +22,19 @@ class Button:
 
     def draw(self):
         outline_color = (14, 204, 52) if self.selected else (0, 0, 0)
+        text_color = outline_color if self.selected else (0, 0, 0)
+
+        # Create a fill color for the button when hovered
+        button_surf = pygame.Surface(self.size)
+        button_surf.fill((14, 204, 52) if self.hovered else (0, 0, 0, 0))
         
         # Render the text with a transparent background
-        text_surf = self.font.render(self.text, True, (0, 0, 0, 0))
+        text_surf = self.font.render(self.text, True, text_color)
         text_rect = text_surf.get_rect(center=(self.pos[0] + self.size[0] / 2, self.pos[1] + self.size[1] / 2))
 
         # Draw the rectangular outline around the button
-        pygame.draw.rect(screen, outline_color, (*self.pos, *self.size), 2)  # Thickness 2 for the outline
+        if self.selected:
+            pygame.draw.rect(screen, outline_color, (*self.pos, *self.size), 2)  # Thickness 2 for the outline
         screen.blit(text_surf, text_rect)
 
     def handle_events(self, event):
@@ -36,6 +42,7 @@ class Button:
             if self.pos[0] < event.pos[0] < self.pos[0] + self.size[0] and \
                self.pos[1] < event.pos[1] < self.pos[1] + self.size[1]:
                 self.hovered = True
+                #print(self.hovered)
             else:
                 self.hovered = False
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
