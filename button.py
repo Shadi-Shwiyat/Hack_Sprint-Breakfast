@@ -11,6 +11,8 @@ class Button:
         self.font_size = font_size
         self.font = pygame.font.Font(None, font_size)  # Using Pygame's default font
         self.selected = False
+        self.hovered = False
+        self.clicked = False
 
         # Calculating size of rectangle based on rendered text
         text_surf = self.font.render(self.text, True, (0, 0, 0, 0))
@@ -27,3 +29,19 @@ class Button:
         # Draw the rectangular outline around the button
         pygame.draw.rect(screen, outline_color, (*self.pos, *self.size), 2)  # Thickness 2 for the outline
         screen.blit(text_surf, text_rect)
+
+    def handle_events(self, event):
+        if event.type == pygame.MOUSEMOTION:
+            if self.pos[0] < event.pos[0] < self.pos[0] + self.size[0] and \
+               self.pos[1] < event.pos[1] < self.pos[1] + self.size[1]:
+                self.hovered = True
+            else:
+                self.hovered = False
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            if self.pos[0] < event.pos[0] < self.pos[0] + self.size[0] and \
+               self.pos[1] < event.pos[1] < self.pos[1] + self.size[1]:
+                self.clicked = True
+                self.selected = not self.selected
+                print("I am clicked")
+            else:
+                self.clicked = False
