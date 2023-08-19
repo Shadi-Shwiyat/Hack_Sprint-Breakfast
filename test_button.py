@@ -18,6 +18,7 @@ class Button:
         self.selected = False
         self.hovered = False
         self.clicked = False
+        self.clickcounter = 0
 
         # Calculating size of rectangle based on rendered text
         text_surf = self.font.render(self.text, True, (0, 0, 0, 0))
@@ -47,7 +48,9 @@ class Button:
                self.pos[1] < event.pos[1] < self.pos[1] + self.size[1]:
                 self.clicked = True
                 self.selected = not self.selected
-                print("I am clicked")
+                self.clickcounter += 1
+                print(f"I am clicked ({self.clickcounter} times)")
+                print(f"Selected = {self.selected}")
             else:
                 self.clicked = False
 
