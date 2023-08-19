@@ -19,7 +19,7 @@ pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
 
 # Instantiating Ingredient Buttons
 from button import Button
-current_level = 1 # Set the inital level
+current_level = 8 # Set the inital level
 buttons = []
 level_ingredients = {}
 
@@ -53,14 +53,18 @@ start_y = 440 + row_spacing  # Adjust as needed
 
 # Create buttons for ingredients of the current level
 x, y = start_x, start_y  # Starting coordinates
-buttons = []  # Clear the buttons list for each iteration
+buttons = []  # List used to draw the buttons
 
+# Adding buttons to the list to be drawn
 for ingredient in current_ingredients:
     buttons.append(Button(ingredient, (x, y), font_size=26))
     x += 100 + button_spacing
     if len(buttons) % max_buttons_per_row == 0:
         x = start_x
         y += row_spacing
+
+# List of selected ingredients to be compared to correct ingredients
+selected_ingredients = []
 
 # Background Image
 background = pygame.image.load("images/kitchen_background.jpeg")
@@ -94,13 +98,25 @@ clock = pygame.time.Clock() # Creating a clock object
 run = True
 
 while run:
+    # Things to clear each loop iteration
+    current_frame_selected = []
+
     # Event to quit loop when user hits X
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+
+        # Event for ingredient button clicks
         for button in buttons:
             button.handle_events(event)
+            # Adding selected buttons to list
+            if button.selected and button.text not in selected_ingredients:
+                selected_ingredients.append(button.text)
+                print(selected_ingredients)
+            elif button.selected == False and button.text in selected_ingredients:
+                selected_ingredients.remove(button.text)
+                print(selected_ingredients)
 
     # Blit Background and Assets to the screen
     screen.blit(background, (-110, -50))
