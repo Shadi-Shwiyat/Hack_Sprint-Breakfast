@@ -30,8 +30,6 @@ for breakfast in data["breakfasts"]:
 
     level_ingredients[level].extend(ingredients)
 
-print(level_ingredients)
-
 # Background Image
 background = pygame.image.load("images/kitchen_background.jpeg")
 background = pygame.transform.scale(background, (1480, 900))
@@ -62,6 +60,7 @@ cook_it = pygame.transform.scale(cook_it, (100, 100))
 # Game loop
 clock = pygame.time.Clock() # Creating a clock object
 current_level = 1 # Set the inital level
+buttons = []
 run = True
 
 while run:
@@ -70,6 +69,8 @@ while run:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+        for button in buttons:
+            button.handle_events(event)
 
     # Blit Background and Assets to the screen
     screen.blit(background, (-110, -50))
