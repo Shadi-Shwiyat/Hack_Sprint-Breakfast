@@ -1,5 +1,10 @@
 import pygame
 import time
+import json
+
+# Load data from the JSON file
+with open('breakfast_meal.json', 'r') as file:
+    data = json.load(file)
 
 class TextAnimation:
     def __init__(self, sentences, x, y, font, color, width, delay, erase_delay):
@@ -16,7 +21,7 @@ class TextAnimation:
         self.current_sentence_index = 0
         self.current_index = 0
         self.display_text = ""
-    
+
     def update(self):
         if not self.finished:
             current_time = time.time()
@@ -34,28 +39,28 @@ class TextAnimation:
                             self.start_time = current_time
                         else:
                             self.finished = True
-    
+
     def draw(self, screen):
         words = self.display_text.split()
         lines = []
         current_line = ""
-        
+
         for word in words:
             test_line = f"{current_line} {word}".strip()
             test_width, _ = self.font.size(test_line)
-            
+
             if test_width <= self.width:
                 current_line = test_line
             else:
                 lines.append(current_line)
                 current_line = word
-        
+
         lines.append(current_line)
-        
+
         y_offset = 0
         for line in lines:
             text_surface = self.font.render(line, True, self.color)
-            text_rect = text_surface.get_rect(topleft=(self.x, self.y + y_offset))
+            text_rect = text_surface.get_rect(topleft=(self.x - self.width // 2, self.y + y_offset))
             text_rect.width = self.width
             screen.blit(text_surface, text_rect)
             y_offset += text_rect.height  # Adjust y offset for the next line
@@ -63,37 +68,20 @@ class TextAnimation:
 # Initialize Pygame
 pygame.init()
 
-# Set up display
+# Set up screen dimensions
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("Text Animation Class Example")
+pygame.display.set_caption("Breakfast Meal Text Animation")
 
-# Define colors and fonts
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-FONT = pygame.font.Font('freesansbold.ttf', 20)
+# Set up font
+font = pygame.font.Font(None, 24)
 
-# Define sentences for each level
-level1_sentences = [
-    "Hello! I am Chef Wes!",
-    "This is my kitchen where I'd like to cook some breakfast with you.",
-    "Lets get the ingredients ready.",
-    "We will be making Eggs and Sasuage.",
-    "Pick the right ingredients below for Eggs and Sasuage."
-]
-
-level2_sentences = [
-    "Awesome! You've completed Level 1.",
-    "BLAH BLAH BLAH"
-]
-
-# Create TextAnimation instances for each level
-level1_animation = TextAnimation(level1_sentences, 275, 100, FONT, BLACK, 250, 0.1, 3)
-level2_animation = TextAnimation(level2_sentences, 275, 100, FONT, BLACK, 250, 0.1, 3)
-
-# Set the active animation (change this based on the level)
-active_animation = level1_animation
+# Initialize TextAnimation
+current_level = 0
+current_sentence_index = 0
+animation_data = data['breakfasts'][current_level]['wes_says']
+text_animation = TextAnimation(animation_data, screen_width // 2, 50, font, (0, 0, 0), 250, 0.05, 1)
 
 # Main loop
 running = True
@@ -102,13 +90,14 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    screen.fill(WHITE)
+    # Fill the screen with white
+    screen.fill((255, 255, 255))
 
-    # Update and draw the active text animation
-    active_animation.update()
-    active_animation.draw(screen)
+    # Update and draw text animation
+    text_animation.update()
+    text_animation.draw(screen)
 
     pygame.display.flip()
-    pygame.time.delay(5)
+    pygame.time.Clock().tick(60)
 
 pygame.quit()
