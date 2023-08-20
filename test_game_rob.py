@@ -187,7 +187,10 @@ while running:
             result_rect = result_surf.get_rect(center=(screen.get_width() // 2, 650))
             screen.blit(result_surf, result_rect)
     
-    
+#################################################
+#################################################
+#Working here
+#################################################
 
 
 
