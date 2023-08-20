@@ -1,11 +1,14 @@
 import pygame
 import time
 import json
+import os
 from pygame import mixer
 from sys import exit
 from button import Button
 from text_animation import TextAnimation
 
+# Fixing audio issue
+os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
 
 # Initialize pygame
@@ -72,6 +75,12 @@ for breakfast in data["breakfasts"]:
 # Select ingredient list for current level
 current_ingredients = level_ingredients.get(current_level, [])
 
+
+# List of selected ingredients to be compared to correct ingredients
+selected_ingredients = []
+ingredients_compared = True
+result_message = ""
+
 # Calculate available width and height for placing the buttons
 available_width = 900
 available_height = 690
@@ -100,8 +109,9 @@ for ingredient in current_ingredients:
         x = start_x
         y += row_spacing
 
-# Creating instances of the Start Cooking Button class
+# Creating instances of the Start Cooking Button class #########################
 start_cooking_button = Button("Start Cooking!", (160, 100), 30)
+start_cooking_button.size = (200, 50)  # Update the size
 
 ##############################
 # Game loop ####################################################################################################################
@@ -113,7 +123,7 @@ running = True
 # Background Music
 mixer.music.load("music/Intro Music for hack.mp3")
 mixer.music.play(-1) # -1 means loop forever
-mixer.music.set_volume(0.3)
+mixer.music.set_volume(0.1)
 
 
 
@@ -160,12 +170,26 @@ while running:
             # drawing start cooking button
             start_cooking_button.draw()
             
-                # Draw result message if ingredients are compared
-            
+        # Event for ingredient button clicks
+        for button in buttons:
+            button.handle_events(event)
+            # Adding selected buttons to list
+            if button.selected and button.text not in selected_ingredients:
+                selected_ingredients.append(button.text)
+                print(selected_ingredients)
+            elif button.selected == False and button.text in selected_ingredients:
+                selected_ingredients.remove(button.text)
+                print(selected_ingredients)
         
-        
+        if ingredients_compared:
+            result_font = pygame.font.Font(None, 36)
+            result_surf = result_font.render(result_message, True, (0, 0, 0))
+            result_rect = result_surf.get_rect(center=(screen.get_width() // 2, 650))
+            screen.blit(result_surf, result_rect)
     
     
+
+
 
     
     
