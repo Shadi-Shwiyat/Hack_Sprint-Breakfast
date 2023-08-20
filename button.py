@@ -14,11 +14,14 @@ class Button:
         self.hovered = False
         self.clicked = False
         self.clickcounter = 0
-
+        
         # Calculating size of rectangle based on rendered text
         text_surf = self.font.render(self.text, True, (0, 0, 0, 0))
         text_rect = text_surf.get_rect()
         self.size = (text_rect.width + 20, text_rect.height + 20)  # Adding some padding for rectangle
+
+    def update_rect(self):
+        self.rect = pygame.Rect(*self.pos, *self.size)
 
     def draw(self):
         outline_color = (14, 204, 52) if self.selected else (0, 0, 0)
