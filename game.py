@@ -5,7 +5,7 @@ import random
 from sys import exit
 
 # Fixing audio issue
-os.environ['SDL_AUDIODRIVER'] = 'dsp'
+#os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
 # Initializing pygame and window size
 pygame.init()
@@ -26,11 +26,11 @@ level_1_sentences = data["breakfasts"][0]["wes_says"]
 
 # Create TextAnimation instance for level 1
 from text_animation import TextAnimation
-text_animation = TextAnimation(level_1_sentences, 800, 150, font, (255, 255, 255), 800, 0.001, 2)
+text_animation = TextAnimation(level_1_sentences, 800, 150, font, (255, 255, 255), 800, 0.00001, 2)
 
 # Instantiating Ingredient Buttons
 from button import Button
-current_level = 8 # Set the inital level
+current_level = 1 # Set the inital level
 level_ingredients = {}
 
 for breakfast in data["breakfasts"]:
@@ -125,21 +125,10 @@ while run:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-
-    if text_animation.finished:
-        # Blit assets to screen
-        screen.blit(textbox, (40, 450))
-        screen.blit(cook_it, (930, 536))
-        # Draw the buttons
-        for button in buttons:
-            button.draw()
-        start_cooking_button.draw()
-
-        for event in pygame.event.get():
+        if text_animation.finished:
             # Event for ingredient button clicks
             for button in buttons:
                 button.handle_events(event)
-
                 # Adding selected buttons to list
                 if button.selected and button.text not in selected_ingredients:
                     selected_ingredients.append(button.text)
@@ -175,16 +164,18 @@ while run:
     #screen.blit(nope, (560, 15))
     #screen.blit(puke, (560, 20))
     screen.blit(table, (40, 300))
-    #screen.blit(textbox, (40, 450))
-    #screen.blit(cook_it, (930, 536))
+    if text_animation.finished:
+        screen.blit(textbox, (40, 450))
+        screen.blit(cook_it, (930, 536))
 
     # Draw the text animation
     text_animation.draw(screen)
 
     # Draw the buttons
-    #for button in buttons:
-        #button.draw()
-    #start_cooking_button.draw()
+    if text_animation.finished:
+        for button in buttons:
+            button.draw()
+        start_cooking_button.draw()
 
     # Draw result message if ingredients are compared
     if ingredients_compared:
