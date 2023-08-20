@@ -1,83 +1,17 @@
-import os
 import pygame
+import time
 import json
 from sys import exit
-import time
-
-# Fixing audio issue
-os.environ['SDL_AUDIODRIVER'] = 'dsp'
-
-# Importing Json dictionary of meals and ingredients
-with open('breakfast_meal.json') as json_file:
-    data = json.load(json_file)
-
-# Initializing pygame and window size
-pygame.init()
-screen_width = 1280
-screen_height = 720
-screen = pygame.display.set_mode((screen_width, screen_height))
-
-# Setting title of window
-pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
-
-# Set up font
-font = pygame.font.Font(None, 24)
-
-# Initialize TextAnimation
-from text_animation import TextAnimation
-current_level = 1
-current_sentence_index = 0
-animation_data = data['breakfasts'][current_level]['wes_says']
-text_animation = TextAnimation(animation_data, screen_width // 2, 50, font, (0, 0, 0), 250, 0.05, 1)
-    
-# Update and draw text animation
-text_animation.update()
-text_animation.draw(screen)
-
-# Instantiating Ingredient Buttons
 from button import Button
-current_level = 1 # Set the inital level
-buttons = []
-level_ingredients = {}
+from text_animation import TextAnimation
 
-for breakfast in data["breakfasts"]:
-    level = int(breakfast["level"])
-    ingredients = breakfast["all_ingredients"]
 
-    if level not in level_ingredients:
-        level_ingredients[level] = []
+# Initialize pygame
+pygame.init()
 
-    level_ingredients[level].extend(ingredients)
-    
-# Select ingredient list for current level
-current_ingredients = level_ingredients.get(current_level, [])
-
-# Calculate available width and height for placing the buttons
-available_width = 960
-available_height = 690
-max_buttons_per_row = 4  # Maximum buttons that can fit in a row
-
-# Calculate the required number of rows
-num_rows = (len(current_ingredients) + max_buttons_per_row - 1) // max_buttons_per_row
-
-# Calculate the spacing between rows and buttons
-row_spacing = (available_height - 430) / (num_rows + 1)
-button_spacing = (available_width - (max_buttons_per_row * 100)) / (max_buttons_per_row + 1)
-
-# Specify the starting position for the buttons
-start_x = 46 + button_spacing  # Adjust as needed
-start_y = 440 + row_spacing  # Adjust as needed
-
-# Create buttons for ingredients of the current level
-x, y = start_x, start_y  # Starting coordinates
-buttons = []  # Clear the buttons list for each iteration
-
-for ingredient in current_ingredients:
-    buttons.append(Button(ingredient, (x, y), font_size=26))
-    x += 100 + button_spacing
-    if len(buttons) % max_buttons_per_row == 0:
-        x = start_x
-        y += row_spacing
+# Create the display window
+screen = pygame.display.set_mode((1280, 720))
+pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
 
 # Background Image
 background = pygame.image.load("images/kitchen_background.jpeg")
@@ -104,41 +38,70 @@ nope = pygame.transform.scale(nope, (600, 700))
 puke = pygame.image.load("images/puke.png")
 puke = pygame.transform.scale(puke, (600, 700))
 cook_it = pygame.image.load("images/cook_it.png")
-cook_it = pygame.transform.scale(cook_it, (100, 100))
+cook_it = pygame.transform.scale(cook_it, (160, 100))
 
-# Game loop
-clock = pygame.time.Clock() # Creating a clock object
-run = True
+# Load JSON data
+with open('breakfast_meal.json') as json_file:
+    data = json.load(json_file)
+    
+# Extract sentences for level 1 from JSON data
+level_1_sentences = data["breakfasts"][0]["wes_says"]
 
-while run:
+# Load font
+font = pygame.font.Font(None, 30)
+
+# Create TextAnimation instance for level 1
+text_animation = TextAnimation(level_1_sentences, 800, 150, font, (255, 255, 255), 800, 0.001, 2)
+
+# Game loop####################################################################################################################
+clock = pygame.time.Clock()
+running = True
+
+while running:
+    # Things to clear each loop iteration
+    current_frame_selected = []
+    #screen.fill((0, 0, 0))
+    
     # Event to quit loop when user hits X
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        for button in buttons:
-            button.handle_events(event)
-
-    # Blit Background and Assets to the screen
-    screen.blit(background, (-110, -50))
-    #screen.blit(standard_pose, (530, 45))
-    #screen.blit(disgusted, (530, 45))
-    #screen.blit(almost, (530, 15))
-    #screen.blit(delicioso, (560, 15))
-    #screen.blit(nope, (560, 15))
-    screen.blit(puke, (560, 20))
+            running = False
+    
+    # Update the text animation
+    text_animation.update()
+    
+    # Clear the screen
+    screen.fill((0, 0, 0))
+    
+    #These images stack on top of each other, so the order matters
+    # Blit background image
+    screen.blit(background, (0, 0))
+    # Blit Wes image
+    screen.blit(standard_pose, (640, 30))
+    # Blit table image
     screen.blit(table, (40, 300))
-    screen.blit(textbox, (40, 450))
-    screen.blit(cook_it, (1000, 536))
+    
+    if text_animation.finished:
+        # Blit textbox image
+        screen.blit(textbox, (40, 30))
+        # Blit plate image
+        screen.blit(plate, (100, 500))
+        # Blit start cooking button
+        screen.blit(cook_it, (913, 560))
+        
+    
+    
 
-    # Draw the buttons
-    for button in buttons:
-        button.draw()
+    
+    
 
-    # Update the display
+    
+    # Draw the text animation
+    text_animation.draw(screen)
+    
     pygame.display.flip()
-
-    # Limit frame rate to 60 FPS
     clock.tick(60)
 
 pygame.quit()

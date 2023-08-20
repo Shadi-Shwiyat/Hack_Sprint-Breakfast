@@ -36,6 +36,7 @@ class TextAnimation:
                             self.current_index = 0
                             self.display_text = ""
                             self.start_time = current_time
+                            print(f"Display Text: {self.display_text}")  # Debug statement
                         else:
                             # Animation is finished
                             self.finished = True
