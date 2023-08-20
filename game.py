@@ -1,6 +1,7 @@
 import os
 import pygame
 import json
+import random
 from sys import exit
 
 # Fixing audio issue
@@ -19,8 +20,7 @@ pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
 
 # Instantiating Ingredient Buttons
 from button import Button
-current_level = 8 # Set the inital level
-buttons = []
+current_level = 1 # Set the inital level
 level_ingredients = {}
 
 for breakfast in data["breakfasts"]:
@@ -32,8 +32,13 @@ for breakfast in data["breakfasts"]:
 
     level_ingredients[level].extend(ingredients)
     
-# Select ingredient list for current level
-current_ingredients = level_ingredients.get(current_level, [])
+# Ingredient lists needed for current level to be compared
+current_ingredients = level_ingredients.get(current_level, []) # List of all ingredients for level
+split_index = len(current_ingredients) // 2 # Splitting all ingredients by 2
+right_ingredients = current_ingredients[:split_index] # List of right ingredients for level
+selected_ingredients = [] # Current ingredients selected by user
+ingredients_compared = False # For displaying result message
+result_message = "" # Message to show user based on level success
 
 # Calculate available width and height for placing the buttons
 available_width = 900
@@ -63,14 +68,14 @@ for ingredient in current_ingredients:
         x = start_x
         y += row_spacing
 
-# Define start cooking button
-start_cooking_button = Button("Start Cooking!", (913, 560), 30)
-start_cooking_button.size = (200, 50)  # Update the size
+# Shuffle the buttons in random order
+shuffled_buttons = random.shuffle(buttons)
+print([button.text for button in buttons])
 
-# List of selected ingredients to be compared to correct ingredients
-selected_ingredients = []
-ingredients_compared = True
-result_message = ""
+
+# Define start cooking button
+start_cooking_button = Button("Start Cooking!", (913, 560), font_size=30, size=(200, 50), hover_size=(200, 40))
+start_cooking_button.button_color = (0, 0, 0, 0)
 
 # Background Image
 background = pygame.image.load("images/kitchen_background.jpeg")
@@ -105,8 +110,6 @@ run = True
 
 while run:
     # Things to clear each loop iteration
-    current_frame_selected = []
-    #screen.fill((0, 0, 0))
 
     # Event to quit loop when user hits X
     for event in pygame.event.get():
@@ -128,24 +131,20 @@ while run:
         # Event for start cooking button
         start_cooking_button.handle_events(event)
         if start_cooking_button.clicked:
+            start_cooking_button.clicked = False
             start_cooking_button.selected = False
             print("Start Cooking button clicked!")
 
-            # Get the correct ingredients for the current level
-            #correct_ingredients = level_ingredients.get(current_level, [])
-            correct_ingredients = level_ingredients.get("right_ingredients", [])
-
             # Compare user-selected ingredients with correct ingredients
-            if sorted(selected_ingredients) == sorted(correct_ingredients):
+            if sorted(selected_ingredients) == sorted(right_ingredients):
                 print("Ingredients match!")
                 result_message = "THERE IS A GOD!"  # Update the result_message
             else:
                 print("Ingredients do not match..")
-                result_message = "Fuck me in the ass!"  # Update the result_message
-                
+                result_message = "Darn it!"  # Update the result_message
+                    
             ingredients_compared = True # Update the rect attribute of the start_cooking_button
             selected_ingredients = [] # Clear the user-selected ingredients list for the next level
-            start_cooking_clicked = False # Reset the flag to prevent repeated actions
 
     # Blit Background and Assets to the screen
     screen.blit(background, (-110, -50))

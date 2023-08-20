@@ -1,12 +1,14 @@
 import pygame
 import time
 import json
+import os
 from pygame import mixer
 from sys import exit
 from button import Button
 from text_animation import TextAnimation
 
-
+# Fixing audio issue
+os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
 # Initialize pygame
 pygame.init()
