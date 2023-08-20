@@ -96,7 +96,7 @@ puke = pygame.transform.scale(puke, (600, 700))
 cook_it = pygame.image.load("images/cook_it.png")
 cook_it = pygame.transform.scale(cook_it, (160, 100))
 
-# Creating instances of the Button class
+# Creating instances of the Start Cooking Button class
 start_cooking_button = Button("Start Cooking!", (160, 100), 30)
 
 # Game loop

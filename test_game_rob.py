@@ -1,9 +1,11 @@
 import pygame
 import time
 import json
+from pygame import mixer
 from sys import exit
 from button import Button
 from text_animation import TextAnimation
+
 
 
 # Initialize pygame
@@ -52,10 +54,68 @@ font = pygame.font.Font(None, 30)
 
 # Create TextAnimation instance for level 1
 text_animation = TextAnimation(level_1_sentences, 800, 150, font, (255, 255, 255), 800, 0.001, 2)
+# Instantiating Ingredient Buttons#########################
+from button import Button
+current_level = 1 # Set the inital level
+buttons = []
+level_ingredients = {}
 
-# Game loop####################################################################################################################
+for breakfast in data["breakfasts"]:
+    level = int(breakfast["level"])
+    ingredients = breakfast["all_ingredients"]
+
+    if level not in level_ingredients:
+        level_ingredients[level] = []
+
+    level_ingredients[level].extend(ingredients)
+    
+# Select ingredient list for current level
+current_ingredients = level_ingredients.get(current_level, [])
+
+# Calculate available width and height for placing the buttons
+available_width = 900
+available_height = 690
+max_buttons_per_row = 4  # Maximum buttons that can fit in a row
+
+# Calculate the required number of rows
+num_rows = (len(current_ingredients) + max_buttons_per_row - 1) // max_buttons_per_row
+
+# Calculate the spacing between rows and buttons
+row_spacing = (available_height - 430) / (num_rows + 1)
+button_spacing = (available_width - (max_buttons_per_row * 100)) / (max_buttons_per_row + 1)
+
+# Specify the starting position for the buttons
+start_x = 46 + button_spacing  # Adjust as needed
+start_y = 440 + row_spacing  # Adjust as needed
+
+# Create buttons for ingredients of the current level
+x, y = start_x, start_y  # Starting coordinates
+buttons = []  # List used to draw the buttons
+
+# Adding buttons to the list to be drawn
+for ingredient in current_ingredients:
+    buttons.append(Button(ingredient, (x, y), font_size=26))
+    x += 100 + button_spacing
+    if len(buttons) % max_buttons_per_row == 0:
+        x = start_x
+        y += row_spacing
+
+# Creating instances of the Start Cooking Button class
+start_cooking_button = Button("Start Cooking!", (160, 100), 30)
+
+##############################
+# Game loop ####################################################################################################################
+##############################
 clock = pygame.time.Clock()
 running = True
+
+
+# Background Music
+mixer.music.load("music/Intro Music for hack.mp3")
+mixer.music.play(-1) # -1 means loop forever
+mixer.music.set_volume(0.3)
+
+
 
 while running:
     # Things to clear each loop iteration
@@ -83,13 +143,26 @@ while running:
     # Blit table image
     screen.blit(table, (40, 300))
     
+    
+    ####################  Everything Happens here in this loop
+    # Draw the text animation
+    text_animation.draw(screen)
+    
     if text_animation.finished:
         # Blit textbox image
-        screen.blit(textbox, (40, 30))
-        # Blit plate image
-        screen.blit(plate, (100, 500))
+        screen.blit(textbox, (40, 450))
         # Blit start cooking button
-        screen.blit(cook_it, (913, 560))
+        screen.blit(cook_it, (930, 536))
+        
+        # Draw the buttons
+        for button in buttons:
+            button.draw()
+            # drawing start cooking button
+            start_cooking_button.draw()
+            
+                # Draw result message if ingredients are compared
+            
+        
         
     
     
