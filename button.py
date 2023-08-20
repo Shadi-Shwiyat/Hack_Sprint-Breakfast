@@ -20,26 +20,24 @@ class Button:
         text_rect = text_surf.get_rect()
         self.size = (text_rect.width + 20, text_rect.height + 20)  # Adding some padding for rectangle
 
-    def update_rect(self):
-        self.rect = pygame.Rect(*self.pos, *self.size)
 
     def draw(self):
-        outline_color = (14, 204, 52) if self.selected else (0, 0, 0)
-        text_color = outline_color if self.selected else (0, 0, 0)
+        self.outline_color = (14, 204, 52) if self.selected else (0, 0, 0)
+        self.text_color = self.outline_color if self.selected else (0, 0, 0)
 
         # Create a fill color for the button when hovered
-        button_surf = pygame.Surface(self.size, pygame.SRCALPHA)  # Use SRCALPHA for a surface with per-pixel alpha
+        self.button_surf = pygame.Surface(self.size, pygame.SRCALPHA)  # Use SRCALPHA for a surface with per-pixel alpha
         button_color = (14, 204, 52, 128) if self.hovered else (0, 0, 0, 0)  # Use 128 for semi-transparent fill
-        pygame.draw.rect(button_surf, button_color, (0, 0, *self.size))
+        pygame.draw.rect(self.button_surf, button_color, (0, 0, *self.size))
         
         # Render the text with a transparent background
-        text_surf = self.font.render(self.text, True, text_color)
+        text_surf = self.font.render(self.text, True, self.text_color)
         text_rect = text_surf.get_rect(center=(self.pos[0] + self.size[0] / 2, self.pos[1] + self.size[1] / 2))
 
         # Draw the rectangular outline around the button
         if self.selected:
-            pygame.draw.rect(screen, outline_color, (*self.pos, *self.size), 2)  # Thickness 2 for the outline
-        screen.blit(button_surf, self.pos)
+            pygame.draw.rect(screen, self.outline_color, (*self.pos, *self.size), 2)  # Thickness 2 for the outline
+        screen.blit(self.button_surf, self.pos)
         screen.blit(text_surf, text_rect)
 
     def handle_events(self, event):
