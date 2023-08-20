@@ -36,7 +36,7 @@ for breakfast in data["breakfasts"]:
 current_ingredients = level_ingredients.get(current_level, [])
 
 # Calculate available width and height for placing the buttons
-available_width = 960
+available_width = 900
 available_height = 690
 max_buttons_per_row = 4  # Maximum buttons that can fit in a row
 
@@ -65,7 +65,6 @@ for ingredient in current_ingredients:
 
 # List of selected ingredients to be compared to correct ingredients
 selected_ingredients = []
-start_cooking_button = Button("Start\nCooking", (1000, 536), font_size=26)
 ingredients_compared = True
 result_message = ""
 start_cooking_clicked = False
@@ -95,10 +94,10 @@ nope = pygame.transform.scale(nope, (600, 700))
 puke = pygame.image.load("images/puke.png")
 puke = pygame.transform.scale(puke, (600, 700))
 cook_it = pygame.image.load("images/cook_it.png")
-cook_it = pygame.transform.scale(cook_it, (100, 100))
+cook_it = pygame.transform.scale(cook_it, (160, 100))
 
 # Creating instances of the Button class
-start_cooking_button = Button("Start\nCooking!", (100, 100))
+start_cooking_button = Button("Start Cooking!", (160, 100), 30)
 
 # Game loop
 clock = pygame.time.Clock() # Creating a clock object
@@ -131,8 +130,8 @@ while run:
                     start_cooking_clicked = True
                     selected_ingredients = []  # Reset the selected ingredients when "Start Cooking" is clicked
 
-        # Update the position and size of the start_cooking_button based on conditions
-    start_cooking_button.pos = (1000, 536 )  # Update the position
+    # Update the position and size of the start_cooking_button based on conditions
+    start_cooking_button.pos = (913, 560)  # Update the position
     start_cooking_button.size = (200, 50)  # Update the size
     start_cooking_button.update_rect()
 
@@ -157,15 +156,15 @@ while run:
 
     # Blit Background and Assets to the screen
     screen.blit(background, (-110, -50))
-    #screen.blit(standard_pose, (530, 45))
+    screen.blit(standard_pose, (530, 45))
     #screen.blit(disgusted, (530, 45))
     #screen.blit(almost, (530, 15))
     #screen.blit(delicioso, (560, 15))
     #screen.blit(nope, (560, 15))
-    screen.blit(puke, (560, 20))
+    #screen.blit(puke, (560, 20))
     screen.blit(table, (40, 300))
     screen.blit(textbox, (40, 450))
-    screen.blit(cook_it, (1000, 536))
+    screen.blit(cook_it, (930, 536))
 
     # Draw the buttons
     for button in buttons:
