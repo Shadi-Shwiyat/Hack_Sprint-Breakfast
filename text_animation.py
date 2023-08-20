@@ -58,8 +58,8 @@ class TextAnimation:
                 current_line = word
 
         lines.append(current_line)
-
         y_offset = 0
+        
         for line in lines:
             text_surface = self.font.render(line, True, self.color)
             text_rect = text_surface.get_rect(topleft=(self.x - self.width // 2, self.y + y_offset))

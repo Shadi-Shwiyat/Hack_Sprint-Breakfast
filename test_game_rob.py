@@ -7,6 +7,12 @@ from sys import exit
 from button import Button
 from text_animation import TextAnimation
 
+<<<<<<< HEAD
+# Fixing audio issue
+os.environ['SDL_AUDIODRIVER'] = 'dsp'
+
+=======
+>>>>>>> c136799bf11373f6ea1228b3b24de7e51c97e69f
 # Initialize pygame
 pygame.init()
 
