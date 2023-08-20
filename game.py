@@ -20,7 +20,7 @@ pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
 
 # Instantiating Ingredient Buttons
 from button import Button
-current_level = 1 # Set the inital level
+current_level = 8 # Set the inital level
 level_ingredients = {}
 
 for breakfast in data["breakfasts"]:
@@ -37,6 +37,7 @@ current_ingredients = level_ingredients.get(current_level, []) # List of all ing
 split_index = len(current_ingredients) // 2 # Splitting all ingredients by 2
 right_ingredients = current_ingredients[:split_index] # List of right ingredients for level
 selected_ingredients = [] # Current ingredients selected by user
+random.shuffle(current_ingredients) # Make the ingredient buttons random
 ingredients_compared = False # For displaying result message
 result_message = "" # Message to show user based on level success
 
@@ -67,11 +68,6 @@ for ingredient in current_ingredients:
     if len(buttons) % max_buttons_per_row == 0:
         x = start_x
         y += row_spacing
-
-# Shuffle the buttons in random order
-shuffled_buttons = random.shuffle(buttons)
-print([button.text for button in buttons])
-
 
 # Define start cooking button
 start_cooking_button = Button("Start Cooking!", (913, 560), font_size=30, size=(200, 50), hover_size=(200, 40))
