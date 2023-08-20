@@ -7,16 +7,26 @@ from sys import exit
 # Fixing audio issue
 os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
-# Importing Json dictionary of meals and ingredients
-with open('breakfast_meal.json') as json_file:
-    data = json.load(json_file)
-
 # Initializing pygame and window size
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 
 # Setting title of window
 pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
+
+# Importing Json dictionary of meals and ingredients
+with open('breakfast_meal.json') as json_file:
+    data = json.load(json_file)
+
+# Load font
+font = pygame.font.Font(None, 30)
+
+# Extract sentences for level 1 from JSON data
+level_1_sentences = data["breakfasts"][0]["wes_says"]
+
+# Create TextAnimation instance for level 1
+from text_animation import TextAnimation
+text_animation = TextAnimation(level_1_sentences, 800, 150, font, (255, 255, 255), 800, 0.001, 2)
 
 # Instantiating Ingredient Buttons
 from button import Button
@@ -107,40 +117,54 @@ run = True
 while run:
     # Things to clear each loop iteration
 
+    # Update the text animation
+    text_animation.update()
+
     # Event to quit loop when user hits X
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-            
-        # Event for ingredient button clicks
+
+    if text_animation.finished:
+        # Blit assets to screen
+        screen.blit(textbox, (40, 450))
+        screen.blit(cook_it, (930, 536))
+        # Draw the buttons
         for button in buttons:
-            button.handle_events(event)
-            # Adding selected buttons to list
-            if button.selected and button.text not in selected_ingredients:
-                selected_ingredients.append(button.text)
-                print(selected_ingredients)
-            elif button.selected == False and button.text in selected_ingredients:
-                selected_ingredients.remove(button.text)
-                print(selected_ingredients)
+            button.draw()
+        start_cooking_button.draw()
 
-        # Event for start cooking button
-        start_cooking_button.handle_events(event)
-        if start_cooking_button.clicked:
-            start_cooking_button.clicked = False
-            start_cooking_button.selected = False
-            print("Start Cooking button clicked!")
+        for event in pygame.event.get():
+            # Event for ingredient button clicks
+            for button in buttons:
+                button.handle_events(event)
 
-            # Compare user-selected ingredients with correct ingredients
-            if sorted(selected_ingredients) == sorted(right_ingredients):
-                print("Ingredients match!")
-                result_message = "THERE IS A GOD!"  # Update the result_message
-            else:
-                print("Ingredients do not match..")
-                result_message = "Darn it!"  # Update the result_message
-                    
-            ingredients_compared = True # Update the rect attribute of the start_cooking_button
-            selected_ingredients = [] # Clear the user-selected ingredients list for the next level
+                # Adding selected buttons to list
+                if button.selected and button.text not in selected_ingredients:
+                    selected_ingredients.append(button.text)
+                    print(selected_ingredients)
+                elif button.selected == False and button.text in selected_ingredients:
+                    selected_ingredients.remove(button.text)
+                    print(selected_ingredients)
+
+            # Event for start cooking button
+            start_cooking_button.handle_events(event)
+            if start_cooking_button.clicked:
+                start_cooking_button.clicked = False
+                start_cooking_button.selected = False
+                print("Start Cooking button clicked!")
+
+                # Compare user-selected ingredients with correct ingredients
+                if sorted(selected_ingredients) == sorted(right_ingredients):
+                    print("Ingredients match!")
+                    result_message = "THERE IS A GOD!"  # Update the result_message
+                else:
+                    print("Ingredients do not match..")
+                    result_message = "Darn it!"  # Update the result_message
+
+                ingredients_compared = True # Update the rect attribute of the start_cooking_button
+                selected_ingredients = [] # Clear the user-selected ingredients list for the next level
 
     # Blit Background and Assets to the screen
     screen.blit(background, (-110, -50))
@@ -151,13 +175,16 @@ while run:
     #screen.blit(nope, (560, 15))
     #screen.blit(puke, (560, 20))
     screen.blit(table, (40, 300))
-    screen.blit(textbox, (40, 450))
-    screen.blit(cook_it, (930, 536))
+    #screen.blit(textbox, (40, 450))
+    #screen.blit(cook_it, (930, 536))
+
+    # Draw the text animation
+    text_animation.draw(screen)
 
     # Draw the buttons
-    for button in buttons:
-        button.draw()
-    start_cooking_button.draw()
+    #for button in buttons:
+        #button.draw()
+    #start_cooking_button.draw()
 
     # Draw result message if ingredients are compared
     if ingredients_compared:

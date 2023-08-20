@@ -117,9 +117,9 @@ running = True
 
 
 # Background Music
-mixer.music.load("music/Intro Music for hack.mp3")
-mixer.music.play(-1) # -1 means loop forever
-mixer.music.set_volume(0.1)
+#mixer.music.load("music/Intro Music for hack.mp3")
+#mixer.music.play(-1) # -1 means loop forever
+#mixer.music.set_volume(0.1)
 
 
 
