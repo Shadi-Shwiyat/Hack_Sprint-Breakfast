@@ -21,16 +21,9 @@ with open('breakfast_meal.json') as json_file:
 # Load font
 font = pygame.font.Font(None, 30)
 
-# Extract sentences for level 1 from JSON data
-level_1_sentences = data["breakfasts"][0]["wes_says"]
-
-# Create TextAnimation instance for level 1
-from text_animation import TextAnimation
-text_animation = TextAnimation(level_1_sentences, 800, 150, font, (255, 255, 255), 800, 0.00001, 2)
-
 # Instantiating Ingredient Buttons
 from button import Button
-current_level = 1 # Set the inital level
+current_level = 5 # Set the inital level
 level_ingredients = {}
 
 for breakfast in data["breakfasts"]:
@@ -42,6 +35,13 @@ for breakfast in data["breakfasts"]:
 
     level_ingredients[level].extend(ingredients)
     
+# Extract sentences for level 1 from JSON data
+level_sentences = data["breakfasts"][current_level - 1]["wes_says"]
+
+# Create TextAnimation instance for level 1
+from text_animation import TextAnimation
+text_animation = TextAnimation(level_sentences, 800, 150, font, (255, 255, 255), 800, 0.00001, 0)
+ 
 # Ingredient lists needed for current level to be compared
 current_ingredients = level_ingredients.get(current_level, []) # List of all ingredients for level
 split_index = len(current_ingredients) // 2 # Splitting all ingredients by 2
@@ -114,17 +114,29 @@ cook_it = pygame.transform.scale(cook_it, (160, 100))
 clock = pygame.time.Clock() # Creating a clock object
 run = True
 
+# Blit Background and Assets to the screen
+screen.blit(background, (-110, -50))
+screen.blit(standard_pose, (530, 45))
+#screen.blit(disgusted, (530, 45))
+#screen.blit(almost, (530, 15))
+#screen.blit(delicioso, (560, 15))
+#screen.blit(nope, (560, 15))
+#screen.blit(puke, (560, 20))
+screen.blit(table, (40, 300))
+
 while run:
     # Things to clear each loop iteration
-
     # Update the text animation
     text_animation.update()
-
+    text_animation.draw(screen) 
+    
     # Event to quit loop when user hits X
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+            # Draw the text animation
+            
         if text_animation.finished:
             # Event for ingredient button clicks
             for button in buttons:
@@ -155,6 +167,11 @@ while run:
                 ingredients_compared = True # Update the rect attribute of the start_cooking_button
                 selected_ingredients = [] # Clear the user-selected ingredients list for the next level
 
+
+    if text_animation.finished:
+        screen.blit(textbox, (40, 450))
+        screen.blit(cook_it, (930, 536))
+
     # Blit Background and Assets to the screen
     screen.blit(background, (-110, -50))
     screen.blit(standard_pose, (530, 45))
@@ -164,15 +181,14 @@ while run:
     #screen.blit(nope, (560, 15))
     #screen.blit(puke, (560, 20))
     screen.blit(table, (40, 300))
+    
+    text_animation.draw(screen) 
     if text_animation.finished:
         screen.blit(textbox, (40, 450))
         screen.blit(cook_it, (930, 536))
 
-    # Draw the text animation
-    text_animation.draw(screen)
-
     # Draw the buttons
-    if text_animation.finished:
+    if text_animation.finished:  
         for button in buttons:
             button.draw()
         start_cooking_button.draw()
