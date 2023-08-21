@@ -23,7 +23,7 @@ font = pygame.font.Font(None, 30)
 
 # Instantiating Ingredient Buttons
 from button import Button
-current_level = 5 # Set the inital level
+current_level = 1 # Set the inital level
 level_ingredients = {}
 
 for breakfast in data["breakfasts"]:

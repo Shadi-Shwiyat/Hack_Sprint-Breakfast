@@ -46,16 +46,19 @@ class TextAnimation:
         words = self.display_text.split()
         lines = []
         current_line = ""
+        line_length = 0  # Initialize the length of the current line
 
         for word in words:
             test_line = f"{current_line} {word}".strip()
             test_width, _ = self.font.size(test_line)
 
-            if test_width <= self.width:
+            if line_length + test_width <= self.width:  # Check if adding the word exceeds width
                 current_line = test_line
+                line_length += test_width  # Update the line length
             else:
                 lines.append(current_line)
                 current_line = word
+                line_length = test_width  # Reset the line length for the new line
 
         lines.append(current_line)
         y_offset = 0
