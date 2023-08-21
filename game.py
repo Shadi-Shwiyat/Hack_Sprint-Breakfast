@@ -24,7 +24,7 @@ font = pygame.font.Font(None, 30)
 
 # Instantiating Ingredient Buttons
 from button import Button
-current_level = 10 # Set the inital level
+current_level = 2 # Set the inital level
 level_ingredients = {}
 
 for breakfast in data["breakfasts"]:
@@ -42,7 +42,9 @@ split_index = len(current_ingredients) // 2 # Splitting all ingredients by 2
 right_ingredients = current_ingredients[:split_index] # List of right ingredients for level
 selected_ingredients = [] # Current ingredients selected by user
 random.shuffle(current_ingredients) # Make the ingredient buttons random
-ingredients_compared = False # For displaying result message
+level_success = False # For displaying result message
+ingredients_compared = False # For displaying different wes poses
+image_flip = True
 result_message = "" # Message to show user based on level success
 
 # Calculate available width and height for placing the buttons
@@ -102,6 +104,8 @@ plate = pygame.image.load("images/servingPlate.png")
 plate = pygame.transform.scale(plate, (130, 130))
 current_meal_picture = pygame.image.load(current_meal_picture_url)
 current_meal_picture = pygame.transform.scale(current_meal_picture, (90, 90))
+dubious = pygame.image.load("images/dubious.png")
+dubious = pygame.transform.scale(dubious, (260, 260))
 # Chef Wes Poses
 standard_pose = pygame.image.load("images/standard_pose.png")
 standard_pose = pygame.transform.scale(standard_pose, (530, 690))
@@ -156,7 +160,7 @@ while run:
                 # Compare user-selected ingredients with correct ingredients
                 if sorted(selected_ingredients) == sorted(right_ingredients):
                     print("Ingredients match!")
-                    ingredients_compared = True
+                    level_success = True
                     screen.blit(background, (-110, -50))
                     screen.blit(delicioso, (630, 15))
                     screen.blit(table, (40, 300))
@@ -165,6 +169,8 @@ while run:
                     screen.blit(plate, (300, 430))
                     screen.blit(current_meal_picture, (326, 430))
                 else:
+                    ingredients_compared = True
+                    image_flip = not image_flip
                     print("Ingredients do not match..")
 
                 selected_ingredients = [] # Clear the user-selected ingredients list for the next level
@@ -173,11 +179,18 @@ while run:
     #screen.blit(background, (-110, -50))
 
     # Blit pose based on current player status
-    if ingredients_compared == False:
+    if level_success == False:
         screen.blit(background, (-110, -50))
-        screen.blit(standard_pose, (530, 45))
+        if ingredients_compared == False:
+            screen.blit(standard_pose, (530, 45))
+        elif image_flip:
+            screen.blit(disgusted, (530, 45))
+        else:
+            screen.blit(puke, (560, 20))
         screen.blit(chatbox, (273, 76))
         screen.blit(table, (40, 300))
+        if ingredients_compared:
+            screen.blit(dubious, (326, 190))
     #screen.blit(chatbox, (273, 126))
     #screen.blit(disgusted, (530, 45))
     #screen.blit(almost, (530, 15))
@@ -187,7 +200,7 @@ while run:
     #screen.blit(table, (40, 300))
 
     # Blit textbox when text is done looping
-    if text_animation.finished and ingredients_compared == False:
+    if text_animation.finished and level_success == False:
         screen.blit(textbox, (40, 450))
         screen.blit(cook_it, (930, 536))
     
@@ -195,13 +208,13 @@ while run:
     text_animation.draw(screen) 
 
     # Draw the buttons
-    if text_animation.finished and ingredients_compared == False:  
+    if text_animation.finished and level_success == False:  
         for button in buttons:
             button.draw()
         start_cooking_button.draw()
 
     # Draw result message if ingredients are compared
-    if ingredients_compared:
+    if level_success:
         result_font = pygame.font.Font(None, 36)
         result_surf = result_font.render(result_message, True, (0, 0, 0))
         result_rect = result_surf.get_rect(center=(screen.get_width() // 2, 650))
