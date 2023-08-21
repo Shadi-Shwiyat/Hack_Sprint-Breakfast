@@ -67,7 +67,7 @@ def current_level_setup(current_level):
     level_text = TextAnimation(level_sentences, 800, 100, font, (0, 0, 0), 960, 0.001, 2)
 
     # Load the meal_picture for the current level
-    if current_level == 1:
+    if current_level >= 1:
         current_meal_picture_url = "images/" + data["breakfasts"][current_level - 1]["meal_picture"]
         current_meal_picture = pygame.image.load(current_meal_picture_url)
         current_meal_picture = pygame.transform.scale(current_meal_picture, (160, 160))

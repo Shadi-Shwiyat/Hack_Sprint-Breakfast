@@ -2,7 +2,7 @@ import os
 import pygame
 import json
 import random
-from pygame import mixer
+#from pygame import mixer
 from level_setup import current_level_setup
 from sys import exit
 
@@ -32,7 +32,7 @@ quit_button = Button("Exit", (476, 576), font_size=76, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 0
+current_level = 2
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
@@ -84,10 +84,10 @@ japanese = pygame.image.load("images/japanese.png")
 japanese = pygame.transform.scale(japanese, (360, 230))
 
 # Loading Music files
-mixer.init()
-background_music = mixer.music.load("music/intro_music.mp3")
-background_music = mixer.music.play(-1)  # -1 means loop forever
-background_music = mixer.music.set_volume(0.1) 
+#mixer.init()
+#background_music = mixer.music.load("music/intro_music.mp3")
+#background_music = mixer.music.play(-1)  # -1 means loop forever
+#background_music = mixer.music.set_volume(0.1) 
 
 # Game setup
 level_success = False # For displaying result message
