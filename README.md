@@ -1,8 +1,7 @@
 # Hack_Sprint-Breakfast
-This repo holds the pygame "Title" built for our Holberton Hack Sprint
+This repo holds the pygame "Rise and Dine: Wes's Cozy Kitchen" built for our Holberton Hack Sprint
 
-Title of Game is a single player breakfast ingredient choosing game developed using [pygame](https://www.pygame.org/news) featuring a retro theme  
-and chill gameplay with a focus on the player's choice of ingredients and how they affect the breakfast meal chosen by the Chef.
+"Rise and Dine: Wes's Cozy Kitchen" is a single player breakfast ingredient choosing game developed using [pygame](https://www.pygame.org/news) featuring a retro theme and chill gameplay with a focus on the player's choice of ingredients and how they affect the breakfast meal chosen by the Chef.
 
 ## Index
 
@@ -27,12 +26,13 @@ install `pygame` to be able to play the game.
 
 <h1 id="game-details">Game details</h1>
 
-Title of Game   
+"Rise and Dine: Wes's Cozy Kitchen" 
 The game was created as a Hack Sprint themed project for the Holberton School Software Engineering School,  
-where the theme was 'Breakfast'. Students were given 1 week to create something related to the theme.
+where the theme was 'Breakfast'. Students were given 1 week to create something related to the theme. This could be a website,
+and application, or whatever the group would like to work on and demostrate some skills.
 
 The game is a single player game where the player is given a choice of ingredients to choose from,
-and the player must choose the correct ingredient to match the meal that the Chef is making.
+and the player must choose the correct ingredient to match the meal that the Chef is making for the current level.
 
 As this game is only 2D and runs purely in Python 3, it is very performant and has several features to try and improve  
 on the amount of processing power this game needs to run such as slowing down screen updates if the user tabs out  
@@ -40,7 +40,7 @@ which dramatically decreases the amount of processing the game uses when it is r
 
 ## Levels
 
-There are 10 Levels that the player can play through, each with a different meal that the player must match according to
+There are 10 Levels that the player can play through currently, each with a different meal that the player must match according to
 our Chef name Wes. All of the meals are breakfast meals and get progressively harder as the player progresses through the
 levels to pick the correct ingredients.
 
@@ -66,6 +66,6 @@ to the `Display` and updates either the entire screen or specific parts that hav
 
 <h1 id="credits">Credits</h1>
 
-- Shadi
-- Dom
-- Rob
+- Dominick <https://github.com/DominickKeeling>
+- Robert Farley <https://github.com/Nomad-Rob>
+- Shadi Shwiyat <https://github.com/Shadi-Shwiyat>
