@@ -31,7 +31,7 @@ current_level = 1
 level_data = current_level_setup(current_level)
 current_ingredients = level_data["current_ingredients"]
 right_ingredients = level_data["right_ingredients"]
-text_animation = level_data["text_animation"]
+level_text = level_data["level_text"]
 current_meal_picture = level_data["current_meal_picture"]
 buttons = level_data["buttons"]
 selected_ingredients = []
@@ -71,8 +71,9 @@ cook_it = pygame.transform.scale(cook_it, (160, 100))
 level_success = False # For displaying result message
 ingredients_compared = False # For displaying different wes poses
 image_flip = True
-result_message = "" # Message to show user based on level success
+result_message = "" # Used with text_animation class, need to get working #####
 max_levels = 10
+
 # Game loop
 clock = pygame.time.Clock() # Creating a clock object
 run = True
@@ -81,7 +82,7 @@ while run:
     # Things to clear each loop iteration
 
     # Update the text animation
-    text_animation.update()
+    level_text.update()
 
     # Event to quit loop when user hits X
     for event in pygame.event.get():
@@ -89,7 +90,7 @@ while run:
             pygame.quit()
             exit()
             
-        if text_animation.finished:
+        if level_text.finished:
             # Event for ingredient button clicks
             for button in buttons:
                 button.handle_events(event)
@@ -138,11 +139,11 @@ while run:
                         level_data = current_level_setup(current_level)
                         current_ingredients = level_data["current_ingredients"]
                         right_ingredients = level_data["right_ingredients"]
-                        text_animation = level_data["text_animation"]
+                        level_text = level_data["level_text"]
                         current_meal_picture = level_data["current_meal_picture"]
                         buttons = level_data["buttons"]
                         ingredients_compared = False
-                        text_animation.finished = False
+                        level_text.finished = False
                         level_success = False
 
                 selected_ingredients = [] # Clear the user-selected ingredients list for the next level
@@ -167,15 +168,15 @@ while run:
     #screen.blit(nope, (560, 15))
 
     # Blit textbox when text is done looping
-    if text_animation.finished and level_success == False:
+    if level_text.finished and level_success == False:
         screen.blit(textbox, (40, 450))
         screen.blit(cook_it, (930, 536))
     
     # Draw text animation
-    text_animation.draw(screen) 
+    level_text.draw(screen) 
 
     # Draw the buttons
-    if text_animation.finished and level_success == False:  
+    if level_text.finished and level_success == False:  
         for button in buttons:
             button.draw()
         start_cooking_button.draw()

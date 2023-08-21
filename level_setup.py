@@ -64,7 +64,7 @@ def current_level_setup(current_level):
 
     # Create TextAnimation instance for level 1
     from text_animation import TextAnimation
-    text_animation = TextAnimation(level_sentences, 800, 100, font, (0, 0, 0), 960, 0.001, 2)
+    level_text = TextAnimation(level_sentences, 800, 100, font, (0, 0, 0), 960, 0.001, 2)
 
     # Load the meal_picture for the current level
     current_meal_picture_url = "images/" + data["breakfasts"][current_level - 1]["meal_picture"]
@@ -74,7 +74,7 @@ def current_level_setup(current_level):
     return {
         "current_ingredients": current_ingredients,
         "right_ingredients": right_ingredients,
-        "text_animation": text_animation,
+        "level_text": level_text,
         "current_meal_picture": current_meal_picture,
         "buttons": buttons
     }
