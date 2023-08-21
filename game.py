@@ -6,7 +6,6 @@ from pygame import mixer
 from level_setup import current_level_setup
 from sys import exit
 
-
 # Fixing audio issue
 ## os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
