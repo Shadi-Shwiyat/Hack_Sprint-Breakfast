@@ -32,7 +32,7 @@ quit_button = Button("Exit", (476, 576), font_size=76, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 2
+current_level = 0
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
@@ -202,14 +202,6 @@ while run:
         if quit_button.clicked:
             pygame.quit()
             exit()
-                    
-
-
-
-
-
-    # Blit Background and Assets to the screen
-    #screen.blit(background, (-110, -50))
 
     # Blit pose based on current player status
     if current_level == 0:
