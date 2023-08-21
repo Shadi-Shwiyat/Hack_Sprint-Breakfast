@@ -8,11 +8,7 @@ from sys import exit
 
 
 # Fixing audio issue
-<<<<<<< HEAD
-#os.environ['SDL_AUDIODRIVER'] = 'dsp'
-=======
 ## os.environ['SDL_AUDIODRIVER'] = 'dsp'
->>>>>>> 741675a3fdc1211a1211fe2c70b16d2fe751688c
 
 # Initializing pygame and window size
 pygame.init()
