@@ -47,7 +47,7 @@
                 "Pick the right ingredients below for Quiche."
             ],
             "right_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust"],
-            "all_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust", "Tortilla", "Syrup", "Hash Browns", "Bacon", "Sausage"],
+            "all_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust", "Tortilla", "Syrup", "Hash Browns", "Watermelon", "Oatmeal"],
             "meal_picture": "quiche.png",
             "result_message" : "Great job! You have made Quiche!",
             "easter_egg": "gordon.png"
@@ -64,7 +64,7 @@
                 "Pick the right ingredients below for Quiche."
             ],
             "right_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter"],
-            "all_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter", "Tortilla", "Syrup", "Hash Browns", "Bacon", "Sausage", "Bagel", "Cream Cheese", "Seaweed", "Baked Beans"],
+            "all_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter", "Tortilla", "Syrup", "Hash Browns", "Watermelon", "Oatmeal", "Bagel", "Cream Cheese", "Seaweed", "Baked Beans"],
             "meal_picture": "quiche.png",
             "result_message": "Great job! You have made Quiche!",
             "easter_egg": "gordon.png"
