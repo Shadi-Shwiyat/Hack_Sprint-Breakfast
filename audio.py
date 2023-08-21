@@ -9,9 +9,9 @@ class GameAudio:
     def load_sound_effects(self):
         self.preping_food = pygame.mixer.Sound('music/preping_food.mp3')
         self.click_sound = pygame.mixer.Sound('music/select_sound.mp3')
-        self.boo_sound = pygame.mixer.Sound('sound/boo_sound.mp3')
-        self.vomiting_sound = pygame.mixer.Sound('sound/vomit_sound.mp3')
-        self.next_level_sound = pygame.mixer.Sound('sound/next_level_sound.mp3')
+        self.boo_sound = pygame.mixer.Sound('music/boo_sound.mp3')
+        self.vomiting_sound = pygame.mixer.Sound('music/vomit_sound.mp3')
+        self.next_level_sound = pygame.mixer.Sound('music/next_level_sound.mp3')
 
     def load_background_music(self):
         self.menu_music = pygame.mixer.Sound('music/intro_music.mp3')
