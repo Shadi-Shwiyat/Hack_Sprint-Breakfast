@@ -82,7 +82,7 @@ level_sentences = data["breakfasts"][current_level - 1]["wes_says"]
 
 # Create TextAnimation instance for level 1
 from text_animation import TextAnimation
-text_animation = TextAnimation(level_sentences, 800, 150, font, (255, 255, 255), 800, 0.00001, 0)
+text_animation = TextAnimation(level_sentences, 800, 150, font, (0, 0, 0), 960, 0.00001, 3)
 
 # Background Image
 background = pygame.image.load("images/kitchen_background.jpeg")
@@ -93,7 +93,9 @@ table = pygame.image.load("images/table.png")
 table = pygame.transform.scale(table, (1200, 530))
 textbox = pygame.image.load("images/textbox.png")
 textbox = pygame.transform.scale(textbox, (1200, 276))
-plate = pygame.image.load("images/plate.png")
+chatbox = pygame.image.load("images/chat.png")
+chatbox = pygame.transform.scale(chatbox, (400, 150))
+plate = pygame.image.load("images/servingPlate.png")
 plate = pygame.transform.scale(plate, (50, 50))
 # Chef Wes Poses
 standard_pose = pygame.image.load("images/standard_pose.png")
@@ -160,6 +162,7 @@ while run:
     # Blit Background and Assets to the screen
     screen.blit(background, (-110, -50))
     screen.blit(standard_pose, (530, 45))
+    screen.blit(chatbox, (273, 126))
     #screen.blit(disgusted, (530, 45))
     #screen.blit(almost, (530, 15))
     #screen.blit(delicioso, (560, 15))
