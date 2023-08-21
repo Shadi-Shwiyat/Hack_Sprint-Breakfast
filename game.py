@@ -84,6 +84,12 @@ congee = pygame.transform.scale(congee, (290, 199))
 japanese = pygame.image.load("images/japanese.png")
 japanese = pygame.transform.scale(japanese, (360, 230))
 
+# Loading Music files
+mixer.init()
+background_music = mixer.music.load("music/intro_music.mp3")
+background_music = mixer.music.play(-1)  # -1 means loop forever
+background_music = mixer.music.set_volume(0.1) 
+
 # Game setup
 level_success = False # For displaying result message
 ingredients_compared = False # For displaying different wes poses
@@ -94,12 +100,6 @@ max_levels = 10
 # Game loop
 clock = pygame.time.Clock() # Creating a clock object
 run = True
-
-# Adding Background Music
-mixer.init()
-background_music = mixer.music.load("music/Intro_Music_for_hack.mp3")
-background_music = mixer.music.play(-1)  # -1 means loop forever
-background_music = mixer.music.set_volume(0.1) 
 
 while run:
     # Things to clear each loop iteration
