@@ -2,11 +2,17 @@ import os
 import pygame
 import json
 import random
+from pygame import mixer #################################################################
 from level_setup import current_level_setup
 from sys import exit
 
+
 # Fixing audio issue
+<<<<<<< HEAD
 #os.environ['SDL_AUDIODRIVER'] = 'dsp'
+=======
+## os.environ['SDL_AUDIODRIVER'] = 'dsp'
+>>>>>>> 741675a3fdc1211a1211fe2c70b16d2fe751688c
 
 # Initializing pygame and window size
 pygame.init()
@@ -92,9 +98,15 @@ max_levels = 10
 clock = pygame.time.Clock() # Creating a clock object
 run = True
 
+# Adding Background Music #############################################################################################################
+mixer.init()
+mixer.music.load("music/Intro Music for hack.mp3")
+mixer.music.play(-1)  # -1 means loop forever
+mixer.music.set_volume(0.1) 
+#####################################################################################################
 while run:
     # Things to clear each loop iteration
-
+    
     # Update the text animation
     if current_level >= 1:
         level_text.update()
@@ -104,6 +116,7 @@ while run:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+   
                 
             if level_text.finished:
                 # Event for ingredient button clicks
