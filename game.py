@@ -97,9 +97,9 @@ run = True
 
 # Adding Background Music
 mixer.init()
-mixer.music.load("music/Intro Music for hack.mp3")
-mixer.music.play(-1)  # -1 means loop forever
-mixer.music.set_volume(0.1) 
+background_music = mixer.music.load("music/Intro_Music_for_hack.mp3")
+background_music = mixer.music.play(-1)  # -1 means loop forever
+background_music = mixer.music.set_volume(0.1) 
 
 while run:
     # Things to clear each loop iteration
