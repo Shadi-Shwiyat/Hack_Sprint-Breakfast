@@ -104,7 +104,7 @@ while run:
     # Things to clear each loop iteration
     
     # Update the text animation
-    if current_level >= 1:
+    if current_level >= 1 and current_level < 11:
         level_text.update()
 
         # Event to quit loop when user hits X
@@ -179,6 +179,12 @@ while run:
                             level_success = False
 
                     selected_ingredients = [] # Clear the user-selected ingredients list for the next level
+    elif current_level == 11:
+        level_text.update()
+        if level_text.finished:
+            run = False
+            pygame.quit()
+            exit()
     else:
         # Event to quit loop when user hits X
         for event in pygame.event.get():

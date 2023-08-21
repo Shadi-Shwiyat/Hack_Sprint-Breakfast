@@ -60,11 +60,11 @@
                 "Let's move on to the next level.",
                 "Seems like you are getting the hang of this!",
                 "We will be making Quiche again but...",
-                "Also pick the right ingredients below for the pie crust.",
+                "now you also need to pick the right ingredients below for the pie crust.",
                 "Pick the right ingredients below for Quiche."
             ],
             "right_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter"],
-            "all_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter", "Tortilla", "Syrup", "Hash Browns", "Watermelon", "Oatmeal", "Bagel", "Cream Cheese", "Seaweed", "Baked Beans"],
+            "all_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter", "Tortilla", "Syrup", "Hash Browns", "Oatmeal", "Bagel", "Cream Cheese", "Seaweed", "Baked Beans"],
             "meal_picture": "quiche.png",
             "result_message": "Great job! You have made Quiche!",
             "easter_egg": "images/gordon.png"
@@ -109,7 +109,7 @@
                 "Pick the right ingredients below for Chocolate Chip Waffles."
             ],
             "right_ingredients": ["Milk", "Eggs", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup"],
-            "all_ingredients": ["Milk", "Eggs,", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup", "Bacon", "Green Onion", "Cheese", "Pie Crust", "Ginger", "Soy Sauce", "Vegetables", "Mushrooms"],
+            "all_ingredients": ["Milk", "Eggs", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup", "Bacon", "Green Onion", "Cheese", "Pie Crust", "Ginger", "Soy Sauce", "Vegetables", "Mushrooms"],
             "meal_picture": "waffle.png",
             "result_message" : "Great job! You have made Chocolate Chip Waffles!",
             "easter_egg": "images/gordon.png"
@@ -164,16 +164,19 @@
             "name": "Game Over",
             "level": "11",
             "wes_says": [
-                "You have completed all the levels!",
-                "Great job!",
-                "You are now a breakfast expert!",
-                "Thank you for playing!",
-                "See you next time!",
-                "Also keep the kitchen clean!"
+                "You have completed all the levels, Great Job!",
+                "You are now a breakfast expert! Thank you for playing, and see you next time!",
+                "Also, keep the kitchen clean please, or I'll have to clean up after you :(",
+                "Credits to...",
+                "Dominick Keeling : Sound Design and Game Logic",
+                "Rob Farly : Database and Game Logic",
+                "Shadi Shwiyat : Art design and Game Logic",
+                "Huge Special Thanks to Wes Rose!",
+                "Thank you for all you do as a Campus Coordinator, and for your help in this project!"
             ],
             "right_ingredients": [],
             "all_ingredients": [],
-            "meal_picture": [],
+            "meal_picture": "japanese.png",
             "result_message" : [],
             "easter_egg": []
             

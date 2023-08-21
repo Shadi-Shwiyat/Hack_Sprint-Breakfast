@@ -2,11 +2,12 @@ import os
 import pygame
 import json
 import random
+#from pygame import mixer
 from level_setup import current_level_setup
 from sys import exit
 
 # Fixing audio issue
-os.environ['SDL_AUDIODRIVER'] = 'dsp'
+## os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
 # Initializing pygame and window size
 pygame.init()
@@ -31,7 +32,7 @@ quit_button = Button("Exit", (476, 576), font_size=76, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 2
+current_level = 0
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
@@ -39,7 +40,8 @@ level_data = current_level_setup(current_level)
 current_ingredients = level_data["current_ingredients"]
 right_ingredients = level_data["right_ingredients"]
 level_text = level_data["level_text"]
-current_meal_picture = level_data["current_meal_picture"]
+if current_level > 0:
+    current_meal_picture = level_data["current_meal_picture"]
 buttons = level_data["buttons"]
 selected_ingredients = []
 
@@ -55,7 +57,7 @@ textbox = pygame.transform.scale(textbox, (1200, 276))
 chatbox = pygame.image.load("images/chat.png")
 chatbox = pygame.transform.scale(chatbox, (400, 150))
 plate = pygame.image.load("images/servingPlate.png")
-plate = pygame.transform.scale(plate, (230, 230))
+plate = pygame.transform.scale(plate, (230, 160))
 dubious = pygame.image.load("images/dubious.png")
 dubious = pygame.transform.scale(dubious, (260, 260))
 # Chef Wes Poses
@@ -73,6 +75,19 @@ puke = pygame.image.load("images/puke.png")
 puke = pygame.transform.scale(puke, (600, 700))
 cook_it = pygame.image.load("images/cook_it.png")
 cook_it = pygame.transform.scale(cook_it, (160, 100))
+# Nessesary dish images
+english = pygame.image.load("images/english.png")
+english = pygame.transform.scale(english, (360, 160))
+congee = pygame.image.load("images/congee.png")
+congee = pygame.transform.scale(congee, (290, 199))
+japanese = pygame.image.load("images/japanese.png")
+japanese = pygame.transform.scale(japanese, (360, 230))
+
+# Loading Music files
+#mixer.init()
+#background_music = mixer.music.load("music/intro_music.mp3")
+#background_music = mixer.music.play(-1)  # -1 means loop forever
+#background_music = mixer.music.set_volume(0.1) 
 
 # Game setup
 level_success = False # For displaying result message
@@ -87,9 +102,9 @@ run = True
 
 while run:
     # Things to clear each loop iteration
-
+    
     # Update the text animation
-    if current_level >= 1:
+    if current_level >= 1 and current_level < 11:
         level_text.update()
 
         # Event to quit loop when user hits X
@@ -97,6 +112,7 @@ while run:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+   
                 
             if level_text.finished:
                 # Event for ingredient button clicks
@@ -127,8 +143,16 @@ while run:
                         screen.blit(table, (40, 300))
                         screen.blit(chatbox, (273, 76))
                         # Blit the meal_picture on the screen
-                        screen.blit(plate, (300, 430))
-                        screen.blit(current_meal_picture, (326, 430))
+                        if current_level <= 7:
+                            screen.blit(plate, (300, 430))
+                            screen.blit(current_meal_picture, (336, 390))
+                        else:
+                            if current_level == 8:
+                                screen.blit(english, (300, 390))
+                            elif current_level == 9:
+                                screen.blit(congee, (336, 330))
+                            elif current_level == 10:
+                                screen.blit(japanese, (290, 330))
                     else:
                         ingredients_compared = True
                         image_flip = not image_flip
@@ -139,7 +163,7 @@ while run:
                     progress.handle_events(event)
                     screen.blit(cook_it, (819, 456))
                     if progress.clicked:
-                        print("progress clicked")
+                        #print("progress clicked")
                         progress.clicked = False
                         progress.selected = False
                         if current_level <= max_levels:
@@ -155,6 +179,12 @@ while run:
                             level_success = False
 
                     selected_ingredients = [] # Clear the user-selected ingredients list for the next level
+    elif current_level == 11:
+        level_text.update()
+        if level_text.finished:
+            run = False
+            pygame.quit()
+            exit()
     else:
         # Event to quit loop when user hits X
         for event in pygame.event.get():
@@ -162,30 +192,22 @@ while run:
                 pygame.quit()
                 exit()
 
-        # Event listeners for start menu
-        start_button.handle_events(event)
-        if start_button.clicked:
-            start_button.clicked = False
-            start_button.selected = False
-            current_level += 1
-            level_data = current_level_setup(current_level)
-            current_ingredients = level_data["current_ingredients"]
-            right_ingredients = level_data["right_ingredients"]
-            level_text = level_data["level_text"]
-            current_meal_picture = level_data["current_meal_picture"]
-            buttons = level_data["buttons"]
-        quit_button.handle_events(event)
-        if quit_button.clicked:
-            pygame.quit()
-            exit()
-                    
-
-
-
-
-
-    # Blit Background and Assets to the screen
-    #screen.blit(background, (-110, -50))
+            # Event listeners for start menu
+            start_button.handle_events(event)
+            if start_button.clicked:
+                start_button.clicked = False
+                start_button.selected = False
+                current_level += 1
+                level_data = current_level_setup(current_level)
+                current_ingredients = level_data["current_ingredients"]
+                right_ingredients = level_data["right_ingredients"]
+                level_text = level_data["level_text"]
+                current_meal_picture = level_data["current_meal_picture"]
+                buttons = level_data["buttons"]
+            quit_button.handle_events(event)
+            if quit_button.clicked:
+                pygame.quit()
+                exit()
 
     # Blit pose based on current player status
     if current_level == 0:

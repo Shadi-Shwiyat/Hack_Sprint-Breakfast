@@ -64,7 +64,7 @@ def current_level_setup(current_level):
 
     # Create TextAnimation instance for level 1
     from text_animation import TextAnimation
-    level_text = TextAnimation(level_sentences, 800, 100, font, (0, 0, 0), 960, 0.001, 2)
+    level_text = TextAnimation(level_sentences, 830, 96, font, (0, 0, 0), 1030, 0.03, 1)
 
     # Load the meal_picture for the current level
     if current_level >= 1:
@@ -78,6 +78,10 @@ def current_level_setup(current_level):
             "level_text": level_text,
             "current_meal_picture": current_meal_picture,
             "buttons": buttons
+        }
+    elif current_level == 11:
+        return {
+            "level_text": level_text
         }
     else:
         return {
