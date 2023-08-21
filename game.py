@@ -6,7 +6,7 @@ from level_setup import current_level_setup
 from sys import exit
 
 # Fixing audio issue
-os.environ['SDL_AUDIODRIVER'] = 'dsp'
+#os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
 # Initializing pygame and window size
 pygame.init()
@@ -31,7 +31,7 @@ quit_button = Button("Exit", (476, 576), font_size=76, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 10
+current_level = 1
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
