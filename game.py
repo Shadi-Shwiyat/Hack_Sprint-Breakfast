@@ -2,7 +2,7 @@ import os
 import pygame
 import json
 import random
-from pygame import mixer #################################################################
+from pygame import mixer
 from level_setup import current_level_setup
 from sys import exit
 
