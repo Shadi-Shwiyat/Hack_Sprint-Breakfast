@@ -33,7 +33,7 @@ quit_button = Button("Exit", (476, 576), font_size=76, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 1
+current_level = 0
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
@@ -41,7 +41,8 @@ level_data = current_level_setup(current_level)
 current_ingredients = level_data["current_ingredients"]
 right_ingredients = level_data["right_ingredients"]
 level_text = level_data["level_text"]
-current_meal_picture = level_data["current_meal_picture"]
+if current_level > 0:
+    current_meal_picture = level_data["current_meal_picture"]
 buttons = level_data["buttons"]
 selected_ingredients = []
 
@@ -94,12 +95,12 @@ max_levels = 10
 clock = pygame.time.Clock() # Creating a clock object
 run = True
 
-# Adding Background Music #############################################################################################################
+# Adding Background Music
 mixer.init()
 mixer.music.load("music/Intro Music for hack.mp3")
 mixer.music.play(-1)  # -1 means loop forever
 mixer.music.set_volume(0.1) 
-#####################################################################################################
+
 while run:
     # Things to clear each loop iteration
     

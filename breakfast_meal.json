@@ -19,7 +19,7 @@
             "all_ingredients": ["Eggs", "Sausage", "Toast", "Bacon"],
             "meal_picture": "eggs_sausage.png",
             "result_message" : "Great job! You have made Eggs and Sausage!",
-            "easter_egg": "gordon.png"
+            "easter_egg": "images/gordon.png"
         },
         {
             "name": "Bagel and Cream Cheese",
@@ -34,7 +34,7 @@
             "all_ingredients": ["Bagel", "Cream Cheese", "Tortilla", "Hash Browns"],
             "meal_picture": "bagel.png",
             "result_message" : "Great job! You have made Bagel and Cream Cheese!",
-            "easter_egg": "gordon.png"
+            "easter_egg": "images/gordon.png"
         },
         {
             "name": "Quiche",
@@ -50,7 +50,7 @@
             "all_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust", "Tortilla", "Syrup", "Hash Browns", "Watermelon", "Oatmeal"],
             "meal_picture": "quiche.png",
             "result_message" : "Great job! You have made Quiche!",
-            "easter_egg": "gordon.png"
+            "easter_egg": "images/gordon.png"
         },
         {
             "name": "Quiche",
@@ -67,7 +67,7 @@
             "all_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter", "Tortilla", "Syrup", "Hash Browns", "Watermelon", "Oatmeal", "Bagel", "Cream Cheese", "Seaweed", "Baked Beans"],
             "meal_picture": "quiche.png",
             "result_message": "Great job! You have made Quiche!",
-            "easter_egg": "gordon.png"
+            "easter_egg": "images/gordon.png"
         },
         {
             "name": "Bacon Pancakes",
@@ -82,7 +82,7 @@
             "all_ingredients": ["Pancake Batter", "Bacon", "Maple Syrup", "Butter", "Eggs", "Cheese", "Toast", "Sausage"],
             "meal_picture": "pancake.png",
             "result_message" : "Great job! You have made Bacon Pancakes!",
-            "easter_egg": "gordon.png"
+            "easter_egg": "images/gordon.png"
         },
         {
             "name": "Breakfast Burrito",
@@ -97,7 +97,7 @@
             "all_ingredients": ["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa", "Toast", "Pie Crust", "Bagel", "Pancake Batter", "Chocolate Chips"],
             "meal_picture": "burrito.png",
             "result_message" : "Great job! You have made Breakfast Burrito!",
-            "easter_egg": "gordon.png"
+            "easter_egg": "images/gordon.png"
         },
         {
             "name": "Chocolate Chip Waffles",
@@ -112,7 +112,7 @@
             "all_ingredients": ["Milk", "Eggs,", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup", "Bacon", "Green Onion", "Cheese", "Pie Crust", "Ginger", "Soy Sauce", "Vegetables", "Mushrooms"],
             "meal_picture": "waffle.png",
             "result_message" : "Great job! You have made Chocolate Chip Waffles!",
-            "easter_egg": "gordon.png"
+            "easter_egg": "images/gordon.png"
         },
         {
             "name": "Full English Breakfast",
@@ -128,7 +128,7 @@
             "all_ingredients": ["Eggs", "Bacon", "Toast", "Jam", "Hash Browns", "Sausage", "Baked Beans", "Tomato", "Mushrooms", "Rice", "Pancake Batter", "Vegetables", "Milk", "Flour", "Soy Sauce", "Fermented Soybean", "Green Onion", "Pickled Vegetables"],
             "meal_picture": "english.png",
             "result_message" : "Great job! You have made Full English Breakfast!",
-            "easter_egg": "gordon.png"
+            "easter_egg": "images/gordon.png"
         },
         {
             "name": "Chinese Congee",
@@ -143,7 +143,7 @@
             "all_ingredients": ["Rice", "Water", "Fried Egg", "Ginger", "Green Onion", "Soy Sauce", "Miso Soup", "Pickled Vegetables", "Rolled Omelette", "Milk", "Flour", "Syrup"],
             "meal_picture": "congee.png",
             "result_message" : "Great job! You have made Chinese Congee!",
-            "easter_egg": "gordon.png"
+            "easter_egg": "images/gordon.png"
         },
         {
             "name": "Japanese Breakfast",
@@ -158,7 +158,7 @@
             "all_ingredients": ["Rice", "Miso Soup", "Grilled Fish", "Pickled Vegetables", "Fermented Soybean", "Rolled Omelette", "Seaweed", "Eggs", "Baking Powder", "Jam", "Cheese", "Mushrooms", "Butter", "Milk"],
             "meal_picture": "japanese.png",
             "result_message" : "Great job! You have made Japanese Breakfast!",
-            "easter_egg": "gordon.png"
+            "easter_egg": "images/gordon.png"
         },
         {
             "name": "Game Over",

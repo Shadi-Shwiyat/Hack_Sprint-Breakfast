@@ -67,14 +67,22 @@ def current_level_setup(current_level):
     level_text = TextAnimation(level_sentences, 800, 100, font, (0, 0, 0), 960, 0.001, 0)
 
     # Load the meal_picture for the current level
-    current_meal_picture_url = "images/" + data["breakfasts"][current_level - 1]["meal_picture"]
-    current_meal_picture = pygame.image.load(current_meal_picture_url)
-    current_meal_picture = pygame.transform.scale(current_meal_picture, (160, 160))
+    if current_level == 1:
+        current_meal_picture_url = "images/" + data["breakfasts"][current_level - 1]["meal_picture"]
+        current_meal_picture = pygame.image.load(current_meal_picture_url)
+        current_meal_picture = pygame.transform.scale(current_meal_picture, (160, 160))
 
-    return {
-        "current_ingredients": current_ingredients,
-        "right_ingredients": right_ingredients,
-        "level_text": level_text,
-        "current_meal_picture": current_meal_picture,
-        "buttons": buttons
-    }
+        return {
+            "current_ingredients": current_ingredients,
+            "right_ingredients": right_ingredients,
+            "level_text": level_text,
+            "current_meal_picture": current_meal_picture,
+            "buttons": buttons
+        }
+    else:
+        return {
+            "current_ingredients": current_ingredients,
+            "right_ingredients": right_ingredients,
+            "level_text": level_text,
+            "buttons": buttons
+        }
