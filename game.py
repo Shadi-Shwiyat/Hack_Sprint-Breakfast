@@ -5,7 +5,7 @@ import random
 from sys import exit
 
 # Fixing audio issue
-#os.environ['SDL_AUDIODRIVER'] = 'dsp'
+os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
 # Initializing pygame and window size
 pygame.init()
@@ -19,6 +19,7 @@ with open('breakfast_meal.json') as json_file:
     data = json.load(json_file)
 
 # Load font
+font_path = "./Minecraft.ttf"
 font = pygame.font.Font(None, 30)
 
 # Instantiating Ingredient Buttons
@@ -34,13 +35,6 @@ for breakfast in data["breakfasts"]:
         level_ingredients[level] = []
 
     level_ingredients[level].extend(ingredients)
-    
-# Extract sentences for level 1 from JSON data
-level_sentences = data["breakfasts"][current_level - 1]["wes_says"]
-
-# Create TextAnimation instance for level 1
-from text_animation import TextAnimation
-text_animation = TextAnimation(level_sentences, 800, 150, font, (255, 255, 255), 800, 0.00001, 0)
  
 # Ingredient lists needed for current level to be compared
 current_ingredients = level_ingredients.get(current_level, []) # List of all ingredients for level
@@ -83,6 +77,13 @@ for ingredient in current_ingredients:
 start_cooking_button = Button("Start Cooking!", (913, 560), font_size=30, size=(200, 50), hover_size=(200, 40))
 start_cooking_button.button_color = (0, 0, 0, 0)
 
+# Extract sentences for level 1 from JSON data
+level_sentences = data["breakfasts"][current_level - 1]["wes_says"]
+
+# Create TextAnimation instance for level 1
+from text_animation import TextAnimation
+text_animation = TextAnimation(level_sentences, 800, 150, font, (255, 255, 255), 800, 0.00001, 0)
+
 # Background Image
 background = pygame.image.load("images/kitchen_background.jpeg")
 background = pygame.transform.scale(background, (1480, 900))
@@ -114,28 +115,17 @@ cook_it = pygame.transform.scale(cook_it, (160, 100))
 clock = pygame.time.Clock() # Creating a clock object
 run = True
 
-# Blit Background and Assets to the screen
-screen.blit(background, (-110, -50))
-screen.blit(standard_pose, (530, 45))
-#screen.blit(disgusted, (530, 45))
-#screen.blit(almost, (530, 15))
-#screen.blit(delicioso, (560, 15))
-#screen.blit(nope, (560, 15))
-#screen.blit(puke, (560, 20))
-screen.blit(table, (40, 300))
-
 while run:
     # Things to clear each loop iteration
+
     # Update the text animation
     text_animation.update()
-    text_animation.draw(screen) 
-    
+
     # Event to quit loop when user hits X
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-            # Draw the text animation
             
         if text_animation.finished:
             # Event for ingredient button clicks
@@ -167,11 +157,6 @@ while run:
                 ingredients_compared = True # Update the rect attribute of the start_cooking_button
                 selected_ingredients = [] # Clear the user-selected ingredients list for the next level
 
-
-    if text_animation.finished:
-        screen.blit(textbox, (40, 450))
-        screen.blit(cook_it, (930, 536))
-
     # Blit Background and Assets to the screen
     screen.blit(background, (-110, -50))
     screen.blit(standard_pose, (530, 45))
@@ -181,11 +166,14 @@ while run:
     #screen.blit(nope, (560, 15))
     #screen.blit(puke, (560, 20))
     screen.blit(table, (40, 300))
-    
-    text_animation.draw(screen) 
+
+    # Blit textbox when text is done looping
     if text_animation.finished:
         screen.blit(textbox, (40, 450))
         screen.blit(cook_it, (930, 536))
+    
+    # Draw text animation
+    text_animation.draw(screen) 
 
     # Draw the buttons
     if text_animation.finished:  
