@@ -24,7 +24,7 @@ font = pygame.font.Font(None, 30)
 
 # Instantiating Ingredient Buttons
 from button import Button
-current_level = 1 # Set the inital level
+current_level = 10 # Set the inital level
 level_ingredients = {}
 
 for breakfast in data["breakfasts"]:
@@ -82,7 +82,10 @@ level_sentences = data["breakfasts"][current_level - 1]["wes_says"]
 
 # Create TextAnimation instance for level 1
 from text_animation import TextAnimation
-text_animation = TextAnimation(level_sentences, 800, 150, font, (0, 0, 0), 960, 0.00001, 3)
+text_animation = TextAnimation(level_sentences, 800, 100, font, (0, 0, 0), 960, 0.00001, 0)
+
+# Load the meal_picture for the current level
+current_meal_picture_url = "images/" + data["breakfasts"][current_level - 1]["meal_picture"]
 
 # Background Image
 background = pygame.image.load("images/kitchen_background.jpeg")
@@ -96,7 +99,9 @@ textbox = pygame.transform.scale(textbox, (1200, 276))
 chatbox = pygame.image.load("images/chat.png")
 chatbox = pygame.transform.scale(chatbox, (400, 150))
 plate = pygame.image.load("images/servingPlate.png")
-plate = pygame.transform.scale(plate, (50, 50))
+plate = pygame.transform.scale(plate, (130, 130))
+current_meal_picture = pygame.image.load(current_meal_picture_url)
+current_meal_picture = pygame.transform.scale(current_meal_picture, (90, 90))
 # Chef Wes Poses
 standard_pose = pygame.image.load("images/standard_pose.png")
 standard_pose = pygame.transform.scale(standard_pose, (530, 690))
@@ -105,7 +110,7 @@ disgusted = pygame.transform.scale(disgusted, (760, 900))
 almost = pygame.image.load("images/almost.png")
 almost = pygame.transform.scale(almost, (600, 760))
 delicioso = pygame.image.load("images/delicioso.png")
-delicioso = pygame.transform.scale(delicioso, (690, 830))
+delicioso = pygame.transform.scale(delicioso, (660, 803))
 nope = pygame.image.load("images/nope.png")
 nope = pygame.transform.scale(nope, (600, 700))
 puke = pygame.image.load("images/puke.png")
@@ -151,27 +156,38 @@ while run:
                 # Compare user-selected ingredients with correct ingredients
                 if sorted(selected_ingredients) == sorted(right_ingredients):
                     print("Ingredients match!")
-                    result_message = "THERE IS A GOD!"  # Update the result_message
+                    ingredients_compared = True
+                    screen.blit(background, (-110, -50))
+                    screen.blit(delicioso, (630, 15))
+                    screen.blit(table, (40, 300))
+                    screen.blit(chatbox, (273, 76))
+                    # Blit the meal_picture on the screen
+                    screen.blit(plate, (300, 430))
+                    screen.blit(current_meal_picture, (326, 430))
                 else:
                     print("Ingredients do not match..")
-                    result_message = "Darn it!"  # Update the result_message
 
-                ingredients_compared = True # Update the rect attribute of the start_cooking_button
                 selected_ingredients = [] # Clear the user-selected ingredients list for the next level
 
     # Blit Background and Assets to the screen
-    screen.blit(background, (-110, -50))
-    screen.blit(standard_pose, (530, 45))
-    screen.blit(chatbox, (273, 126))
+    #screen.blit(background, (-110, -50))
+
+    # Blit pose based on current player status
+    if ingredients_compared == False:
+        screen.blit(background, (-110, -50))
+        screen.blit(standard_pose, (530, 45))
+        screen.blit(chatbox, (273, 76))
+        screen.blit(table, (40, 300))
+    #screen.blit(chatbox, (273, 126))
     #screen.blit(disgusted, (530, 45))
     #screen.blit(almost, (530, 15))
     #screen.blit(delicioso, (560, 15))
     #screen.blit(nope, (560, 15))
     #screen.blit(puke, (560, 20))
-    screen.blit(table, (40, 300))
+    #screen.blit(table, (40, 300))
 
     # Blit textbox when text is done looping
-    if text_animation.finished:
+    if text_animation.finished and ingredients_compared == False:
         screen.blit(textbox, (40, 450))
         screen.blit(cook_it, (930, 536))
     
@@ -179,7 +195,7 @@ while run:
     text_animation.draw(screen) 
 
     # Draw the buttons
-    if text_animation.finished:  
+    if text_animation.finished and ingredients_compared == False:  
         for button in buttons:
             button.draw()
         start_cooking_button.draw()
