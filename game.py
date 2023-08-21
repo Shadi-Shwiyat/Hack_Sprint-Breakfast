@@ -1,13 +1,7 @@
-import os
 import pygame
-import json
-import random
 #from pygame import mixer
 from level_setup import current_level_setup
 from sys import exit
-
-# Fixing audio issue
-## os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
 # Initializing pygame and window size
 pygame.init()
@@ -16,23 +10,22 @@ screen = pygame.display.set_mode((1280, 720))
 # Setting title of window
 pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
 
-# Load font ### Trying to get to work ###
-#font_path = "./Minecraft.ttf"
-#font = pygame.font.Font(None, 30)
+# Load font
+text_font = pygame.font.Font("PixeloidSans-mLxMm.ttf", 30)
 
 # Define start menu, cooking and continue buttons
 from button import Button
-start_cooking_button = Button("Start Cooking!", (913, 560), font_size=30, size=(200, 50), hover_size=(200, 40))
+start_cooking_button = Button("Start Cooking!", (913, 560), font_size=19, size=(200, 50), hover_size=(200, 40))
 start_cooking_button.button_color = (0, 0, 0, 0)
-progress = Button("Continue", (800, 480), font_size=36, size=(200, 50), hover_size=(200, 40))
+progress = Button("Continue", (800, 480), font_size=23, size=(200, 50), hover_size=(200, 40))
 progress.button_color = (0, 0, 0, 0)
-start_button = Button("Start", (476, 439), font_size=76, size=(260, 60), hover_size=(260, 50))
+start_button = Button("Start", (476, 439), font_size=66, size=(260, 60), hover_size=(260, 50))
 start_button.button_color = (0, 0, 0, 0)
-quit_button = Button("Exit", (476, 576), font_size=76, size=(260, 60), hover_size=(260, 50))
+quit_button = Button("Exit", (476, 566), font_size=66, size=(260, 60), hover_size=(260, 50))
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 2
+current_level = 0
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
@@ -179,12 +172,14 @@ while run:
                             level_success = False
 
                     selected_ingredients = [] # Clear the user-selected ingredients list for the next level
+
     elif current_level == 11:
         level_text.update()
         if level_text.finished:
             run = False
             pygame.quit()
             exit()
+
     else:
         # Event to quit loop when user hits X
         for event in pygame.event.get():
