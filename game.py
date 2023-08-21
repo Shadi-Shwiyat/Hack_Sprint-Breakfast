@@ -186,22 +186,22 @@ while run:
                 pygame.quit()
                 exit()
 
-        # Event listeners for start menu
-        start_button.handle_events(event)
-        if start_button.clicked:
-            start_button.clicked = False
-            start_button.selected = False
-            current_level += 1
-            level_data = current_level_setup(current_level)
-            current_ingredients = level_data["current_ingredients"]
-            right_ingredients = level_data["right_ingredients"]
-            level_text = level_data["level_text"]
-            current_meal_picture = level_data["current_meal_picture"]
-            buttons = level_data["buttons"]
-        quit_button.handle_events(event)
-        if quit_button.clicked:
-            pygame.quit()
-            exit()
+            # Event listeners for start menu
+            start_button.handle_events(event)
+            if start_button.clicked:
+                start_button.clicked = False
+                start_button.selected = False
+                current_level += 1
+                level_data = current_level_setup(current_level)
+                current_ingredients = level_data["current_ingredients"]
+                right_ingredients = level_data["right_ingredients"]
+                level_text = level_data["level_text"]
+                current_meal_picture = level_data["current_meal_picture"]
+                buttons = level_data["buttons"]
+            quit_button.handle_events(event)
+            if quit_button.clicked:
+                pygame.quit()
+                exit()
 
     # Blit pose based on current player status
     if current_level == 0:
