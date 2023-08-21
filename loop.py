@@ -164,12 +164,8 @@ while run:
         if ingredients_compared:
             screen.blit(dubious, (326, 190))
     #screen.blit(chatbox, (273, 126))
-    #screen.blit(disgusted, (530, 45))
     #screen.blit(almost, (530, 15))
-    #screen.blit(delicioso, (560, 15))
     #screen.blit(nope, (560, 15))
-    #screen.blit(puke, (560, 20))
-    #screen.blit(table, (40, 300))
 
     # Blit textbox when text is done looping
     if text_animation.finished and level_success == False:
