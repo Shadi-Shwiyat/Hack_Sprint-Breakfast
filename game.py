@@ -32,7 +32,7 @@ quit_button = Button("Exit", (476, 576), font_size=76, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 0
+current_level = 2
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
@@ -247,12 +247,17 @@ while run:
         start_cooking_button.draw()
 
     # Draw result message if ingredients are compared
+    # Inside the main game loop
     if level_success:
-        progress.draw()
-        #result_font = pygame.font.Font(None, 36)
-        #result_surf = result_font.render(result_message, True, (0, 0, 0))
-        #result_rect = result_surf.get_rect(center=(screen.get_width() // 2, 650))
-        #screen.blit(result_surf, result_rect)
+        # Update the display_text attribute of level_text
+        screen.blit(chatbox, (273, 76))
+        result_message = "You did it!"
+        progress.draw()  
+        result_font = pygame.font.Font(None, 36)
+        result_surf = result_font.render(result_message, True, (0, 0, 0))
+        result_rect = result_surf.get_rect(topleft=(300, 100))
+        screen.blit(result_surf, result_rect)
+
 
     # Update the display
     pygame.display.flip()
