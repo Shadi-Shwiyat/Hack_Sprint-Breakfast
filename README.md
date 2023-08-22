@@ -87,6 +87,6 @@ to the `Display` and updates either the entire screen or specific parts that hav
 
 <h1 id="credits">Credits</h1>
 
-- Dominick <https://github.com/DominickKeeling>
+- Dominick Keeling <https://github.com/DominickKeeling>
 - Robert Farley <https://github.com/Nomad-Rob>
 - Shadi Shwiyat <https://github.com/Shadi-Shwiyat>
