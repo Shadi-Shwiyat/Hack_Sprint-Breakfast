@@ -33,7 +33,7 @@ quit_button = Button("Exit", (476, 566), font_size=66, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 0
+current_level = 2
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
@@ -135,13 +135,14 @@ while run:
                     progress.clicked = False
                     print("Start Cooking button clicked!")
                     audio.play_sound_effect('cooking food')
-                    pygame.time.delay(4000)
+                    pygame.time.delay(2000)
 
                     # Compare user-selected ingredients with correct ingredients
                     if sorted(selected_ingredients) == sorted(right_ingredients):
                         print("Ingredients match!")
                         level_success = True
-                        audio.play_sound_effect('hooray')
+                        audio.play_sound_effect('level success')
+                        audio.play_sound_effect('level success 2', delay_ms=2500)
                         screen.blit(background, (-110, -50))
                         screen.blit(delicioso, (630, 15))
                         screen.blit(table, (40, 300))
@@ -161,8 +162,8 @@ while run:
                         ingredients_compared = True
                         image_flip = not image_flip
                         print("Ingredients do not match..")
-                        audio.play_sound_effect('failing level')
-                        audio.play_sound_effect('vomiting')
+                        audio.play_sound_effect('failing level', delay_ms=4000)
+                        audio.play_sound_effect('vomiting', delay_ms=3000)
 
                 # Continue button to go to next level
                 if level_success:
