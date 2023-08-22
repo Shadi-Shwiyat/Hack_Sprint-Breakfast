@@ -25,7 +25,7 @@ quit_button = Button("Exit", (476, 566), font_size=66, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 0
+current_level = 2
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
@@ -105,8 +105,7 @@ while run:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-   
-                
+
             if level_text.finished:
                 # Event for ingredient button clicks
                 for button in buttons:
