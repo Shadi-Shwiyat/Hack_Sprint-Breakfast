@@ -1,8 +1,11 @@
 import pygame
+from audio import GameAudio
 
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 
+pygame.mixer.init()
+audio = GameAudio()
 # Defining Class Button
 class Button:
     def __init__(self, text, pos, font_size=26, size=None, hover_size=None):
@@ -60,5 +63,6 @@ class Button:
                 self.clickcounter += 1
                 print(f"I am clicked ({self.clickcounter} times)")
                 print(f"Selected = {self.selected}")
+                audio.play_sound_effect('select button')
             else:
                 self.clicked = False

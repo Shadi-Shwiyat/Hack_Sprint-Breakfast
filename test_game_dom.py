@@ -2,113 +2,56 @@ import os
 import pygame
 import json
 import random
+#from pygame import mixer
+from level_setup import current_level_setup
 from sys import exit
 from audio import GameAudio
-from pygame import mixer
 
 # Fixing audio issue
-#os.environ['SDL_AUDIODRIVER'] = 'dsp'
+## os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
 # Initializing pygame and window size
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 
+# initializing audio
 pygame.mixer.init()
-
-# instance of the GameAudio class
 audio = GameAudio()
 
 # Play background music
-audio.play_background_music()
-
-# Play sound effects
-audio.play_sound_effect('select button')
-audio.play_sound_effect('cooking food')
-audio.play_sound_effect('failing level')
-audio.play_sound_effect('vomiting')
-audio.play_sound_effect('next level') # DONT HAVE YET
-
-# Play music
 audio.play_background_music('intro')
-audio.play_background_music('gameplay')
 
 # Setting title of window
 pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
 
-# Importing Json dictionary of meals and ingredients
-with open('breakfast_meal.json') as json_file:
-    data = json.load(json_file)
+# Load font ### Trying to get to work ###
+#font_path = "./Minecraft.ttf"
+#font = pygame.font.Font(None, 30)
 
-# Load font
-font_path = "./Minecraft.ttf"
-font = pygame.font.Font(None, 30)
-
-# Instantiating Ingredient Buttons
+# Define start menu, cooking and continue buttons
 from button import Button
-current_level = 2 # Set the inital level
-level_ingredients = {}
-
-for breakfast in data["breakfasts"]:
-    level = int(breakfast["level"])
-    ingredients = breakfast["all_ingredients"]
-
-    if level not in level_ingredients:
-        level_ingredients[level] = []
-
-    level_ingredients[level].extend(ingredients)
- 
-# Ingredient lists needed for current level to be compared
-current_ingredients = level_ingredients.get(current_level, []) # List of all ingredients for level
-split_index = len(current_ingredients) // 2 # Splitting all ingredients by 2
-right_ingredients = current_ingredients[:split_index] # List of right ingredients for level
-selected_ingredients = [] # Current ingredients selected by user
-random.shuffle(current_ingredients) # Make the ingredient buttons random
-level_success = False # For displaying result message
-ingredients_compared = False # For displaying different wes poses
-image_flip = True
-result_message = "" # Message to show user based on level success
-
-# Calculate available width and height for placing the buttons
-available_width = 900
-available_height = 690
-max_buttons_per_row = 4  # Maximum buttons that can fit in a row
-
-# Calculate the required number of rows
-num_rows = (len(current_ingredients) + max_buttons_per_row - 1) // max_buttons_per_row
-
-# Calculate the spacing between rows and buttons
-row_spacing = (available_height - 430) / (num_rows + 1)
-button_spacing = (available_width - (max_buttons_per_row * 100)) / (max_buttons_per_row + 1)
-
-# Specify the starting position for the buttons
-start_x = 46 + button_spacing  # Adjust as needed
-start_y = 440 + row_spacing  # Adjust as needed
-
-# Create buttons for ingredients of the current level
-x, y = start_x, start_y  # Starting coordinates
-buttons = []  # List used to draw the buttons
-
-# Adding buttons to the list to be drawn
-for ingredient in current_ingredients:
-    buttons.append(Button(ingredient, (x, y), font_size=26))
-    x += 100 + button_spacing
-    if len(buttons) % max_buttons_per_row == 0:
-        x = start_x
-        y += row_spacing
-
-# Define start cooking button
 start_cooking_button = Button("Start Cooking!", (913, 560), font_size=30, size=(200, 50), hover_size=(200, 40))
 start_cooking_button.button_color = (0, 0, 0, 0)
+progress = Button("Continue", (800, 480), font_size=36, size=(200, 50), hover_size=(200, 40))
+progress.button_color = (0, 0, 0, 0)
+start_button = Button("Start", (476, 439), font_size=76, size=(260, 60), hover_size=(260, 50))
+start_button.button_color = (0, 0, 0, 0)
+quit_button = Button("Exit", (476, 576), font_size=76, size=(260, 60), hover_size=(260, 50))
+quit_button.button_color = (0, 0, 0, 0)
 
-# Extract sentences for level 1 from JSON data
-level_sentences = data["breakfasts"][current_level - 1]["wes_says"]
-
-# Create TextAnimation instance for level 1
-from text_animation import TextAnimation
-text_animation = TextAnimation(level_sentences, 800, 100, font, (0, 0, 0), 960, 0.00001, 0)
-
-# Load the meal_picture for the current level
-current_meal_picture_url = "images/" + data["breakfasts"][current_level - 1]["meal_picture"]
+# Load level setup from function
+current_level = 2
+if current_level == 0:
+    menu = pygame.image.load("images/start_menu.png")
+    menu = pygame.transform.scale(menu, (500, 720))
+level_data = current_level_setup(current_level)
+current_ingredients = level_data["current_ingredients"]
+right_ingredients = level_data["right_ingredients"]
+level_text = level_data["level_text"]
+if current_level > 0:
+    current_meal_picture = level_data["current_meal_picture"]
+buttons = level_data["buttons"]
+selected_ingredients = []
 
 # Background Image
 background = pygame.image.load("images/kitchen_background.jpeg")
@@ -122,9 +65,7 @@ textbox = pygame.transform.scale(textbox, (1200, 276))
 chatbox = pygame.image.load("images/chat.png")
 chatbox = pygame.transform.scale(chatbox, (400, 150))
 plate = pygame.image.load("images/servingPlate.png")
-plate = pygame.transform.scale(plate, (130, 130))
-current_meal_picture = pygame.image.load(current_meal_picture_url)
-current_meal_picture = pygame.transform.scale(current_meal_picture, (90, 90))
+plate = pygame.transform.scale(plate, (230, 160))
 dubious = pygame.image.load("images/dubious.png")
 dubious = pygame.transform.scale(dubious, (260, 260))
 # Chef Wes Poses
@@ -142,6 +83,26 @@ puke = pygame.image.load("images/puke.png")
 puke = pygame.transform.scale(puke, (600, 700))
 cook_it = pygame.image.load("images/cook_it.png")
 cook_it = pygame.transform.scale(cook_it, (160, 100))
+# Nessesary dish images
+english = pygame.image.load("images/english.png")
+english = pygame.transform.scale(english, (360, 160))
+congee = pygame.image.load("images/congee.png")
+congee = pygame.transform.scale(congee, (290, 199))
+japanese = pygame.image.load("images/japanese.png")
+japanese = pygame.transform.scale(japanese, (360, 230))
+
+# Loading Music files
+#mixer.init()
+#background_music = mixer.music.load("music/intro_music.mp3")
+#background_music = mixer.music.play(-1)  # -1 means loop forever
+#background_music = mixer.music.set_volume(0.1) 
+
+# Game setup
+level_success = False # For displaying result message
+ingredients_compared = False # For displaying different wes poses
+image_flip = True
+result_message = "" # Used with text_animation class, need to get working #####
+max_levels = 10
 
 # Game loop
 clock = pygame.time.Clock() # Creating a clock object
@@ -149,105 +110,169 @@ run = True
 
 while run:
     # Things to clear each loop iteration
-
+    
     # Update the text animation
-    text_animation.update()
+    if current_level >= 1 and current_level < 11:
+        level_text.update()
 
-    # audio play background music
-    audio.play_background_music()
+        # Event to quit loop when user hits X
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+   
+                
+            if level_text.finished:
+                # Event for ingredient button clicks
+                for button in buttons:
+                    button.handle_events(event)
+                    # Adding selected buttons to list
+                    if button.selected and button.text not in selected_ingredients:
+                        selected_ingredients.append(button.text)
+                        print(selected_ingredients)
+                    elif button.selected == False and button.text in selected_ingredients:
+                        selected_ingredients.remove(button.text)
+                        print(selected_ingredients)
+            
+            #if button.selected:
+                #audio.play_sound_effect('select button')
+                #print("Select button SE")
 
-    # Event to quit loop when user hits X
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+                # Event for start cooking button
+                start_cooking_button.handle_events(event)
+                if start_cooking_button.clicked:
+                    start_cooking_button.clicked = False
+                    start_cooking_button.selected = False
+                    progress.clicked = False
+                    print("Start Cooking button clicked!")
+                    audio.play_sound_effect('cooking food')
+                    
+                    # Compare user-selected ingredients with correct ingredients
+                    if sorted(selected_ingredients) == sorted(right_ingredients):
+                        print("Ingredients match!")
+                        level_success = True
+                        screen.blit(background, (-110, -50))
+                        screen.blit(delicioso, (630, 15))
+                        screen.blit(table, (40, 300))
+                        screen.blit(chatbox, (273, 76))
+                        # Blit the meal_picture on the screen
+                        if current_level <= 7:
+                            screen.blit(plate, (300, 430))
+                            screen.blit(current_meal_picture, (336, 390))
+                        else:
+                            if current_level == 8:
+                                screen.blit(english, (300, 390))
+                            elif current_level == 9:
+                                screen.blit(congee, (336, 330))
+                            elif current_level == 10:
+                                screen.blit(japanese, (290, 330))
+                    else:
+                        ingredients_compared = True
+                        image_flip = not image_flip
+                        print("Ingredients do not match..")
+                        audio.play_sound_effect('failing level')
+                        audio.play_sound_effect('vomiting')
+
+                # Continue button to go to next level
+                if level_success:
+                    progress.handle_events(event)
+                    screen.blit(cook_it, (819, 456))
+                    if progress.clicked:
+                        #print("progress clicked")
+                        progress.clicked = False
+                        progress.selected = False
+                        if current_level <= max_levels:
+                            current_level += 1
+                            level_data = current_level_setup(current_level)
+                            current_ingredients = level_data["current_ingredients"]
+                            right_ingredients = level_data["right_ingredients"]
+                            level_text = level_data["level_text"]
+                            current_meal_picture = level_data["current_meal_picture"]
+                            buttons = level_data["buttons"]
+                            ingredients_compared = False
+                            level_text.finished = False
+                            level_success = False
+
+                    selected_ingredients = [] # Clear the user-selected ingredients list for the next level
+    elif current_level == 11:
+        level_text.update()
+        if level_text.finished:
+            run = False
             pygame.quit()
             exit()
-            
-        if text_animation.finished:
-            # Event for ingredient button clicks
-            for button in buttons:
-                button.handle_events(event)
-                # Adding selected buttons to list
-                if button.selected and button.text not in selected_ingredients:
-                    selected_ingredients.append(button.text)
-                    print(selected_ingredients)
-                elif button.selected == False and button.text in selected_ingredients:
-                    selected_ingredients.remove(button.text)
-                    print(selected_ingredients)
-                audio.play_sound_effect('select button')
-            # Event for start cooking button
-            start_cooking_button.handle_events(event)
-            if start_cooking_button.clicked:
-                start_cooking_button.clicked = False
-                start_cooking_button.selected = False
-                print("Start Cooking button clicked!")
-                audio.play_sound_effect('cooking food')
-                
-                # Compare user-selected ingredients with correct ingredients
-                if sorted(selected_ingredients) == sorted(right_ingredients):
-                    print("Ingredients match!")
+    else:
+        # Event to quit loop when user hits X
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
 
-                    level_success = True
-                    screen.blit(background, (-110, -50))
-                    screen.blit(delicioso, (630, 15))
-                    screen.blit(table, (40, 300))
-                    screen.blit(chatbox, (273, 76))
-                    # Blit the meal_picture on the screen
-                    screen.blit(plate, (300, 430))
-                    screen.blit(current_meal_picture, (326, 430))
-                else:
-                    ingredients_compared = True
-                    image_flip = not image_flip
-                    print("Ingredients do not match..")
-                    
-                    audio.play_sound_effect('vomiting')
-                    audio.play_sound_effect('failing level')
-
-                selected_ingredients = [] # Clear the user-selected ingredients list for the next level
-
-    # Blit Background and Assets to the screen
-    #screen.blit(background, (-110, -50))
+            # Event listeners for start menu
+            start_button.handle_events(event)
+            if start_button.clicked:
+                start_button.clicked = False
+                start_button.selected = False
+                current_level += 1
+                level_data = current_level_setup(current_level)
+                current_ingredients = level_data["current_ingredients"]
+                right_ingredients = level_data["right_ingredients"]
+                level_text = level_data["level_text"]
+                current_meal_picture = level_data["current_meal_picture"]
+                buttons = level_data["buttons"]
+            quit_button.handle_events(event)
+            if quit_button.clicked:
+                pygame.quit()
+                exit()
 
     # Blit pose based on current player status
-    if level_success == False:
+    if current_level == 0:
         screen.blit(background, (-110, -50))
-        if ingredients_compared == False:
-            screen.blit(standard_pose, (530, 45))
-        elif image_flip:
-            screen.blit(disgusted, (530, 45))
-        else:
-            screen.blit(puke, (560, 20))
-        screen.blit(chatbox, (273, 76))
-        screen.blit(table, (40, 300))
-        if ingredients_compared:
-            screen.blit(dubious, (326, 190))
-    #screen.blit(chatbox, (273, 126))
-    #screen.blit(disgusted, (530, 45))
+        screen.blit(menu, (360, 0))
+    else:
+        if level_success == False:
+            screen.blit(background, (-110, -50))
+            if ingredients_compared == False:
+                screen.blit(standard_pose, (530, 45))
+            elif image_flip:
+                screen.blit(disgusted, (530, 45))
+            else:
+                screen.blit(puke, (560, 20))
+            screen.blit(chatbox, (273, 76))
+            screen.blit(table, (40, 300))
+            if ingredients_compared:
+                screen.blit(dubious, (326, 190))
     #screen.blit(almost, (530, 15))
-    #screen.blit(delicioso, (560, 15))
     #screen.blit(nope, (560, 15))
-    #screen.blit(puke, (560, 20))
-    #screen.blit(table, (40, 300))
 
     # Blit textbox when text is done looping
-    if text_animation.finished and level_success == False:
+    if level_text.finished and level_success == False:
         screen.blit(textbox, (40, 450))
         screen.blit(cook_it, (930, 536))
     
     # Draw text animation
-    text_animation.draw(screen) 
+    level_text.draw(screen) 
 
     # Draw the buttons
-    if text_animation.finished and level_success == False:  
+    if current_level == 0:
+        start_button.draw()
+        quit_button.draw()
+    if level_text.finished and level_success == False:  
         for button in buttons:
             button.draw()
         start_cooking_button.draw()
 
     # Draw result message if ingredients are compared
+    # Inside the main game loop
     if level_success:
+        # Update the display_text attribute of level_text
+        screen.blit(chatbox, (273, 76))
+        result_message = "You did it!"
+        progress.draw()  
         result_font = pygame.font.Font(None, 36)
         result_surf = result_font.render(result_message, True, (0, 0, 0))
-        result_rect = result_surf.get_rect(center=(screen.get_width() // 2, 650))
+        result_rect = result_surf.get_rect(topleft=(300, 100))
         screen.blit(result_surf, result_rect)
+
 
     # Update the display
     pygame.display.flip()
