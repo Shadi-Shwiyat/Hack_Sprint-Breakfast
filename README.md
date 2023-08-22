@@ -7,7 +7,6 @@ This repo holds the pygame "Rise and Dine: Wes's Cozy Kitchen" built for our Hol
 
 - [Installation](#installation)
 - [Game details](#game-details)
-- [Settings](#settings)
 - [Technical info](#technical-info)
 - [Credits](#credits)
 
@@ -38,23 +37,44 @@ As this game is only 2D and runs purely in Python 3, it is very performant and h
 on the amount of processing power this game needs to run such as slowing down screen updates if the user tabs out  
 which dramatically decreases the amount of processing the game uses when it is running.
 
+We may upload this to itch.io to allow easy access to the game. We will keep yyou guys posted!
+
 ## Levels
 
 There are 10 Levels that the player can play through currently, each with a different meal that the player must match according to
 our Chef name Wes. All of the meals are breakfast meals and get progressively harder as the player progresses through the
 levels to pick the correct ingredients.
 
-ADD PICTURES HERE
+<img src="https://github.com/Shadi-Shwiyat/Hack_Sprint-Breakfast/blob/main/images/level_5.jpg" alt="Alt text" title="Level 5">
+
+If the player has selected and tried to do different cook animations . Wes will do different animations and sounds that come from this.
+
+This game is built to be scaleable if we decide to add more levels later on.
 
 <h1 id="technical-info">Technical info</h1>
 
-## File structure
+## File structure and Picture
 
-This game is built purely in python and only has one dependency that doesn't come with python and that is  
-`import pygame`. 
+The game directory (Hack_Sprint-Breakfast) is structured as follows:
 
+audio/: Directory containing background music and sound effects.
+images/: Directory containing image assets used in the game.
+.gitignore: Specifies files and directories to be ignored by version control.
+PixeloidSans-mLxMm.ttf: Font file used in the game.
+PixeloidSansBold-PKnYd.ttf: Bold version of the font.
+README.md: This documentation file.
+audio.py: Module handling audio and sound effects.
+breakfast_meal.json: JSON data file containing breakfast meal information.
+button.py: Module defining the Button class for interactive buttons.
+game.py: Main game script where the game loop and logic are implemented.
+level_setup.py: Module containing functions for setting up game levels.
+text_animation.py: Module containing the TextAnimation class for animated text display.
 
-All of these files are located within bla bla bla
+How to Start the Game
+> Make sure installation is complete from above
+> 1. Ensure your sound is on as the game has music and sounds
+> 2. Open a command line and use `python3 game.py` to play
+
 
 ## Display & resolution management
 
@@ -66,6 +86,6 @@ to the `Display` and updates either the entire screen or specific parts that hav
 
 <h1 id="credits">Credits</h1>
 
-- Dominick <https://github.com/DominickKeeling>
+- Dominick Keeling <https://github.com/DominickKeeling>
 - Robert Farley <https://github.com/Nomad-Rob>
 - Shadi Shwiyat <https://github.com/Shadi-Shwiyat>
