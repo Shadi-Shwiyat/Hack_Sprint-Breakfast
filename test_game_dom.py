@@ -146,6 +146,7 @@ while run:
                     progress.clicked = False
                     print("Start Cooking button clicked!")
                     audio.play_sound_effect('cooking food')
+                    pygame.time.delay(11000)
                     
                     # Compare user-selected ingredients with correct ingredients
                     if sorted(selected_ingredients) == sorted(right_ingredients):

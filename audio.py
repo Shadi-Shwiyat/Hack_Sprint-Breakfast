@@ -21,7 +21,7 @@ class GameAudio:
         pygame.mixer.music.stop()
         if scenario == 'intro':
             self.menu_music.play(-1)
-            self.menu_music.set_volume(0.2)
+            self.menu_music.set_volume(0.1)
 
     def play_sound_effect(self, scenario):
         pygame.mixer.music.stop()
@@ -30,16 +30,16 @@ class GameAudio:
             self.click_sound.set_volume(0.3)
         elif scenario == 'cooking food':
             self.preping_food.play(0)
-            self.preping_food.set_volume(0.4)
+            self.preping_food.set_volume(0.8)
         elif scenario == 'failing level':
             self.boo_sound.play(0)
-            self.boo_sound.set_volume(0.4)
+            self.boo_sound.set_volume(0.3)
         #elif scenario == 'yay':
             #self.yay_sound.play(1)
             #self.yay_sound.set_volume(0.4)
         elif scenario == 'vomiting':
             self.vomiting_sound.play(1)
-            self.vomiting_sound.set_volume(0.4)
+            self.vomiting_sound.set_volume(0.3)
         #elif scenario == 'yes':
             #self.next_level_sound.play(1) # DONT HAVE YET
             #self.next_level_sound.set_volume(0.4)
