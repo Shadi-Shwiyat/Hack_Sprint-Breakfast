@@ -9,8 +9,7 @@ def current_level_setup(current_level):
         data = json.load(json_file)
 
     # Load font
-    font_path = "./Minecraft.ttf"
-    font = pygame.font.Font(None, 30)
+    text_font = pygame.font.Font("PixeloidSans-mLxMm.ttf", 18)
 
     # Instantiating Ingredient Buttons
     from button import Button
@@ -53,7 +52,7 @@ def current_level_setup(current_level):
 
     # Adding buttons to the list to be drawn
     for ingredient in current_ingredients:
-        buttons.append(Button(ingredient, (x, y), font_size=26))
+        buttons.append(Button(ingredient, (x, y), font_size=16))
         x += 100 + button_spacing
         if len(buttons) % max_buttons_per_row == 0:
             x = start_x
@@ -64,7 +63,7 @@ def current_level_setup(current_level):
 
     # Create TextAnimation instance for level 1
     from text_animation import TextAnimation
-    level_text = TextAnimation(level_sentences, 830, 96, font, (0, 0, 0), 1030, 0.03, 1)
+    level_text = TextAnimation(level_sentences, 830, 96, text_font, (0, 0, 0), 1030, 0.03, 1)
 
     # Load the meal_picture for the current level
     if current_level >= 1:

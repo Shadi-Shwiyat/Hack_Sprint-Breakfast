@@ -12,7 +12,7 @@ class Button:
         self.text = text
         self.pos = pos
         self.font_size = font_size
-        self.font = pygame.font.Font(None, font_size)  # Using Pygame's default font
+        self.font = pygame.font.Font("PixeloidSans-mLxMm.ttf", font_size)  # Using Pygame's default font
         self.selected = False
         self.hovered = False
         self.clicked = False
