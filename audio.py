@@ -40,6 +40,7 @@ class GameAudio:
         elif scenario == 'vomiting':
             self.vomiting_sound.play(1)
             self.vomiting_sound.set_volume(0.3)
+            pygame.time.delay(1000)
         #elif scenario == 'yes':
             #self.next_level_sound.play(1) # DONT HAVE YET
             #self.next_level_sound.set_volume(0.4)
