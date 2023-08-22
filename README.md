@@ -39,6 +39,8 @@ which dramatically decreases the amount of processing the game uses when it is r
 
 We may upload this to itch.io to allow easy access to the game. We will keep yyou guys posted!
 
+<img src="https://github.com/Shadi-Shwiyat/Hack_Sprint-Breakfast/blob/main/images/big%20game%20title.jpg" alt="Alt text" title="Level 5">
+
 ## Levels
 
 There are 10 Levels that the player can play through currently, each with a different meal that the player must match according to
