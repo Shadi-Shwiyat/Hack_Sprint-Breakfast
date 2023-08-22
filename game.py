@@ -189,7 +189,8 @@ while run:
         if audio.intro_playing == True:
             audio.stop_music()
             audio.intro_playing = False
-        audio.play_background_music('credits')
+        if audio.credit_playing == False:
+            audio.play_background_music('credits')
         level_text.update()
         if level_text.finished:
             run = False
