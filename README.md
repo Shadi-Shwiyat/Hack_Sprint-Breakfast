@@ -60,6 +60,7 @@ This game is built to be scaleable if we decide to add more levels later on.
 The game directory (Hack_Sprint-Breakfast) is structured as follows:
 * audio/: Directory containing background music and sound effects.
 * images/: Directory containing image assets used in the game.
+* LICENSE: MIT License for the game.
 * PixeloidSans-mLxMm.ttf: Font file used in the game.
 * PixeloidSansBold-PKnYd.ttf: Bold version of the font.
 * README.md: This documentation file.
