@@ -29,6 +29,7 @@ current_level = 0
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
+    
 level_data = current_level_setup(current_level)
 current_ingredients = level_data["current_ingredients"]
 right_ingredients = level_data["right_ingredients"]
@@ -105,8 +106,7 @@ while run:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-   
-                
+
             if level_text.finished:
                 # Event for ingredient button clicks
                 for button in buttons:
@@ -208,6 +208,34 @@ while run:
     if current_level == 0:
         screen.blit(background, (-110, -50))
         screen.blit(menu, (360, 0))
+        ##### Example one of Title on start Menu
+        result_message = "Rise"
+        result_font = pygame.font.Font("PixeloidSansBold-PKnYd.ttf", 85)
+        result_surf = result_font.render(result_message, True, (60, 232, 214))
+        result_rect = result_surf.get_rect(topleft=(75, 175))
+        screen.blit(result_surf, result_rect)
+        result_message = "and"
+        result_surf = result_font.render(result_message, True, (60, 232, 214))
+        result_rect = result_surf.get_rect(topleft=(75, 300))
+        screen.blit(result_surf, result_rect)
+        result_message = "Dine"
+        result_surf = result_font.render(result_message, True, (60, 232, 214))
+        result_rect = result_surf.get_rect(topleft=(75, 425))
+        screen.blit(result_surf, result_rect)
+        result_message = "Wes's"
+        result_surf = result_font.render(result_message, True, (60, 232, 214))
+        result_rect = result_surf.get_rect(topleft=(925, 175))
+        screen.blit(result_surf, result_rect)
+        result_message = "Cozy"
+        result_surf = result_font.render(result_message, True, (60, 232, 214))
+        result_rect = result_surf.get_rect(topleft=(925, 300))
+        screen.blit(result_surf, result_rect)
+        result_message = "Kitchen"
+        result_surf = result_font.render(result_message, True, (60, 232, 214))
+        result_rect = result_surf.get_rect(topleft=(925, 425))
+        screen.blit(result_surf, result_rect)         
+        
+        
     else:
         if level_success == False:
             screen.blit(background, (-110, -50))
@@ -248,7 +276,7 @@ while run:
         screen.blit(chatbox, (273, 76))
         result_message = "You did it!"
         progress.draw()  
-        result_font = pygame.font.Font(None, 36)
+        result_font = pygame.font.Font("PixeloidSans-mLxMm.ttf", 19)
         result_surf = result_font.render(result_message, True, (0, 0, 0))
         result_rect = result_surf.get_rect(topleft=(300, 100))
         screen.blit(result_surf, result_rect)
