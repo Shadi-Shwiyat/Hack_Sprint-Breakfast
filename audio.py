@@ -24,6 +24,7 @@ class GameAudio:
         if scenario == 'intro':
             self.menu_music.play(-1)
             self.menu_music.set_volume(0.1)
+            self.intro_playing = True
         elif scenario == 'credits':
             self.credit_music.play(0)
             self.credit_music.set_volume(0.2)

@@ -186,10 +186,10 @@ while run:
                     selected_ingredients = [] # Clear the user-selected ingredients list for the next level
 
     elif current_level == 11:
-        audio.stop_music()
-        credit_music = pygame.mixer.music.load('audio/credit_music.mp3')
-        credit_music = pygame.mixer.music.set_volume(.2)
-        credit_music = pygame.mixer.music.play(0)
+        if audio.intro_playing == True:
+            audio.stop_music()
+            audio.intro_playing = False
+        audio.play_background_music('credits')
         level_text.update()
         if level_text.finished:
             run = False
