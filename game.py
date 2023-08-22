@@ -210,29 +210,29 @@ while run:
         screen.blit(menu, (360, 0))
         ##### Example one of Title on start Menu
         result_message = "Rise"
-        result_font = pygame.font.Font("PixeloidSansBold-PKnYd.ttf", 85)
-        result_surf = result_font.render(result_message, True, (60, 232, 214))
+        result_font = pygame.font.Font("PixeloidSansBold-PKnYd.ttf", 80)
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
         result_rect = result_surf.get_rect(topleft=(75, 175))
         screen.blit(result_surf, result_rect)
         result_message = "and"
-        result_surf = result_font.render(result_message, True, (60, 232, 214))
-        result_rect = result_surf.get_rect(topleft=(75, 300))
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(85, 300))
         screen.blit(result_surf, result_rect)
         result_message = "Dine"
-        result_surf = result_font.render(result_message, True, (60, 232, 214))
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
         result_rect = result_surf.get_rect(topleft=(75, 425))
         screen.blit(result_surf, result_rect)
         result_message = "Wes's"
-        result_surf = result_font.render(result_message, True, (60, 232, 214))
-        result_rect = result_surf.get_rect(topleft=(925, 175))
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(900, 175))
         screen.blit(result_surf, result_rect)
         result_message = "Cozy"
-        result_surf = result_font.render(result_message, True, (60, 232, 214))
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
         result_rect = result_surf.get_rect(topleft=(925, 300))
         screen.blit(result_surf, result_rect)
         result_message = "Kitchen"
-        result_surf = result_font.render(result_message, True, (60, 232, 214))
-        result_rect = result_surf.get_rect(topleft=(925, 425))
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(870, 425))
         screen.blit(result_surf, result_rect)         
         
         
