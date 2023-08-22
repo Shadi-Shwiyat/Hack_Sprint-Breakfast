@@ -7,7 +7,6 @@ This repo holds the pygame "Rise and Dine: Wes's Cozy Kitchen" built for our Hol
 
 - [Installation](#installation)
 - [Game details](#game-details)
-- [Settings](#settings)
 - [Technical info](#technical-info)
 - [Credits](#credits)
 
