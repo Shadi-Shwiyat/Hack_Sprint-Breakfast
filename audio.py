@@ -5,6 +5,8 @@ class GameAudio:
         pygame.mixer.init()
         self.load_sound_effects()
         self.load_background_music()
+        self.intro_playing = False
+        self.credit_playing = False
 
     def load_sound_effects(self):
         self.preping_food = pygame.mixer.Sound('audio/preping_food.mp3')
