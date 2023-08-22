@@ -2,6 +2,7 @@ import os
 import pygame
 import json
 import random
+from text_animation import TextAnimation
 
 def current_level_setup(current_level):
     # Importing Json dictionary of meals and ingredients
@@ -89,3 +90,16 @@ def current_level_setup(current_level):
             "level_text": level_text,
             "buttons": buttons
         }
+
+def level_results(current_level):
+    # Importing Json dictionary of meals and ingredients
+    with open('breakfast_meal.json') as json_file:
+        data = json.load(json_file)
+
+    # Load font
+    text_font = pygame.font.Font("PixeloidSans-mLxMm.ttf", 18)
+
+    message = data["breakfasts"][current_level]["result_message"]
+    animated_message = TextAnimation(message, 830, 96, text_font, (0, 0, 0), 1030, .03, 0)
+
+    return animated_message
