@@ -70,7 +70,7 @@ def current_level_setup(current_level):
     if current_level >= 1:
         current_meal_picture_url = "images/" + data["breakfasts"][current_level - 1]["meal_picture"]
         current_meal_picture = pygame.image.load(current_meal_picture_url)
-        current_meal_picture = pygame.transform.scale(current_meal_picture, (160, 160))
+        current_meal_picture = pygame.transform.scale(current_meal_picture, (169, 160))
 
         return {
             "current_ingredients": current_ingredients,

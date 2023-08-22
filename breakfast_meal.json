@@ -5,19 +5,19 @@
             "level": "1",
             "wes_says": [
                 "Hello! I am Chef Wes!",
-                "This is my kitchen where I'd like to cook some breakfast with you.",
-                "I will let you pick some ingredients for our breakfast meals.",
+                "This is my kitchen, where I'd like to cook some breakfast with you!",
+                "I will let you pick the ingredients for our breakfast meals.",
                 "You will need to pick the correct items for the breakfast.",
-                "If you pick the wrong ingredients, you will have to start over.",
-                "If you pick the right ingredients, you will get to move on to the next level.",
+                "If you pick the wrong ingredients, you will have to start the level over :(",
+                "If you pick the right ingredients, you can progress to the next level! :)",
                 "Let's get started!",
-                "First, we will need to get the ingredients ready.",
-                "We will be making Eggs and Sausage.",
-                "Pick the right ingredients below for Eggs and Sausage."
+                "First, I'll get all the ingredients ready.",
+                "We will be making Derek's favorite breakfeast dish, Chicken and Waffles!",
+                "Pick the right ingredients below for Chicken and Waffles!"
             ],
-            "right_ingredients": ["Eggs", "Sausage"],
-            "all_ingredients": ["Eggs", "Sausage", "Toast", "Bacon"],
-            "meal_picture": "eggs_sausage.png",
+            "right_ingredients": ["Chicken", "Waffles"],
+            "all_ingredients": ["Waffles", "Chicken", "Toast", "Bacon"],
+            "meal_picture": "chicken.png",
             "result_message" : ["Delicioso! My mighty palate is pleased!"],
             "easter_egg": "images/gordon.png"
         },
@@ -172,8 +172,8 @@
                 "Rob Farley : Database and Game Logic",
                 "Shadi Shwiyat : Art design and Game Logic",
                 "Huge Special Thanks to myself, Wes Rose!",
-                "Thank you for all you do as a Campus Coordinator",
-                "and for your help in this project!"
+                "Thank you for all you do as a Campus Coordinator!",
+                "And for your help in this project!"
             ],
             "right_ingredients": [],
             "all_ingredients": [],
