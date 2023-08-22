@@ -59,7 +59,9 @@ class GameAudio:
         #elif scenario == 'yes':
             #self.next_level_sound.play(1) # DONT HAVE YET
             #self.next_level_sound.set_volume(0.4)
-        
+
+    def stop_music(self):
+        pygame.mixer.music.stop()
 
 if __name__ == "__main__":
     pygame.init()

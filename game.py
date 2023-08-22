@@ -1,11 +1,19 @@
 import pygame
-#from pygame import mixer
+from pygame import mixer
 from level_setup import *
 from sys import exit
+from audio import GameAudio
 
 # Initializing pygame and window size
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
+
+# initializing audio
+pygame.mixer.init()
+audio = GameAudio()
+
+# Play background music
+audio.play_background_music('intro')
 
 # Setting title of window
 pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
@@ -25,7 +33,7 @@ quit_button = Button("Exit", (476, 566), font_size=66, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 0
+current_level = 10
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
@@ -81,12 +89,6 @@ congee = pygame.transform.scale(congee, (290, 199))
 japanese = pygame.image.load("images/japanese.png")
 japanese = pygame.transform.scale(japanese, (360, 230))
 
-# Loading Music files
-#mixer.init()
-#background_music = mixer.music.load("music/intro_music.mp3")
-#background_music = mixer.music.play(-1)  # -1 means loop forever
-#background_music = mixer.music.set_volume(0.1) 
-
 # Game setup
 level_success = False # For displaying result message
 ingredients_compared = False # For displaying different wes poses
@@ -130,11 +132,15 @@ while run:
                     start_cooking_button.selected = False
                     progress.clicked = False
                     print("Start Cooking button clicked!")
+                    audio.play_sound_effect('cooking food')
+                    pygame.time.delay(2000)
 
                     # Compare user-selected ingredients with correct ingredients
                     if sorted(selected_ingredients) == sorted(right_ingredients):
                         print("Ingredients match!")
                         level_success = True
+                        audio.play_sound_effect('level success')
+                        audio.play_sound_effect('level success 2', delay_ms=2500)
                         screen.blit(background, (-110, -50))
                         screen.blit(delicioso, (630, 15))
                         screen.blit(table, (40, 300))
@@ -154,6 +160,8 @@ while run:
                         ingredients_compared = True
                         image_flip = not image_flip
                         print("Ingredients do not match..")
+                        audio.play_sound_effect('failing level', delay_ms=1000)
+                        audio.play_sound_effect('vomiting')
 
                 # Continue button to go to next level
                 if level_success:
@@ -178,6 +186,8 @@ while run:
                     selected_ingredients = [] # Clear the user-selected ingredients list for the next level
 
     elif current_level == 11:
+        audio.stop_music()
+        #audio.play_background_music('credits')
         level_text.update()
         if level_text.finished:
             run = False
