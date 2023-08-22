@@ -11,11 +11,9 @@ screen = pygame.display.set_mode((1280, 720))
 # initializing audio
 pygame.mixer.init()
 audio = GameAudio()
-credit_music = pygame.mixer.music.load('audio/credit_music.mp3')
-credit_music = pygame.mixer.music.set_volume(.2)
 
 # Play background music
-#audio.play_background_music('intro')
+audio.play_background_music('intro')
 
 # Setting title of window
 pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
@@ -189,6 +187,8 @@ while run:
 
     elif current_level == 11:
         audio.stop_music()
+        credit_music = pygame.mixer.music.load('audio/credit_music.mp3')
+        credit_music = pygame.mixer.music.set_volume(.2)
         credit_music = pygame.mixer.music.play(0)
         level_text.update()
         if level_text.finished:
