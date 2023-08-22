@@ -28,6 +28,7 @@ class GameAudio:
         elif scenario == 'credits':
             self.credit_music.play(0)
             self.credit_music.set_volume(0.2)
+            self.credit_playing = True
 
     def play_sound_effect(self, scenario, delay_ms=0):
         pygame.mixer.music.stop()
