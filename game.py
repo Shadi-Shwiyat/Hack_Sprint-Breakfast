@@ -13,7 +13,6 @@ pygame.mixer.init()
 audio = GameAudio()
 credit_music = pygame.mixer.music.load('audio/credit_music.mp3')
 credit_music = pygame.mixer.music.set_volume(.2)
-credit_music = pygame.mixer.music.play(0)
 
 # Play background music
 #audio.play_background_music('intro')
@@ -190,7 +189,7 @@ while run:
 
     elif current_level == 11:
         audio.stop_music()
-        audio.play_background_music('credits')
+        credit_music = pygame.mixer.music.play(0)
         level_text.update()
         if level_text.finished:
             run = False
