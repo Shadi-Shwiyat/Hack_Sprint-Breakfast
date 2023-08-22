@@ -13,9 +13,10 @@ pygame.mixer.init()
 audio = GameAudio()
 
 # Play background music
-background_music = pygame.mixer.music.load('audio/intro_music.mp3')
-background_music = pygame.mixer.music.play(-1)
-background_music = pygame.mixer.music.set_volume(0.3)
+audio.play_background_music('intro')
+#background_music = pygame.mixer.music.load('audio/intro_music.mp3')
+#background_music = pygame.mixer.music.play(-1)
+#background_music = pygame.mixer.music.set_volume(0.3)
 
 # Setting title of window
 pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
@@ -188,7 +189,7 @@ while run:
                     selected_ingredients = [] # Clear the user-selected ingredients list for the next level
 
     elif current_level == 11:
-        background_music = pygame.mixer.music.stop()
+        audio.stop_music()
         #audio.play_background_music('credits')
         level_text.update()
         if level_text.finished:

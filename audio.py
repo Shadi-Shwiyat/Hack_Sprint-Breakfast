@@ -61,7 +61,7 @@ class GameAudio:
             #self.next_level_sound.set_volume(0.4)
 
     def stop_music(self):
-        pygame.mixer.music.stop()
+        self.menu_music.stop()
 
 if __name__ == "__main__":
     pygame.init()
