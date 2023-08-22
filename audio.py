@@ -11,7 +11,7 @@ class GameAudio:
         self.click_sound = pygame.mixer.Sound('audio/select_sound.mp3')
         self.boo_sound = pygame.mixer.Sound('audio/boo_sound.mp3')
         self.vomiting_sound = pygame.mixer.Sound('audio/vomit_sound.mp3')
-        #self.yay_sound = pygame.mixer.Sound('audio/yay.mp3')
+        self.yay_sound = pygame.mixer.Sound('audio/yay_sound.mp3')
         #self.next_level_sound = pygame.mixer.Sound('music/next_level_sound.mp3')
 
     def load_background_music(self):
@@ -34,9 +34,9 @@ class GameAudio:
         elif scenario == 'failing level':
             self.boo_sound.play(0)
             self.boo_sound.set_volume(0.3)
-        #elif scenario == 'yay':
-            #self.yay_sound.play(1)
-            #self.yay_sound.set_volume(0.4)
+        elif scenario == 'hooray':
+            self.yay_sound.play(1)
+            self.yay_sound.set_volume(0.4)
         elif scenario == 'vomiting':
             self.vomiting_sound.play(1)
             self.vomiting_sound.set_volume(0.3)
@@ -56,5 +56,5 @@ if __name__ == "__main__":
     audio.play_sound_effect('cooking food')
     audio.play_sound_effect('failing level')
     audio.play_sound_effect('vomiting')
-    #audio.play_sound_effect('yay')
+    audio.play_sound_effect('hooray')
     #audio.play_sound_effect('yes')

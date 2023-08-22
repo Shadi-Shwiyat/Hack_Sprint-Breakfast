@@ -1,11 +1,19 @@
 import pygame
-#from pygame import mixer
+from pygame import mixer
 from level_setup import current_level_setup
 from sys import exit
+from audio import GameAudio
 
 # Initializing pygame and window size
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
+
+# initializing audio
+pygame.mixer.init()
+audio = GameAudio()
+
+# Play background music
+audio.play_background_music('intro')
 
 # Setting title of window
 pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
@@ -126,11 +134,14 @@ while run:
                     start_cooking_button.selected = False
                     progress.clicked = False
                     print("Start Cooking button clicked!")
+                    audio.play_sound_effect('cooking food')
+                    pygame.time.delay(4000)
 
                     # Compare user-selected ingredients with correct ingredients
                     if sorted(selected_ingredients) == sorted(right_ingredients):
                         print("Ingredients match!")
                         level_success = True
+                        audio.play_sound_effect('hooray')
                         screen.blit(background, (-110, -50))
                         screen.blit(delicioso, (630, 15))
                         screen.blit(table, (40, 300))
@@ -150,6 +161,8 @@ while run:
                         ingredients_compared = True
                         image_flip = not image_flip
                         print("Ingredients do not match..")
+                        audio.play_sound_effect('failing level')
+                        audio.play_sound_effect('vomiting')
 
                 # Continue button to go to next level
                 if level_success:
@@ -210,29 +223,29 @@ while run:
         screen.blit(menu, (360, 0))
         ##### Example one of Title on start Menu
         result_message = "Rise"
-        result_font = pygame.font.Font("PixeloidSansBold-PKnYd.ttf", 85)
-        result_surf = result_font.render(result_message, True, (60, 232, 214))
+        result_font = pygame.font.Font("PixeloidSansBold-PKnYd.ttf", 80)
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
         result_rect = result_surf.get_rect(topleft=(75, 175))
         screen.blit(result_surf, result_rect)
         result_message = "and"
-        result_surf = result_font.render(result_message, True, (60, 232, 214))
-        result_rect = result_surf.get_rect(topleft=(75, 300))
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(85, 300))
         screen.blit(result_surf, result_rect)
         result_message = "Dine"
-        result_surf = result_font.render(result_message, True, (60, 232, 214))
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
         result_rect = result_surf.get_rect(topleft=(75, 425))
         screen.blit(result_surf, result_rect)
         result_message = "Wes's"
-        result_surf = result_font.render(result_message, True, (60, 232, 214))
-        result_rect = result_surf.get_rect(topleft=(925, 175))
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(900, 175))
         screen.blit(result_surf, result_rect)
         result_message = "Cozy"
-        result_surf = result_font.render(result_message, True, (60, 232, 214))
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
         result_rect = result_surf.get_rect(topleft=(925, 300))
         screen.blit(result_surf, result_rect)
         result_message = "Kitchen"
-        result_surf = result_font.render(result_message, True, (60, 232, 214))
-        result_rect = result_surf.get_rect(topleft=(925, 425))
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(870, 425))
         screen.blit(result_surf, result_rect)         
         
         
