@@ -100,6 +100,6 @@ def level_results(current_level):
     text_font = pygame.font.Font("PixeloidSans-mLxMm.ttf", 18)
 
     message = data["breakfasts"][current_level]["result_message"]
-    animated_message = TextAnimation(message, 830, 96, text_font, (0, 0, 0), 1030, .03, 0)
+    animated_message = TextAnimation(message, 830, 96, text_font, (0, 0, 0), 1030, .03, 1)
 
     return animated_message
