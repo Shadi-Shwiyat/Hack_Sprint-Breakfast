@@ -7,7 +7,6 @@ This repo holds the pygame "Rise and Dine: Wes's Cozy Kitchen" built for our Hol
 
 - [Installation](#installation)
 - [Game details](#game-details)
-- [Settings](#settings)
 - [Technical info](#technical-info)
 - [Credits](#credits)
 
@@ -87,6 +86,6 @@ to the `Display` and updates either the entire screen or specific parts that hav
 
 <h1 id="credits">Credits</h1>
 
-- Dominick <https://github.com/DominickKeeling>
+- Dominick Keeling <https://github.com/DominickKeeling>
 - Robert Farley <https://github.com/Nomad-Rob>
 - Shadi Shwiyat <https://github.com/Shadi-Shwiyat>

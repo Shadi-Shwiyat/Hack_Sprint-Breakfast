@@ -1,13 +1,7 @@
-import os
 import pygame
-import json
-import random
 #from pygame import mixer
-from level_setup import current_level_setup
+from level_setup import *
 from sys import exit
-
-# Fixing audio issue
-## os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
 # Initializing pygame and window size
 pygame.init()
@@ -16,19 +10,18 @@ screen = pygame.display.set_mode((1280, 720))
 # Setting title of window
 pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
 
-# Load font ### Trying to get to work ###
-#font_path = "./Minecraft.ttf"
-#font = pygame.font.Font(None, 30)
+# Load font
+text_font = pygame.font.Font("PixeloidSans-mLxMm.ttf", 30)
 
 # Define start menu, cooking and continue buttons
 from button import Button
-start_cooking_button = Button("Start Cooking!", (913, 560), font_size=30, size=(200, 50), hover_size=(200, 40))
+start_cooking_button = Button("Start Cooking!", (913, 560), font_size=19, size=(200, 50), hover_size=(200, 40))
 start_cooking_button.button_color = (0, 0, 0, 0)
-progress = Button("Continue", (800, 480), font_size=36, size=(200, 50), hover_size=(200, 40))
+progress = Button("Continue", (800, 480), font_size=23, size=(200, 50), hover_size=(200, 40))
 progress.button_color = (0, 0, 0, 0)
-start_button = Button("Start", (476, 439), font_size=76, size=(260, 60), hover_size=(260, 50))
+start_button = Button("Start", (476, 439), font_size=66, size=(260, 60), hover_size=(260, 50))
 start_button.button_color = (0, 0, 0, 0)
-quit_button = Button("Exit", (476, 576), font_size=76, size=(260, 60), hover_size=(260, 50))
+quit_button = Button("Exit", (476, 566), font_size=66, size=(260, 60), hover_size=(260, 50))
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
@@ -36,6 +29,7 @@ current_level = 0
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
+    
 level_data = current_level_setup(current_level)
 current_ingredients = level_data["current_ingredients"]
 right_ingredients = level_data["right_ingredients"]
@@ -93,7 +87,7 @@ japanese = pygame.transform.scale(japanese, (360, 230))
 level_success = False # For displaying result message
 ingredients_compared = False # For displaying different wes poses
 image_flip = True
-result_message = "" # Used with text_animation class, need to get working #####
+result_message = level_results(current_level)
 max_levels = 10
 
 # Game loop
@@ -112,8 +106,7 @@ while run:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-   
-                
+
             if level_text.finished:
                 # Event for ingredient button clicks
                 for button in buttons:
@@ -179,12 +172,14 @@ while run:
                             level_success = False
 
                     selected_ingredients = [] # Clear the user-selected ingredients list for the next level
+
     elif current_level == 11:
         level_text.update()
         if level_text.finished:
             run = False
             pygame.quit()
             exit()
+
     else:
         # Event to quit loop when user hits X
         for event in pygame.event.get():
@@ -213,6 +208,34 @@ while run:
     if current_level == 0:
         screen.blit(background, (-110, -50))
         screen.blit(menu, (360, 0))
+        ##### Example one of Title on start Menu
+        result_message = "Rise"
+        result_font = pygame.font.Font("PixeloidSansBold-PKnYd.ttf", 80)
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(75, 175))
+        screen.blit(result_surf, result_rect)
+        result_message = "and"
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(85, 300))
+        screen.blit(result_surf, result_rect)
+        result_message = "Dine"
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(75, 425))
+        screen.blit(result_surf, result_rect)
+        result_message = "Wes's"
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(900, 175))
+        screen.blit(result_surf, result_rect)
+        result_message = "Cozy"
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(925, 300))
+        screen.blit(result_surf, result_rect)
+        result_message = "Kitchen"
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(870, 425))
+        screen.blit(result_surf, result_rect)         
+        
+        
     else:
         if level_success == False:
             screen.blit(background, (-110, -50))
@@ -229,13 +252,33 @@ while run:
     #screen.blit(almost, (530, 15))
     #screen.blit(nope, (560, 15))
 
+    if level_success == False:
+        screen.blit(background, (-110, -50))
+        if ingredients_compared == False:
+            screen.blit(standard_pose, (530, 45))
+        elif image_flip:
+            screen.blit(disgusted, (530, 45))
+        else:
+            screen.blit(puke, (560, 20))
+        screen.blit(chatbox, (273, 76))
+        screen.blit(table, (40, 300))
+        if ingredients_compared:
+            screen.blit(dubious, (326, 190))
+    #screen.blit(almost, (530, 15))
+    #screen.blit(nope, (560, 15))
+
     # Blit textbox when text is done looping
     if level_text.finished and level_success == False:
         screen.blit(textbox, (40, 450))
         screen.blit(cook_it, (930, 536))
     
-    # Draw text animation
-    level_text.draw(screen) 
+    # Draw text animation and result messages
+    if not level_success:
+        level_text.draw(screen)
+    else:
+        result_message.update()
+        result_message.draw(screen)
+        progress.draw()
 
     # Draw the buttons
     if current_level == 0:
@@ -245,14 +288,6 @@ while run:
         for button in buttons:
             button.draw()
         start_cooking_button.draw()
-
-    # Draw result message if ingredients are compared
-    if level_success:
-        progress.draw()
-        #result_font = pygame.font.Font(None, 36)
-        #result_surf = result_font.render(result_message, True, (0, 0, 0))
-        #result_rect = result_surf.get_rect(center=(screen.get_width() // 2, 650))
-        #screen.blit(result_surf, result_rect)
 
     # Update the display
     pygame.display.flip()

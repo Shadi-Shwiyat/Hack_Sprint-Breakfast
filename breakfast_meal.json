@@ -18,7 +18,7 @@
             "right_ingredients": ["Eggs", "Sausage"],
             "all_ingredients": ["Eggs", "Sausage", "Toast", "Bacon"],
             "meal_picture": "eggs_sausage.png",
-            "result_message" : "Great job! You have made Eggs and Sausage!",
+            "result_message" : ["Delicioso! My mighty palate is pleased!"],
             "easter_egg": "images/gordon.png"
         },
         {
@@ -33,7 +33,7 @@
             "right_ingredients": ["Bagel", "Cream Cheese"],
             "all_ingredients": ["Bagel", "Cream Cheese", "Tortilla", "Hash Browns"],
             "meal_picture": "bagel.png",
-            "result_message" : "Great job! You have made Bagel and Cream Cheese!",
+            "result_message" : ["Delicioso! My mighty palate is pleased!"],
             "easter_egg": "images/gordon.png"
         },
         {
@@ -49,7 +49,7 @@
             "right_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust"],
             "all_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Pie Crust", "Tortilla", "Syrup", "Hash Browns", "Watermelon", "Oatmeal"],
             "meal_picture": "quiche.png",
-            "result_message" : "Great job! You have made Quiche!",
+            "result_message" : ["Delicioso! My mighty palate is pleased!"],
             "easter_egg": "images/gordon.png"
         },
         {
@@ -66,7 +66,7 @@
             "right_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter"],
             "all_ingredients": ["Eggs", "Cheese", "Milk", "Vegetables", "Water", "Flour", "Salt", "Butter", "Tortilla", "Syrup", "Hash Browns", "Oatmeal", "Bagel", "Cream Cheese", "Seaweed", "Baked Beans"],
             "meal_picture": "quiche.png",
-            "result_message": "Great job! You have made Quiche!",
+            "result_message" : ["Delicioso! My mighty palate is pleased!"],
             "easter_egg": "images/gordon.png"
         },
         {
@@ -81,7 +81,7 @@
             "right_ingredients": ["Pancake Batter", "Bacon", "Maple Syrup", "Butter"],
             "all_ingredients": ["Pancake Batter", "Bacon", "Maple Syrup", "Butter", "Eggs", "Cheese", "Toast", "Sausage"],
             "meal_picture": "pancake.png",
-            "result_message" : "Great job! You have made Bacon Pancakes!",
+            "result_message" : ["Delicioso! My mighty palate is pleased!"],
             "easter_egg": "images/gordon.png"
         },
         {
@@ -96,7 +96,7 @@
             "right_ingredients": ["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa"],
             "all_ingredients": ["Tortilla", "Scrambled Eggs", "Sausage", "Cheese", "Salsa", "Toast", "Pie Crust", "Bagel", "Pancake Batter", "Chocolate Chips"],
             "meal_picture": "burrito.png",
-            "result_message" : "Great job! You have made Breakfast Burrito!",
+            "result_message" : ["Delicioso! My mighty palate is pleased!"],
             "easter_egg": "images/gordon.png"
         },
         {
@@ -111,7 +111,7 @@
             "right_ingredients": ["Milk", "Eggs", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup"],
             "all_ingredients": ["Milk", "Eggs", "Flour", "Baking Powder", "Sugar", "Butter", "Chocolate Chips", "Syrup", "Bacon", "Green Onion", "Cheese", "Pie Crust", "Ginger", "Soy Sauce", "Vegetables", "Mushrooms"],
             "meal_picture": "waffle.png",
-            "result_message" : "Great job! You have made Chocolate Chip Waffles!",
+            "result_message" : ["Delicioso! My mighty palate is pleased!"],
             "easter_egg": "images/gordon.png"
         },
         {
@@ -127,7 +127,7 @@
             "right_ingredients": ["Eggs", "Bacon", "Toast", "Jam", "Hash Browns", "Sausage", "Baked Beans", "Tomato", "Mushrooms"],
             "all_ingredients": ["Eggs", "Bacon", "Toast", "Jam", "Hash Browns", "Sausage", "Baked Beans", "Tomato", "Mushrooms", "Rice", "Pancake Batter", "Vegetables", "Milk", "Flour", "Soy Sauce", "Fermented Soybean", "Green Onion", "Pickled Vegetables"],
             "meal_picture": "english.png",
-            "result_message" : "Great job! You have made Full English Breakfast!",
+            "result_message" : ["Delicioso! My mighty palate is pleased!"],
             "easter_egg": "images/gordon.png"
         },
         {
@@ -142,7 +142,7 @@
             "right_ingredients": ["Rice", "Water", "Fried Egg", "Ginger", "Green Onion", "Soy Sauce"],
             "all_ingredients": ["Rice", "Water", "Fried Egg", "Ginger", "Green Onion", "Soy Sauce", "Miso Soup", "Pickled Vegetables", "Rolled Omelette", "Milk", "Flour", "Syrup"],
             "meal_picture": "congee.png",
-            "result_message" : "Great job! You have made Chinese Congee!",
+            "result_message" : ["Delicioso! My mighty palate is pleased!"],
             "easter_egg": "images/gordon.png"
         },
         {
@@ -151,13 +151,13 @@
             "wes_says": [
                 "You did it!",
                 "Let's move on to the last level.",
-                "We will be making Japanese Breakfast.",
+                "For the final level, We will be making Japanese Breakfast.",
                 "Pick the right ingredients below for Japanese Breakfast."
             ],
             "right_ingredients": ["Rice", "Miso Soup", "Grilled Fish", "Pickled Vegetables", "Fermented Soybean", "Rolled Omelette", "Seaweed"],
             "all_ingredients": ["Rice", "Miso Soup", "Grilled Fish", "Pickled Vegetables", "Fermented Soybean", "Rolled Omelette", "Seaweed", "Eggs", "Baking Powder", "Jam", "Cheese", "Mushrooms", "Butter", "Milk"],
             "meal_picture": "japanese.png",
-            "result_message" : "Great job! You have made Japanese Breakfast!",
+            "result_message" : ["Delicioso! My mighty palate is pleased!"],
             "easter_egg": "images/gordon.png"
         },
         {
@@ -172,12 +172,13 @@
                 "Rob Farley : Database and Game Logic",
                 "Shadi Shwiyat : Art design and Game Logic",
                 "Huge Special Thanks to myself, Wes Rose!",
-                "Thank you for all you do as a Campus Coordinator, and for your help in this project!"
+                "Thank you for all you do as a Campus Coordinator",
+                "and for your help in this project!"
             ],
             "right_ingredients": [],
             "all_ingredients": [],
             "meal_picture": "japanese.png",
-            "result_message" : [],
+            "result_message" : ["Delicioso! My mighty palate is pleased!"],
             "easter_egg": []
             
             
