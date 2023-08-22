@@ -33,7 +33,7 @@ quit_button = Button("Exit", (476, 566), font_size=66, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 2
+current_level = 10
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
@@ -162,8 +162,8 @@ while run:
                         ingredients_compared = True
                         image_flip = not image_flip
                         print("Ingredients do not match..")
-                        audio.play_sound_effect('failing level', delay_ms=4000)
-                        audio.play_sound_effect('vomiting', delay_ms=3000)
+                        audio.play_sound_effect('failing level', delay_ms=1000)
+                        audio.play_sound_effect('vomiting')
 
                 # Continue button to go to next level
                 if level_success:

@@ -33,10 +33,11 @@ quit_button = Button("Exit", (476, 566), font_size=66, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 0
+current_level = 10
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
+    
 level_data = current_level_setup(current_level)
 current_ingredients = level_data["current_ingredients"]
 right_ingredients = level_data["right_ingredients"]
@@ -84,6 +85,11 @@ congee = pygame.transform.scale(congee, (290, 199))
 japanese = pygame.image.load("images/japanese.png")
 japanese = pygame.transform.scale(japanese, (360, 230))
 
+# Loading Music files
+#mixer.init()
+#background_music = mixer.music.load("music/intro_music.mp3")
+#background_music = mixer.music.play(-1)  # -1 means loop forever
+#background_music = mixer.music.set_volume(0.1) 
 
 # Game setup
 level_success = False # For displaying result message
@@ -108,8 +114,7 @@ while run:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-   
-                
+
             if level_text.finished:
                 # Event for ingredient button clicks
                 for button in buttons:
@@ -130,13 +135,14 @@ while run:
                     progress.clicked = False
                     print("Start Cooking button clicked!")
                     audio.play_sound_effect('cooking food')
-                    pygame.time.delay(4000)
+                    pygame.time.delay(2000)
 
                     # Compare user-selected ingredients with correct ingredients
                     if sorted(selected_ingredients) == sorted(right_ingredients):
                         print("Ingredients match!")
                         level_success = True
-                        audio.play_sound_effect('hooray')
+                        audio.play_sound_effect('level success')
+                        audio.play_sound_effect('level success 2', delay_ms=2500)
                         screen.blit(background, (-110, -50))
                         screen.blit(delicioso, (630, 15))
                         screen.blit(table, (40, 300))
@@ -156,7 +162,7 @@ while run:
                         ingredients_compared = True
                         image_flip = not image_flip
                         print("Ingredients do not match..")
-                        audio.play_sound_effect('failing level')
+                        audio.play_sound_effect('failing level', delay_ms=1000)
                         audio.play_sound_effect('vomiting')
 
                 # Continue button to go to next level
@@ -216,6 +222,34 @@ while run:
     if current_level == 0:
         screen.blit(background, (-110, -50))
         screen.blit(menu, (360, 0))
+        ##### Example one of Title on start Menu
+        result_message = "Rise"
+        result_font = pygame.font.Font("PixeloidSansBold-PKnYd.ttf", 80)
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(75, 175))
+        screen.blit(result_surf, result_rect)
+        result_message = "and"
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(85, 300))
+        screen.blit(result_surf, result_rect)
+        result_message = "Dine"
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(75, 425))
+        screen.blit(result_surf, result_rect)
+        result_message = "Wes's"
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(900, 175))
+        screen.blit(result_surf, result_rect)
+        result_message = "Cozy"
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(925, 300))
+        screen.blit(result_surf, result_rect)
+        result_message = "Kitchen"
+        result_surf = result_font.render(result_message, True, (15, 99, 25))
+        result_rect = result_surf.get_rect(topleft=(870, 425))
+        screen.blit(result_surf, result_rect)         
+        
+        
     else:
         if level_success == False:
             screen.blit(background, (-110, -50))
@@ -256,7 +290,7 @@ while run:
         screen.blit(chatbox, (273, 76))
         result_message = "You did it!"
         progress.draw()  
-        result_font = pygame.font.Font(None, 36)
+        result_font = pygame.font.Font("PixeloidSans-mLxMm.ttf", 19)
         result_surf = result_font.render(result_message, True, (0, 0, 0))
         result_rect = result_surf.get_rect(topleft=(300, 100))
         screen.blit(result_surf, result_rect)

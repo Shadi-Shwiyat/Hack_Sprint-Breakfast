@@ -17,12 +17,16 @@ class GameAudio:
 
     def load_background_music(self):
         self.menu_music = pygame.mixer.Sound('audio/intro_music.mp3')
+        self.credit_music = pygame.mixer.Sound('audio/credit_music.mp3')
 
     def play_background_music(self, scenario):
         pygame.mixer.music.stop()
         if scenario == 'intro':
             self.menu_music.play(-1)
             self.menu_music.set_volume(0.1)
+        elif scenario == 'credits':
+            self.credit_music.play(0)
+            self.credit_music.set_volume(0.2)
 
     def play_sound_effect(self, scenario, delay_ms=0):
         pygame.mixer.music.stop()
@@ -62,6 +66,7 @@ if __name__ == "__main__":
     audio = GameAudio()
     
     audio.play_background_music('intro')
+    audio.play_background_music('credits')
     
     audio.play_sound_effect('select button')
     audio.play_sound_effect('cooking food')
