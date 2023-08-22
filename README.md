@@ -1,5 +1,5 @@
 # Hack_Sprint-Breakfast
-This repo holds the pygame "Rise and Dine: Wes's Cozy Kitchen" built for our Holberton Hack Sprint
+This repo holds the pygame "Rise and Dine: Wes's Cozy Kitchen" built for our Holberton Hack Sprint!
 
 "Rise and Dine: Wes's Cozy Kitchen" is a single player breakfast ingredient choosing game developed using [pygame](https://www.pygame.org/news) featuring a retro theme and chill gameplay with a focus on the player's choice of ingredients and how they affect the breakfast meal chosen by the Chef.
 
@@ -58,19 +58,18 @@ This game is built to be scaleable if we decide to add more levels later on.
 ## File structure and Picture
 
 The game directory (Hack_Sprint-Breakfast) is structured as follows:
-
-audio/: Directory containing background music and sound effects.
-images/: Directory containing image assets used in the game.
-.gitignore: Specifies files and directories to be ignored by version control.
-PixeloidSans-mLxMm.ttf: Font file used in the game.
-PixeloidSansBold-PKnYd.ttf: Bold version of the font.
-README.md: This documentation file.
-audio.py: Module handling audio and sound effects.
-breakfast_meal.json: JSON data file containing breakfast meal information.
-button.py: Module defining the Button class for interactive buttons.
-game.py: Main game script where the game loop and logic are implemented.
-level_setup.py: Module containing functions for setting up game levels.
-text_animation.py: Module containing the TextAnimation class for animated text display.
+* audio/: Directory containing background music and sound effects.
+* images/: Directory containing image assets used in the game.
+* PixeloidSans-mLxMm.ttf: Font file used in the game.
+* PixeloidSansBold-PKnYd.ttf: Bold version of the font.
+* README.md: This documentation file.
+* audio.py: Module handling audio and sound effects.
+* breakfast_meal.json: JSON data file containing breakfast meal information.
+* button.py: Module defining the Button class for interactive buttons.
+* game.py: Main game script where the game loop and logic are implemented.
+* level_setup.py: Module containing functions for setting up game levels.
+* text_animation.py: Module containing the TextAnimation class for animated text display.
+  
 
 How to Start the Game
 > Make sure installation is complete from above
