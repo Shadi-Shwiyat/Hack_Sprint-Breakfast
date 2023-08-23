@@ -1,4 +1,3 @@
-import pygame
 import time
 
 class TextAnimation:

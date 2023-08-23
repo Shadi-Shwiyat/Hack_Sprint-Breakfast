@@ -19,7 +19,7 @@ class Button:
         # Calculating size of rectangle based on rendered text
         text_surf = self.font.render(self.text, True, (0, 0, 0, 0))
         text_rect = text_surf.get_rect()
-        self.size = size if size else (text_rect.width + 20, text_rect.height + 20)  # Adding some padding for rectangle
+        self.size = size if size else (text_rect.width + 10, text_rect.height + 10)  # Adding some padding for rectangle
         self.hover_size = hover_size if hover_size else self.size  # Use default size if hover_size not provided
 
 

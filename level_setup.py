@@ -1,4 +1,3 @@
-import os
 import pygame
 import json
 import random
@@ -10,7 +9,7 @@ def current_level_setup(current_level):
         data = json.load(json_file)
 
     # Load font
-    text_font = pygame.font.Font("PixeloidSans-mLxMm.ttf", 18)
+    text_font = pygame.font.Font("PixeloidSans-mLxMm.ttf", 23)
 
     # Instantiating Ingredient Buttons
     from button import Button
@@ -52,19 +51,27 @@ def current_level_setup(current_level):
     buttons = []  # List used to draw the buttons
 
     # Adding buttons to the list to be drawn
-    for ingredient in current_ingredients:
-        buttons.append(Button(ingredient, (x, y), font_size=16))
-        x += 100 + button_spacing
-        if len(buttons) % max_buttons_per_row == 0:
-            x = start_x
-            y += row_spacing
+    if current_level <= 2:
+        for ingredient in current_ingredients:
+            buttons.append(Button(ingredient, (x, y), font_size=23))
+            x += 100 + button_spacing
+            if len(buttons) % max_buttons_per_row == 0:
+                x = start_x
+                y += row_spacing
+    else:
+        for ingredient in current_ingredients:
+            buttons.append(Button(ingredient, (x, y), font_size=16))
+            x += 100 + button_spacing
+            if len(buttons) % max_buttons_per_row == 0:
+                x = start_x
+                y += row_spacing
 
     # Extract sentences for level 1 from JSON data
     level_sentences = data["breakfasts"][current_level - 1]["wes_says"]
 
     # Create TextAnimation instance for level 1
     from text_animation import TextAnimation
-    level_text = TextAnimation(level_sentences, 830, 96, text_font, (0, 0, 0), 1030, 0.03, 1)
+    level_text = TextAnimation(level_sentences, 786, 66, text_font, (0, 0, 0), 1060, 0.03, 1)
 
     # Load the meal_picture for the current level
     if current_level >= 1:
@@ -97,9 +104,9 @@ def level_results(current_level):
         data = json.load(json_file)
 
     # Load font
-    text_font = pygame.font.Font("PixeloidSans-mLxMm.ttf", 18)
+    text_font = pygame.font.Font("PixeloidSans-mLxMm.ttf", 23)
 
     message = data["breakfasts"][current_level]["result_message"]
-    animated_message = TextAnimation(message, 830, 96, text_font, (0, 0, 0), 1030, .03, 1)
+    animated_message = TextAnimation(message, 786, 66, text_font, (0, 0, 0), 1060, 0.03, 1)
 
     return animated_message

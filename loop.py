@@ -1,11 +1,18 @@
 import pygame
-#from pygame import mixer
 from level_setup import *
 from sys import exit
+from audio import GameAudio
 
 # Initializing pygame and window size
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
+
+# initializing audio
+pygame.mixer.init()
+audio = GameAudio()
+
+# Play background music
+audio.play_background_music('intro')
 
 # Setting title of window
 pygame.display.set_caption("Rise and Dine: Wes's Cozy Kitchen")
@@ -25,11 +32,14 @@ quit_button = Button("Exit", (476, 566), font_size=66, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 0
+current_level = 1
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
-    
+    cozy = pygame.image.load("images/cozy.png")
+    cozy = pygame.transform.scale(cozy, (403, 303))
+    rise_dine = pygame.image.load("images/rise_dine.png")
+    rise_dine = pygame.transform.scale(rise_dine, (330, 260))
 level_data = current_level_setup(current_level)
 current_ingredients = level_data["current_ingredients"]
 right_ingredients = level_data["right_ingredients"]
@@ -49,7 +59,7 @@ table = pygame.transform.scale(table, (1200, 530))
 textbox = pygame.image.load("images/textbox.png")
 textbox = pygame.transform.scale(textbox, (1200, 276))
 chatbox = pygame.image.load("images/chat.png")
-chatbox = pygame.transform.scale(chatbox, (400, 150))
+chatbox = pygame.transform.scale(chatbox, (460, 230))
 plate = pygame.image.load("images/servingPlate.png")
 plate = pygame.transform.scale(plate, (230, 160))
 dubious = pygame.image.load("images/dubious.png")
@@ -77,12 +87,6 @@ congee = pygame.transform.scale(congee, (290, 199))
 japanese = pygame.image.load("images/japanese.png")
 japanese = pygame.transform.scale(japanese, (360, 230))
 
-# Loading Music files
-#mixer.init()
-#background_music = mixer.music.load("music/intro_music.mp3")
-#background_music = mixer.music.play(-1)  # -1 means loop forever
-#background_music = mixer.music.set_volume(0.1) 
-
 # Game setup
 level_success = False # For displaying result message
 ingredients_compared = False # For displaying different wes poses
@@ -95,8 +99,6 @@ clock = pygame.time.Clock() # Creating a clock object
 run = True
 
 while run:
-    # Things to clear each loop iteration
-    
     # Update the text animation
     if current_level >= 1 and current_level < 11:
         level_text.update()
@@ -126,15 +128,19 @@ while run:
                     start_cooking_button.selected = False
                     progress.clicked = False
                     print("Start Cooking button clicked!")
+                    audio.play_sound_effect('cooking food')
+                    pygame.time.delay(2000)
 
                     # Compare user-selected ingredients with correct ingredients
                     if sorted(selected_ingredients) == sorted(right_ingredients):
                         print("Ingredients match!")
                         level_success = True
+                        audio.play_sound_effect('level success')
+                        audio.play_sound_effect('level success 2', delay_ms=2500)
                         screen.blit(background, (-110, -50))
                         screen.blit(delicioso, (630, 15))
                         screen.blit(table, (40, 300))
-                        screen.blit(chatbox, (273, 76))
+                        screen.blit(chatbox, (223, 36))
                         # Blit the meal_picture on the screen
                         if current_level <= 7:
                             screen.blit(plate, (300, 430))
@@ -150,6 +156,8 @@ while run:
                         ingredients_compared = True
                         image_flip = not image_flip
                         print("Ingredients do not match..")
+                        audio.play_sound_effect('failing level', delay_ms=1000)
+                        audio.play_sound_effect('vomiting')
 
                 # Continue button to go to next level
                 if level_success:
@@ -173,13 +181,20 @@ while run:
 
                     selected_ingredients = [] # Clear the user-selected ingredients list for the next level
 
+    # Credits scene
     elif current_level == 11:
+        if audio.intro_playing == True:
+            audio.stop_music()
+            audio.intro_playing = False
+        if audio.credit_playing == False:
+            audio.play_background_music('credits')
         level_text.update()
         if level_text.finished:
             run = False
             pygame.quit()
             exit()
 
+    # If the current level is 0 (Start Menu)
     else:
         # Event to quit loop when user hits X
         for event in pygame.event.get():
@@ -208,34 +223,9 @@ while run:
     if current_level == 0:
         screen.blit(background, (-110, -50))
         screen.blit(menu, (360, 0))
-        ##### Example one of Title on start Menu
-        result_message = "Rise"
-        result_font = pygame.font.Font("PixeloidSansBold-PKnYd.ttf", 80)
-        result_surf = result_font.render(result_message, True, (15, 99, 25))
-        result_rect = result_surf.get_rect(topleft=(75, 175))
-        screen.blit(result_surf, result_rect)
-        result_message = "and"
-        result_surf = result_font.render(result_message, True, (15, 99, 25))
-        result_rect = result_surf.get_rect(topleft=(85, 300))
-        screen.blit(result_surf, result_rect)
-        result_message = "Dine"
-        result_surf = result_font.render(result_message, True, (15, 99, 25))
-        result_rect = result_surf.get_rect(topleft=(75, 425))
-        screen.blit(result_surf, result_rect)
-        result_message = "Wes's"
-        result_surf = result_font.render(result_message, True, (15, 99, 25))
-        result_rect = result_surf.get_rect(topleft=(900, 175))
-        screen.blit(result_surf, result_rect)
-        result_message = "Cozy"
-        result_surf = result_font.render(result_message, True, (15, 99, 25))
-        result_rect = result_surf.get_rect(topleft=(925, 300))
-        screen.blit(result_surf, result_rect)
-        result_message = "Kitchen"
-        result_surf = result_font.render(result_message, True, (15, 99, 25))
-        result_rect = result_surf.get_rect(topleft=(870, 425))
-        screen.blit(result_surf, result_rect)         
-        
-        
+        screen.blit(cozy, (869, 230))
+        screen.blit(rise_dine, (23, 230))
+
     else:
         if level_success == False:
             screen.blit(background, (-110, -50))
@@ -245,27 +235,10 @@ while run:
                 screen.blit(disgusted, (530, 45))
             else:
                 screen.blit(puke, (560, 20))
-            screen.blit(chatbox, (273, 76))
+            screen.blit(chatbox, (223, 36))
             screen.blit(table, (40, 300))
             if ingredients_compared:
                 screen.blit(dubious, (326, 190))
-    #screen.blit(almost, (530, 15))
-    #screen.blit(nope, (560, 15))
-
-    if level_success == False:
-        screen.blit(background, (-110, -50))
-        if ingredients_compared == False:
-            screen.blit(standard_pose, (530, 45))
-        elif image_flip:
-            screen.blit(disgusted, (530, 45))
-        else:
-            screen.blit(puke, (560, 20))
-        screen.blit(chatbox, (273, 76))
-        screen.blit(table, (40, 300))
-        if ingredients_compared:
-            screen.blit(dubious, (326, 190))
-    #screen.blit(almost, (530, 15))
-    #screen.blit(nope, (560, 15))
 
     # Blit textbox when text is done looping
     if level_text.finished and level_success == False:
@@ -294,7 +267,6 @@ while run:
 
     # Limit frame rate to 60 FPS
     clock.tick(60)
-    #print(clock)
 
 pygame.quit()
 exit()

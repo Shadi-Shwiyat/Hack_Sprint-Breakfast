@@ -1,5 +1,4 @@
 import pygame
-from pygame import mixer
 from level_setup import *
 from sys import exit
 from audio import GameAudio
@@ -33,7 +32,7 @@ quit_button = Button("Exit", (476, 566), font_size=66, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 0
+current_level = 1
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))
@@ -41,7 +40,6 @@ if current_level == 0:
     cozy = pygame.transform.scale(cozy, (403, 303))
     rise_dine = pygame.image.load("images/rise_dine.png")
     rise_dine = pygame.transform.scale(rise_dine, (330, 260))
-    
 level_data = current_level_setup(current_level)
 current_ingredients = level_data["current_ingredients"]
 right_ingredients = level_data["right_ingredients"]
@@ -61,7 +59,7 @@ table = pygame.transform.scale(table, (1200, 530))
 textbox = pygame.image.load("images/textbox.png")
 textbox = pygame.transform.scale(textbox, (1200, 276))
 chatbox = pygame.image.load("images/chat.png")
-chatbox = pygame.transform.scale(chatbox, (400, 150))
+chatbox = pygame.transform.scale(chatbox, (460, 230))
 plate = pygame.image.load("images/servingPlate.png")
 plate = pygame.transform.scale(plate, (230, 160))
 dubious = pygame.image.load("images/dubious.png")
@@ -101,8 +99,6 @@ clock = pygame.time.Clock() # Creating a clock object
 run = True
 
 while run:
-    # Things to clear each loop iteration
-    
     # Update the text animation
     if current_level >= 1 and current_level < 11:
         level_text.update()
@@ -144,7 +140,7 @@ while run:
                         screen.blit(background, (-110, -50))
                         screen.blit(delicioso, (630, 15))
                         screen.blit(table, (40, 300))
-                        screen.blit(chatbox, (273, 76))
+                        screen.blit(chatbox, (223, 36))
                         # Blit the meal_picture on the screen
                         if current_level <= 7:
                             screen.blit(plate, (300, 430))
@@ -185,6 +181,7 @@ while run:
 
                     selected_ingredients = [] # Clear the user-selected ingredients list for the next level
 
+    # Credits scene
     elif current_level == 11:
         if audio.intro_playing == True:
             audio.stop_music()
@@ -228,8 +225,7 @@ while run:
         screen.blit(menu, (360, 0))
         screen.blit(cozy, (869, 230))
         screen.blit(rise_dine, (23, 230))
-           
-        
+
     else:
         if level_success == False:
             screen.blit(background, (-110, -50))
@@ -239,12 +235,10 @@ while run:
                 screen.blit(disgusted, (530, 45))
             else:
                 screen.blit(puke, (560, 20))
-            screen.blit(chatbox, (273, 76))
+            screen.blit(chatbox, (223, 36))
             screen.blit(table, (40, 300))
             if ingredients_compared:
                 screen.blit(dubious, (326, 190))
-    #screen.blit(almost, (530, 15))
-    #screen.blit(nope, (560, 15))
 
     # Blit textbox when text is done looping
     if level_text.finished and level_success == False:
@@ -273,7 +267,6 @@ while run:
 
     # Limit frame rate to 60 FPS
     clock.tick(60)
-    #print(clock)
 
 pygame.quit()
 exit()
