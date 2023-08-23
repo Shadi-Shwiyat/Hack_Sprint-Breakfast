@@ -32,7 +32,7 @@ quit_button = Button("Exit", (476, 566), font_size=66, size=(260, 60), hover_siz
 quit_button.button_color = (0, 0, 0, 0)
 
 # Load level setup from function
-current_level = 1
+current_level = 0
 if current_level == 0:
     menu = pygame.image.load("images/start_menu.png")
     menu = pygame.transform.scale(menu, (500, 720))

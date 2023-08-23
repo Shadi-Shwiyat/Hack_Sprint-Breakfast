@@ -44,12 +44,12 @@ class GameAudio:
             if delay_ms > 0:
                 pygame.time.delay(delay_ms)
             self.boo_sound.play(0)
-            self.boo_sound.set_volume(0.3)
+            self.boo_sound.set_volume(0.2)
         elif scenario == 'level success':
             self.wes_hooray.play(0)
-            self.wes_hooray.set_volume(0.5)
+            self.wes_hooray.set_volume(0.3)
             self.hooray_kids.play(0)
-            self.hooray_kids.set_volume(0.4)
+            self.hooray_kids.set_volume(0.6)
         elif scenario == 'level success 2':
             self.yes_sound.play(0)
             self.yes_sound.set_volume(0.4)
@@ -58,12 +58,8 @@ class GameAudio:
             if delay_ms > 0:
                 pygame.time.delay(delay_ms)
             self.vomiting_sound.play(1)
-            self.vomiting_sound.set_volume(0.3)
-            #pygame.time.delay(3000)
-        #elif scenario == 'yes':
-            #self.next_level_sound.play(1) # DONT HAVE YET
-            #self.next_level_sound.set_volume(0.4)
-
+            self.vomiting_sound.set_volume(0.6)
+ 
     def stop_music(self):
         self.menu_music.stop()
 
