@@ -15,8 +15,8 @@ This repo holds the pygame "Rise and Dine: Wes's Cozy Kitchen" built for our Hol
 > Installing Title of the Game takes 4 easy steps: **(You will need git installed to do this!)**
 > 1. Create a new folder
 > 2. Open a command line and use `cd` to move to the created folder
-> 3. Type `git init` and hit enter
-> 4. Type `git clone add repo here` and hit enter
+> 3. Type `"git init"` and hit enter
+> 4. Type `"git clone add repo here"` and hit enter
 
 As python is commonly already installed on most systems by default, it should run without manual installation of  
 python. Furthermore, if the game is launched and fails to `import pygame` then a prompt will show and ask the  
