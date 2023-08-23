@@ -19,7 +19,7 @@ class GameAudio:
 
     def load_background_music(self):
         self.menu_music = pygame.mixer.Sound('audio/intro_music.mp3')
-        self.credit_music = pygame.mixer.Sound('audio/credit_music.mp3')
+        self.credit_music = pygame.mixer.Sound('audio/credit_music.wav')
 
     def play_background_music(self, scenario):
         pygame.mixer.music.stop()
